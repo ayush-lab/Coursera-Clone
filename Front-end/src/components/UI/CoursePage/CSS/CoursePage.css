@@ -1,0 +1,115 @@
+
+.coursePage{
+    background:rgba(214, 205, 205, 0.164) !important;
+    
+}
+
+
+.Course-Video{
+    width:600px;
+    height:auto;
+    
+}
+
+.Section2{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+
+}
+
+
+.Main-Section{
+   
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    margin:3px;
+}
+
+.Small-nav-section{
+    display: flex;
+    margin-top:35px;
+    margin-left:5px;
+}
+
+.Small-nav-section p{
+    font: normal normal 600 18px/29px Gilroy;
+    letter-spacing: 0.48px;
+    color: #3C4852;
+    /* margin-right:40px; */
+    border-bottom: 2px solid #3C4852;
+}
+
+.section2part1{
+    width:50%;
+    margin-right:30px;
+    
+}
+
+
+.flex-col-requirement{
+    display:flex;
+    flex-direction: column;
+    margin-top:30px;
+    margin-left:5px;
+    
+}
+.flex-col-requirement h1{
+    
+    font: normal normal bold 24px/30px Gilroy;
+    letter-spacing: 0.84px;
+    color: #272f36;
+}
+
+.flex-col-requirement p{
+    font: normal normal  17px/23px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+
+}
+
+
+.flex-center{
+   
+    margin-top:35px;
+    display:flex;
+    flex-direction: column;
+    flex-grow:1;
+    /* height:400px; */
+    
+    
+}
+.progressBar{
+    margin-top:40px;
+    
+    box-shadow: 1px 1px 5px rgba(140, 161, 190, 0.6), 
+    -1px -1px 5px  
+    rgba(255, 255, 255, 0.342);
+    padding:40px;
+    width:100%;
+}
+.progressBar p{
+    font: normal normal 20px/24px Gilroy;
+    color:#0e3c5f;
+}
+
+@media (max-width:1280px){
+    .Section2{
+        display:flex;
+        flex-direction: column-reverse;
+        flex-wrap:wrap;
+       
+    }   
+}
+
+@media(max-width:1180px){
+
+    .Main-Section{
+    
+        justify-content: flex-start;
+    
+
+    }
+
+}

@@ -1,0 +1,31 @@
+.EmptyCartMain{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    align-content: center;
+    margin-top: 50px;
+
+}
+
+.EmptyCartLogo img{
+    width: 170px;
+    height: 220px;
+}
+
+.EmptyCartDesc{
+    margin-top:30px;
+    font: normal normal normal 25px/38px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+}   
+
+.HomeButton{
+    width: 220px;
+    height: 40px;
+    font: normal normal 17px/24px Gilroy;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 7px;
+}

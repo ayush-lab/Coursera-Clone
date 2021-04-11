@@ -1,0 +1,17 @@
+.unvisible {
+    opacity:0;
+    display:none;
+}
+.alertbox{
+    /* display:flex !important;
+    justify-content: center !important;
+    align-content: center !important;
+    
+    text-align:center !important;
+    position: absolute;
+    top:0;
+    left:0; */
+    position: fixed;
+    z-index:3 !important;
+    
+}

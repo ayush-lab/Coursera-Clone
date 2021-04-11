@@ -1,0 +1,172 @@
+.navbar-collapse{
+    justify-content: space-around !important;
+}
+
+
+.navbar{
+    
+    background: #FFFFFF 0% 0% no-repeat padding-box !important; 
+    box-shadow: 0px 3px 11px #BAD8FD40 !important;
+    margin-bottom:-40px!important;
+}
+
+
+.Navbar nav{
+    height:100%;
+}
+
+
+.Logo-specs{
+    margin-left:150px;
+}
+
+.teachLink{
+    font: normal normal 200 17px/23px Gilroy;
+    letter-spacing: 0.47px;
+    color: #566775;
+    border-radius:6px;
+    background:rgba(128, 128, 128, 0.192);
+    margin-right:30px;
+    
+  
+}
+.teacherActive{
+    background:white;
+    border:1px solid #566775;;
+}
+
+
+.Signupbtn,.Loginbtn,.logoutlink{
+    font: normal normal 400 17px/20px Gilroy;
+    letter-spacing: 0.47px;
+    color: #FFFFFF;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    margin-left:10px;
+}
+.fa-heart{
+    color:red;
+}
+#bookmarkNav{
+    
+    color:rgba(13, 22, 46, 0.76) !important;
+    font-weight:bold;
+    font: normal normal 200 17px/23px Gilroy;
+}
+
+.active-categoryMenu{
+    color:black !important;
+    font-weight:bolder !important;
+    
+}
+
+.Loginbtn:hover,
+.Signupbtn:hover{
+    opacity:0.7;
+}
+
+.profileName{
+    font: normal normal 200 17px/23px Gilroy;
+    color:rgba(13, 22, 46, 0.76) !important;
+ 
+}
+
+.btnactive{
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    border: 0.5px solid #2674E2;
+    border-radius: 8px;
+    font: normal normal 400 17px/20px Gilroy;
+    letter-spacing: 0.47px;
+    color: #2D81F7;
+    margin-left:10px;
+}
+
+.dropdown-toggle{
+    color: #566775;
+}
+
+
+
+.dropdown-item{
+   
+    font: normal normal  17px/20px Gilroy;
+    letter-spacing: 0.47px;
+    color: #566775;
+    opacity:0.7;
+   
+}
+
+.dropdown-item:active{
+    background:#08BD80 !important;
+}
+
+
+.dropdown-item:hover{
+  font-weight:bolder!important;
+   
+}
+.dropdown:hover .dropdown-menu{
+    display:block;
+    margin-top:0;
+
+}
+
+
+
+.wishlistlink,.profilelink{
+    color: #566775;
+}
+
+.linkactive{
+    font-weight:bolder!important;
+}
+
+.navlink:hover{
+    color:#566775!important;
+}
+
+
+.wishlistlink:hover,
+.profilelink:hover{
+
+    font-weight:bolder!important;
+}
+
+
+
+.fa-bars{
+    color:#2D81F7;
+}
+
+.usere{
+    margin-right:20px;
+}
+
+
+@media (max-width:998px){
+
+    .Signupbtn,.Loginbtn,.logoutlink{
+        font: normal normal 400 17px/20px Gilroy;
+        letter-spacing: 0.47px;
+        color: grey;
+        background: none;
+        border-radius: 8px;
+        opacity: 1;
+        margin-left:0px;
+        border:none;
+    }
+
+    .btnactive{
+        background:none;       
+        border-radius: 8px;
+        font: normal normal 400 17px/20px Gilroy;
+        letter-spacing: 0.47px;
+        color: #2D81F7;
+        margin-left:0px;
+        border:none;
+    }
+    
+    
+
+}

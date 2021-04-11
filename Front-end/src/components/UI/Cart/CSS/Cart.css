@@ -1,0 +1,203 @@
+.flex-row{
+    display:flex;
+    flex-wrap: wrap;
+
+}
+.empty-center{
+    display: flex;
+    justify-content: center !important;
+
+}
+
+.CartTitle{
+    margin-top:10px;
+    font: normal normal 30px/58px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+    line-height:normal;
+    margin-left:3px;
+}
+
+.CartSubTitle{
+    font: normal normal medium 22px/26px Gilroy;
+    letter-spacing: 0px;
+    margin-left:3px;
+    color: #566775;
+    opacity: 0.5;
+    line-height:normal;
+}
+
+
+/* .CartContent{
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+
+
+} */
+
+.CardMain{
+    display:flex;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #70707033;
+    border-radius: 12px;
+    margin-right:30px;
+    margin-bottom:10px;
+    margin-left:20px;
+    padding:2px;
+
+}
+
+.CardImageParent{
+    margin-right:8px;
+    /* width: auto;
+    height:auto; */
+}
+
+.CardImageParent img{
+    object-fit: cover;
+    width: 200px;
+    height: 190px;
+    border-radius:8px;
+
+}
+
+.CardSideContent{
+    margin-top:3px;
+    margin-right:10px;
+    width:330px;
+    max-width:310px;
+
+
+}
+
+.CourseTitle,.CourseTeacher{
+
+    font: normal normal bold 18px/24px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    opacity: 1;
+    line-height: normal;
+}
+
+.CourseTeacher{
+    font: normal normal normal 13px/20px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+}
+
+.CardParent1,.CardParent2,.CardParent3{
+    display:flex;
+
+
+}
+
+.CoursePrice{
+    font: normal normal bold 20px/25px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    line-height:normal;
+    border-radius:8px;
+    padding:3px;
+    background:rgba(5, 155, 255, 0.199);
+}
+
+.CourseRating{
+    font: normal normal normal 13px/20px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    line-height:normal;
+
+    margin-left:5px;
+    margin-right:3px;
+    margin-top:12px;
+}
+
+.Coursestar{
+
+}
+
+.CourseRemove,.CourseWhishlist,.CourseSave{
+    flex-grow:1;
+    text-align:right;
+    font: normal normal 15px/21px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+    line-height:normal;
+    cursor:pointer;
+
+}
+
+.CourseBuy{
+    text-align:right;
+    font: normal normal medium 18px/21px Gilroy;
+    letter-spacing: 0px;
+    line-height:0px;
+    color: #08BD80;
+}
+
+
+
+
+
+
+@media (max-width:500px){
+    .CardImageParent img{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width:1100px){
+    .flex-row{
+        display:row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+}
+
+@media(max-width:634px){
+    .CardImageParent img{
+        width: 200px;
+        height: 200px;
+    }
+    .CardSideContent{
+        margin-top:3px;
+        margin-right:10px;
+        width:250px;
+        max-width:310px;
+    
+    
+    }
+    .CourseWhishlist{
+        display:none;
+    }
+
+}
+
+@media(max-width:500px){
+    .CardImageParent img{
+        display: none;
+        width: 100px;
+        height: 100px;
+    }
+    .CardSideContent{
+        margin-top:3px;
+        margin-right:10px;
+        width:250px;
+        max-width:310px;
+    
+    
+    }
+    .CourseWhishlist{
+        display:none;
+    }
+
+
+    .flex-row{
+       
+       margin-bottom: 80px!important;
+    }    
+
+}

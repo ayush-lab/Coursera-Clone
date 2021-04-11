@@ -1,0 +1,10 @@
+# Ignore node_modules folder
+node_modules
+
+#Dependency npm install --save-dev babel-plugin-react-html-attrs
+firebase.json
+yarn.lock
+.firebase
+build
+.firebaserc
+.env

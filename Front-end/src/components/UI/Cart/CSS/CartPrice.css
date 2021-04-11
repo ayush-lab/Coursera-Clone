@@ -1,0 +1,67 @@
+.CartPriceBag{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #7070703b;
+    border-radius: 16px;
+    padding:10px;
+    margin-bottom:100px;
+    
+}
+
+.Price-Buy{
+    margin:45px 0 10px 0;
+    text-align:center;
+    font: normal normal medium 15px/18px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+    
+}
+
+.BuyNowBtn{
+    background: #08BD80 0% 0% no-repeat padding-box;
+    border-radius: 24px;
+    font: normal normal 15px/18px Gilroy;
+    letter-spacing: 0px;
+    color: #FEFEFE;
+    text-align: center;
+    padding:10px;
+    margin-right:40px;
+    
+
+}
+
+.TotalamountText{
+    font: normal normal 30px/35px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+   
+    text-align:right;
+  
+ 
+    
+}
+
+.TotalValue{
+    font: normal normal bold 28px/35px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+   
+    
+    
+}
+
+
+@media (max-width: 500px){
+    .TotalamountText{
+        text-align:center;
+        font: normal normal 20px/35px Gilroy;
+        line-height:normal;
+    }
+    .TotalValue{
+        text-align:center;
+        font: normal normal bold 18px/35px Gilroy;
+    }
+
+    .BuyNowBtn {
+        
+    }
+}

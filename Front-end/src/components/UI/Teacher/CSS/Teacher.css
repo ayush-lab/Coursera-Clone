@@ -1,0 +1,227 @@
+/* @media (min-width:1200px){
+
+    .container-fluid{ max-width:700px !important ;}
+} */
+
+.container-fluid-main{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    
+   
+}
+
+
+
+.Teacher-Head-Class{
+    display:flex;
+    justify-content: flex-start;
+    margin-top:50px;
+    text-align: left;
+    font: normal normal  20px/29px Gilroy !important;
+    color: #707070 !important;
+    
+    padding-left:5px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+
+}
+.Teacher-Head-ClassVideo{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:0px;
+
+
+}
+
+
+
+.Teacher-Courses-Buttons-head{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+.Teacher-Courses-Buttons{
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+
+   
+}
+
+.Teacher-Courses-Buttons button{
+    margin-top:10px;
+    font: normal normal 17px/24px Gilroy;
+    letter-spacing: 0px;
+    margin-right: 7px;
+    color: #566775;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #70707042;
+    border-radius: 8px;
+    width: 119px;
+    height: 38px;
+}
+
+
+.Teacher-Courses-Buttons button:hover{
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    color:white;
+    opacity:1;
+}
+
+
+.ButtonClicked{
+    background: #2D81F7 0% 0% no-repeat padding-box !important;
+    color:white !important;
+}
+
+
+.CourseCategoryTitle {
+    margin-top: 70px;
+    font: normal normal 22px/29px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+}
+
+.NextBtn{
+    margin-top:50px;
+    margin-bottom:120px;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    font: normal normal  19px/29px Gilroy;
+    letter-spacing:0.96px;
+    color: #FFFFFF;
+    width: 114px;
+    height: 44px;
+
+}
+
+.Teacher-Head-Class img{
+    width: 80px;
+    height: 57px;
+}
+
+.cloudpng{
+
+    font: normal normal  30px/58px Gilroy;
+    letter-spacing: 0.96px;
+    color: #566775;
+    opacity: 0.5;
+
+    margin-bottom:70px;
+}
+
+.Welcome-msg button{
+    width: 80%;
+    height: 49px;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    font: normal normal 100 19px/29px Gilroy;
+    letter-spacing: 0.96px;
+    color: #FFFFFF;
+    margin-right:20px;
+    
+    margin-bottom:100px;
+}
+
+
+.Welcome-msg{
+    display: flex;
+    justify-content: center;
+}
+
+.Welcome-msg p{
+
+    margin-top:20px;
+    color: #566775;
+    font: normal normal 300 37px/54px Gilroy;
+    letter-spacing: 0px;
+    margin-bottom: 60px;
+}
+
+input[type="file"] {
+    display:none;
+}
+
+.custom-image-upload{
+
+    width: 175px;
+    height: 49px;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    font: normal normal 100 19px/29px Gilroy;
+    letter-spacing: 0.96px;
+    color: #FFFFFF;
+    margin-right:20px;
+    margin-bottom:100px;
+    text-align:center;
+    padding-top:10px;
+}
+.videoUpload{
+
+    width: 175px;
+    height: 49px;
+    background: #2D81F7 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    font: normal normal 100 19px/29px Gilroy;
+    letter-spacing: 0.96px;
+    color: #FFFFFF;
+    margin-right:0px;
+    margin-top: 30px;
+    margin-bottom:5px;
+    text-align:center;
+    padding-top:10px;
+}
+
+.progressBar{
+    text-align:center;
+    margin-bottom:100px;
+    width:80%;
+}
+
+.sumbitVideoBtn button{
+    margin-top:30px;
+ 
+    box-shadow: 1px 1px 5px rgba(140, 161, 190, 0.6), 
+    -1px -1px 5px  
+    rgba(255, 255, 255, 0.342);
+    
+}
+
+.TeacherEdit{
+    margin-top:10%;
+}
+
+
+.VideoName{
+    font: normal normal 100 19px/29px Gilroy;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left: 10px;
+    color:#08BD80;
+    box-shadow: 1px 1px 5px rgba(140, 161, 190, 0.6), 
+    -1px -1px 5px  
+    rgba(255, 255, 255, 0.342);
+    
+}
+
+
+@media(max-width:700px){
+    .teacherBannner{
+        display:none !important;
+    }
+    .Teacher-banner{
+        display:none;
+    }
+}

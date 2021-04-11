@@ -1,0 +1,184 @@
+.Description-main{
+    display:flex;
+    flex-direction: column;
+    margin-right:10px;
+    width:600px;
+    
+
+}
+
+.Course-Rating-section,.Course-Teacher-bookmark,.flex-row{
+    display:flex;
+    
+}
+
+
+.Course-title-main{
+    font: normal normal 500 28px/34px Gilroy;
+    letter-spacing: -0.04px;
+    color: #272f36;
+    
+}
+
+
+.Course-Rating-section p{
+    font: normal normal 600 15px/19px Gilroy;
+    letter-spacing: 0px;
+    color:rgb(255, 102, 0);
+    padding-top:11px;
+}
+
+.break1,.break2{
+    width:30%;
+    height:2px;
+    background-color:grey;
+    opacity:0.4;
+    margin-bottom:20px;
+}
+
+.Short-Description{
+
+    font: normal normal  17px/23px Gilroy;
+    letter-spacing: 0px;
+    color: #566775;
+}
+
+.break2{
+    width:20%;
+}
+.Course-Teacher-bookmark{
+    justify-content: space-between;
+
+}
+.Course-teacher-name p{
+    
+    font: normal normal normal 13px/17px Gilroy;
+    letter-spacing: 1.19px;
+    color:#6390b4;
+  
+}
+.ratingtimesUpdated{
+    color:#5c5e5f !important;
+    font-size:14px!important;
+}
+
+.Course-teacher-name h2{
+    font: normal normal 400 20px/29px Gilroy;
+    letter-spacing: 1.68px;
+    color:#0e1f2c;
+    box-shadow: 1px 1px 5px rgba(205, 215, 230, 0.6), 
+    -1px -1px 5px  
+    rgba(255, 255, 255, 0.342);
+    background-color: white;
+    padding:4px;
+
+    padding-right:10px;
+    border-radius:8px;
+}
+
+.fa-play-circle{
+    font-size:22px;
+    color:#0e3c5f !important;
+}
+
+
+
+.play-btn p,.Bookmarkbtn p{
+    font: normal normal 200 14px/29px Gilroy;
+    letter-spacing: 0.5px;
+    color: #566775;
+    margin-right:20px;
+}
+
+.ratingtimesUpdated{
+    color:#5c5e5f !important;
+    opacity:0.8;
+}
+
+.Bookmarkbtn i,.fa-download{
+ 
+    font-size:22px;
+    color:#0e3c5f;
+    cursor:pointer;
+}
+
+.fa-bookmark:hover, .fa-bookmark-o:hover,.fa-download:hover{
+
+    box-shadow: none;
+    border-radius:50%;
+
+}
+
+
+.fa-download, .fa-bookmark,.fa-bookmark-o{
+    margin-left:20px;
+    box-shadow: 1px 1px 5px rgba(140, 161, 190, 0.6), 
+    -1px -1px 5px  
+    rgba(255, 255, 255, 0.342);
+    border-radius:50%;
+    padding:7px;
+}
+
+
+
+.Breakpoint{
+    margin-top:30px;
+    width:100%;
+    height:2px;
+    background-color: grey;
+    opacity: 0.4;
+}
+
+
+.bookmarked-color{
+    color:rgba(253, 216, 5, 0.966)!important;
+    
+}
+
+.RatingStars{
+    padding-left:6px;
+}
+
+
+@media(max-width:1280px){
+
+    .Description-main{
+      flex-grow:1;
+        
+    
+    }
+    .Course-Video{
+        text-align:center;
+        width:400px;
+        flex-grow: 1;
+
+    }
+
+    .section2part1{
+        width:auto;
+        margin:40px 40px 0 40px;
+    }
+
+    
+    .flex-center{
+        margin:40px 40px 0 40px;
+    }
+    
+}
+
+@media(max-width:475px){
+
+    .section2part1{
+        width:100%;
+        flex-shrink:1;
+        margin:0;
+    }
+
+    
+    .flex-center{
+        margin:0;
+        width:100%;
+       
+    }
+    
+}

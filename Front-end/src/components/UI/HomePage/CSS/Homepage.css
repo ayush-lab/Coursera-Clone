@@ -1,0 +1,193 @@
+.Course-Content, .Course-Content-wrap{
+    display:flex;
+    margin-top:10px;
+
+}
+.Course-Content-wrap{
+    flex-wrap:wrap;
+}
+.Course-Content-col{
+    display:flex;
+    flex-direction:column;
+    margin-left:30px;
+    
+}
+
+.Interest-banner{
+    margin-top:50px;
+    margin-left:30px;
+    position: relative;
+    
+}
+
+.Interest-banner img{
+    display:flex;
+    background: transparent linear-gradient(270deg, #00000000 0%, #000000 100%)
+     0% 0% no-repeat padding-box;
+    height:145px;
+    width:100%;
+    object-fit: cover;
+    margin-bottom:50px;
+    opacity:0.9;
+    z-index: 2;
+    border-radius:6px;
+}
+
+.Interest-banner p{
+    position:absolute;
+    top:20%;
+    left:10%;
+    color:white;
+    font: normal normal 600 29px/31px Gilroy;
+    opacity:1;
+    z-index: 10;
+}
+
+
+.Interest-banner button{
+    position:absolute;
+    top:20%;
+    left:80%;
+    border-radius: 2px;
+    width: 150px;
+    height: 40px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    font: normal normal 15px/22px Gilroy;
+    letter-spacing: 0.72px;
+    color: #08BD80;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+   
+}
+
+.loader{
+   margin-top:10%;
+   margin-left:40%;
+}
+
+.productLink{
+    text-decoration: none;
+    
+}
+
+.productLink:hover{
+    opacity:0.9;
+    text-decoration: none;
+}
+
+
+
+@media (min-width:1200px){
+
+    .container{ max-width:1300px !important;}
+}
+
+@media (max-width:991px){
+
+
+    .Interest-banner button{
+       
+        left:65%;
+        top:30%;
+    
+    }
+    .Interest-banner p{
+        font: normal normal 600 19px/31px Gilroy;
+        
+    }
+    .Course-Content-col{
+        margin-left:0px;
+        
+    }
+    .my-card{
+        margin-left:0px !important;
+    }
+    /* .container{ max-width:991px !important;} */
+
+    .Course-Content, .Course-Content-wrap{
+        justify-content: center;
+    }
+
+}
+
+
+
+
+
+
+@media (max-width:550px){
+
+    .loader{
+        /* margin-bottom:100px; */
+        margin:100px auto;
+       
+    }
+
+
+    .Interest-banner button{
+       
+        left:100px;
+        top:100px;
+        margin-top:10px;
+        font: normal normal 12px/22px Gilroy;
+        width: 150px;
+        height: 30px;
+
+       
+    
+    }
+
+    .container{
+        padding:0px !important;
+        margin:0px !important;
+    }
+    .BannerImage{
+        border-radius:0;
+    }
+    .CategoriesTitle{
+        font: normal normal normal 12px/10px Gilroy;
+        padding-top:0px;
+    }
+
+    .Course-Content-col{
+
+        margin-left:0px;
+        
+    }
+    .Interest-banner{
+        margin:0;
+    }
+    .Interest-banner img{
+        border-radius:0;
+        margin-bottom:0px;
+
+    }
+
+}
+
+
+
+@media (max-width:467px){
+
+
+    .Interest-banner button{
+       
+        left:60px;
+        top:90px;
+        margin-top:0px;
+        left:30%;
+    
+    }
+
+    .Interest-banner p{
+        font: normal normal 600 15px/31px Gilroy;
+        top:10%;
+        left:30%;
+        
+    }
+
+   
+
+}

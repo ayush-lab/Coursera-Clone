@@ -1,0 +1,206 @@
+.Categories-heading{
+    font: normal normal 800 22px/31px Gilroy;
+    letter-spacing: 0.5px;
+    color: #3C4852;
+    opacity: 1;
+}
+
+.Categories-main{
+ 
+}
+.ListOfCourses > *{
+    font: normal normal normal 18px/26px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    display:block;
+    margin-bottom: 20px;
+}
+
+
+
+.active-category{
+    width:100%;
+    background: #08BD80 0% 0% no-repeat padding-box !important;
+    border-radius: 8px;
+    opacity: 1;
+    padding:4px;
+    padding-left:6px;
+    font: normal normal normal 18px/26px Gilroy;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+
+}
+.ListOfCourses a:hover{
+    text-decoration:none;
+}
+
+
+
+
+/* Cards section */
+.CategoryDevider{
+    display:flex;
+}
+
+
+.Course-Cards{
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:0px;
+    margin-bottom: 40px;
+    
+    
+}
+
+.CategoriesTitle{
+    margin-left:30px;
+}
+
+.my-card{
+    margin-left:20px;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.CategoriesTitle{
+    font: normal normal  30px/38px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    opacity: 1;
+    
+}
+
+.my-card img{
+    width:290px;
+    height:160px;
+    border-radius:8px;
+
+}
+
+.Course-Devider{
+   height:100vh;
+   border: 1px solid #707070;
+   opacity: 0.5;
+   margin-left:20px;
+}
+
+.TeacherCourse-Title{
+
+    font: normal normal normal 18px/14px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+}
+
+
+.Course-info{
+    color: #3C4852;
+    font: normal normal 17px/19px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    
+}
+
+
+.Course-info{
+    font-size:14px;
+    display: flex;
+    
+    
+}
+
+.Course-rating{
+   
+    text-align:left;
+    
+}
+
+.Course-star{
+ 
+    flex-grow:1;
+    text-align:left;
+  
+    margin-left:4px;
+}
+
+.Course-Price{
+
+    flex-grow:1;
+    text-align: right;
+}
+
+
+.TeacherEditSection{
+    display:flex;
+    justify-content: space-between;
+    padding-top:12px;
+  
+}
+.TeacherDeleteSection{
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.Teacher-Course-Teacher{
+    font-size:14px;
+
+    font: normal normal 15px/1px Gilroy;
+    letter-spacing: 0px;
+    color: #3C4852;
+    
+}
+.fa-trash{
+    color:rgb(247, 88, 88) !important;
+    line-height: 1px;
+    cursor:pointer;
+}
+
+.fa-trash:hover,.fa-pencil:hover {
+    transform: scale(1.1,1.1);
+}
+
+
+.fa-pencil{
+    color:black;
+    cursor:pointer;
+}
+
+
+.recommended{
+
+    border-radius: 8px;
+    padding-left:4px;
+    background:tomato;
+    color:white;
+}
+
+@media(max-width:992px){
+    .Categories-main{
+       display:none;
+    }
+    .Course-Devider{
+        display: none;
+    }
+    
+    .CategoriesTitle{
+        text-align: center;
+    }
+
+    .Course-Cards{
+        margin-left:20px;
+        margin-bottom: 40px;
+        
+    }
+}
+
+@media(max-width:440px){
+
+    .my-card img{
+        width:250px;
+        height:120px;
+        border-radius:8px;
+
+    }
+}

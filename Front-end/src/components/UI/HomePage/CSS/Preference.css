@@ -1,0 +1,77 @@
+.Preference-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.Preference-buttons button{
+    width: 200px;
+    height:100px;
+    border-radius: 10px;
+    margin-right:20px;
+    margin-bottom:20px;
+    border:2px solid #08BD80;
+    background-color: white;
+    font: normal normal 20px/22px Gilroy;
+    letter-spacing: 0.72px; 
+
+}
+
+.SumbitBtn{
+   display: flex;
+   justify-content: center;
+   margin-top: 100px;
+  
+   
+
+}
+
+.SumbitBtn button{
+    width:100px;
+    height:50px;
+    border-radius: 7px;
+    font: normal normal 20px/22px Gilroy;
+    letter-spacing: 0.72px;
+    background:#08BD80;
+    color:white;
+   
+}
+
+.Preference-buttons button:hover{
+   
+    background-color: rgba(8, 189, 129, 0.671);
+    color:white;
+
+}
+
+.touched{
+    background-color: #08BD80!important;
+    color:white;
+
+}
+
+.title{
+    display:flex;
+    justify-content: center;
+    margin-bottom:50px;
+}
+
+
+@media(max-width:760px){
+
+        .SumbitBtn{
+            margin-top: 40px;
+     
+        }
+
+        .Preference-buttons button{
+            width: 150px;
+            height:80px;
+            border-radius: 10px;
+            margin-right:16px;
+            margin-bottom:16px;
+          
+        }
+
+        
+}
