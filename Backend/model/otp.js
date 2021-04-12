@@ -8,14 +8,13 @@ const Security = new Schema({
        required:true
     },
     
-   token:{
-       type:String,
-       required:true
-    },
     email:{
         type:String,
         required:true
-    }
+    },
+    
+    createdAt: {type:Date,expires:'2m',default:Date.now},
+
 
 });
 

@@ -24,23 +24,33 @@ router.post('/signup',[
     check('password')
         .trim()
         .isLength({min:5}),
-
-    check('confirmPassword')
+    
+    check('name')
         .trim()
-        .custom((value,{req})=>{
-            if(value!==password){
-                return Promise.return("password and confirm password dont match")
-            }
-
-        }),
-
+        .not()
+        .isEmpty() 
 
 ],authController.signup);
 
-router.post('/login',authController.login);
+router.post('/login',[
+
+    check('email')
+    .isEmail()
+    .withMessage('Please enter a valid email')
+    .custom((value,{req})=>{
+        return User.findOne({email:value})
+        .then(user=>{
+            if(!user){
+                return Promise.reject('No account with this email !');
+            }
+        })
+
+    })],authController.login);
+
 router.post('/signup/otp',authController.otpVerification);
-router.post('/password/reset',authController.resetPassword);
-router.post('/password/verify',authController.resetOtpVerification);
-router.post('/password',authController.newPassword);
+router.post('/signup/resetOtp',authController.resetPassword);
+router.post('/signup/otp-resend',authController.resendOtp)
+router.post('/signup/checkOtp',authController.resetOtpVerification);
+router.post('/signup/reset-password',authController.newPassword);
 
 module.exports = router;

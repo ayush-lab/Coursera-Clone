@@ -3,29 +3,21 @@ import axios from './axiosUrl';
 class AuthServices {
 
     register(data) {
-        return axios.put('/signup',data)
-    
-
-
-                    }
+        return axios.post('/signup',data)
+     }
 
     otp(data){
         return axios.post("/signup/otp",data)
-  
-
-        }
+      }
 
 
     otpResend(data){
         return axios.post('/signup/otp-resend',data)
-        
-
     }
 
 
     login(data) {
         return axios.post('/login',data)
-       
     }
 
     VerifyEmail(data){

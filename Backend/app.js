@@ -26,7 +26,7 @@ const app = express();
 // app.set('view engine', 'ejs');
 // app.set('views', 'views');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(
@@ -37,6 +37,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     store: store
 //   })
 // );
+app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform) problem 
+  res.setHeader('Access-Control-Allow-Origin',"*"); // to allow all client we use *
+  res.setHeader('Access-Control-Allow-Methods',"OPTIONS,GET,POST,PUT,PATCH,DELETE"); //these are the allowed methods 
+  res.setHeader('Access-Control-Allow-Headers', "*"); // allowed headers (Auth for extra data related to authoriaztiom)
+  next();
+})
 
 
 // app.use('/admin', adminRoutes);
@@ -49,7 +55,7 @@ app.use(authRoutes);
 mongoose
   .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })
   .then(result => {
-        app.listen(3000);
+        app.listen(8080);
         console.log("Server Started!")
     })
   .catch(err => {

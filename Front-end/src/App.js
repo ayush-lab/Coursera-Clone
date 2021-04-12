@@ -50,7 +50,7 @@ class App extends Component {
        <Route path="/TeacherHome" component={TeacherHomePage}/>
           <Route path="/TeacherEdit" component={TeacherEdit}/>
 
-       <Redirect to="/home"/>
+       <Redirect to="/home/all"/>
 
 
        </Switch>

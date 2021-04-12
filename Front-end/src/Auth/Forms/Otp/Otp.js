@@ -13,7 +13,7 @@ class Otp extends Component {
 
     state = { 
             Form:{
-                 Otp: {
+                 otp: {
 
                     placeholder: 'Enter your OTP',
                     value: "",
@@ -55,17 +55,6 @@ class Otp extends Component {
         this.setState({alert:AlertArray});
     
     }
-    
-    // checkValidity(value,rules){
-    //     let isValid = true;
-    //     if(rules.required){
-    //         isValid =value.trim()!=='' && isValid;
-    //     }
-
-    //     return isValid;
-        
-    //  }
-
 
 //   runs whenever there is any change in the input field
     inputchangeHandler = (event,inputIdentifier)=> {
@@ -90,16 +79,6 @@ class Otp extends Component {
         this.setState({Form: updatedForm});
 
     }
-   
-    // OverallValidity = ()=>{
-
-    //     for(let validate in this.state.Form){
-    //         if(!this.state.Form[validate].valid){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
 
 
     formHandler = (event)=> {
@@ -115,7 +94,7 @@ class Otp extends Component {
             }
 
             formData.token = this.state.Signup_token;
-           
+            formData.email=this.state.email;
             
             AuthService.otp(formData)
             .then(response => {console.log('Response:', response) 
@@ -145,9 +124,6 @@ class Otp extends Component {
             
             .catch(error=>{console.log(error.response); this.setState({loading:false});
              this.AlertError(error.response.data.message, "danger");});
-
-            
-            
            
         }
        // else this.AlertError("Make sure the Validations are correct", "warning");
@@ -158,9 +134,7 @@ class Otp extends Component {
         let formData ={};
         formData.token=this.state.Signup_token;
         formData.email=this.state.email;
-       
-        
-
+    
         AuthService.otpResend(formData)
             .then(response => {console.log('Response:',response)
             this.AlertError("Please Check Your Email, Otp has been Re-sent to your Email Address", "success");

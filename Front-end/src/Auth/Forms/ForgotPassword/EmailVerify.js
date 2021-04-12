@@ -162,37 +162,31 @@ formHandler = (event)=> {
 
      if(this.OverallValidity()){
 
-        this.setState({loading:true});
-        const formData ={};
-        for(let formElement in this.state.Form){
-                formData[formElement]=this.state.Form[formElement].value;
+            this.setState({loading:true});
+            const formData ={};
+            for(let formElement in this.state.Form){
+                    formData[formElement]=this.state.Form[formElement].value;
         }
         
         AuthService.VerifyEmail(formData)
-        .then(response => {
+            .then(response => {
           
-            console.log('VerifyEmail:', response)
-            if(response.status ===201 || response.status ===200)
-
-                {
-                
-                // alert(response.data.message);
-                   localStorage.setItem('userToken',response.data.result.token);
-                //    localStorage.setItem('userId',response.data.userId);
-                //    localStorage.setItem('userName',response.data.username);
-                this.setState({loading:false})
-                this.setState({redirect:'/ForgotPasswordotp'})
-                console.log(response.data)
+                console.log('VerifyEmail:', response)
             
-           
-            }
-            else 
-                alert("Something went wrong")})
+                    // alert(response.data.message);
+                    localStorage.setItem('email',this.state.Form['email'].value);
+                    //    localStorage.setItem('userId',response.data.userId);
+                    //    localStorage.setItem('userName',response.data.username);
+                    this.setState({loading:false})
+                    this.setState({redirect:'/ForgotPasswordotp'})
+                    
+            })
 
-        .catch(error=>{console.log(error.response); 
+        .catch(error=>{
+            console.log(error.response); 
             this.setState({loading:false});
-            this.AlertError(error.response.data.message, "danger");});
-  
+            this.AlertError(error.response.data.message, "danger")})
+            
         }
         
         else this.AlertError("Make sure the Validations are correct", "warning");

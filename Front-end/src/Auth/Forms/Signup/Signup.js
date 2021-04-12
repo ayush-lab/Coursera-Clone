@@ -73,7 +73,7 @@ class Signup extends Component {
             
 
 
-            ConfirmPassword: {
+            confirmPassword: {
 
                 placeholder: 'Confirm Password',
                 value: "",
@@ -202,11 +202,11 @@ inputBlurHandler = (event,inputIdentifier)=> {
         updatedElement.msg="valid";
     }
     // confirm password
-    if(inputIdentifier === "ConfirmPassword" && !updatedElement.valid){
+    if(inputIdentifier === "confirmPassword" && !updatedElement.valid){
         updatedElement.error = "Passwords do not match";
         updatedElement.msg="";
     }
-    if(inputIdentifier === "ConfirmPassword" && updatedElement.valid){
+    if(inputIdentifier === "confirmPassword" && updatedElement.valid){
         updatedElement.error="";
         updatedElement.msg="Password matched!";
     }
@@ -269,15 +269,14 @@ inputBlurHandler = (event,inputIdentifier)=> {
             AuthService.register(formData) 
             .then(response => {console.log('Response:', response)
 
-                if(response.status ===201 || response.status ===200){
-                     localStorage.setItem('token', response.data.token) 
 
-                     localStorage.setItem("valid",true);
-                     localStorage.setItem("type","success");
-                     localStorage.setItem("msg",response.data.message);
+                localStorage.setItem('token', response.data.token) 
+                localStorage.setItem("valid",true);
+                localStorage.setItem("type","success");
+                localStorage.setItem("msg",response.data.message);
                    
-                     this.setState({ redirect: "/signup/otp" });
-                }
+                this.setState({ redirect: "/signup/otp" });
+    
                  
 
                 })
@@ -285,10 +284,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
             .catch(error=>{console.log(error.response);
                  this.setState({loading:false})
-                 this.AlertError(error.response.data.data[0].msg, "danger")} );
-            
-            
-        
+                 this.AlertError(error.response.data.message[0].msg, "danger")} );
 
         }
         

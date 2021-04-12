@@ -194,6 +194,8 @@ formHandler = (event)=> {
                 formData[formElement]=this.state.Form[formElement].value;
         }
         
+        localStorage.setItem('email',this.state.Form["email"].value);
+        console.log(localStorage.getItem('email'));
         AuthService.login(formData)
         .then(response => {
           
@@ -208,8 +210,12 @@ formHandler = (event)=> {
                 localStorage.setItem('user',response.data.token);
                 localStorage.setItem('userId',response.data.userId);
                 localStorage.setItem('userName',response.data.username);
+
+
+
                 this.setState({loading:false})
-             this.setState({redirect:'/HomePage'})
+                
+                this.setState({redirect:'/HomePage'})
              
               //  window.location.reload();
            

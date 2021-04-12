@@ -27,7 +27,7 @@ class ForgotPasswordotp extends Component {
 
         },
         loading:false,
-        Signup_token:localStorage.getItem('userToken'),
+        email:localStorage.getItem('email'),
         
         redirect:null,
 
@@ -90,37 +90,23 @@ class ForgotPasswordotp extends Component {
                     formData[formElement]=this.state.Form[formElement].value
             }
 
-            formData.token = this.state.Signup_token;
+           formData.email = this.state.email;
              
             
             AuthService.VerifyOtp(formData)
-            .then(response => {console.log('otpverify:Response:', response) 
+                .then(response => {
+                    console.log('otpverify:Response:', response) 
+                    this.setState({loading:false})    
+                    this.setState({redirect:'/ResetPassword'})
+                })
+                
+                .catch(error=>{console.log(error.response); this.setState({loading:false});
+                    this.AlertError(error.response.data.message, "danger");});
 
-            if(response.status ===201 || response.status ===200) 
-              
-                { 
-                 
-                 this.setState({loading:false})    
-
-                 this.setState({redirect:'/ResetPassword'})
-            
-            
-                }
-               
-            else if(response.status===401) alert("Something went wrong")})
-            
-            .catch(error=>{console.log(error.response); this.setState({loading:false});
-             this.AlertError(error.response.data.message, "danger");});
-
-            
-            
-           
+                
         }
        // else this.AlertError("Make sure the Validations are correct", "warning");
-
-
     render() {
-       
     
         let alertContent = null;
 
@@ -129,10 +115,8 @@ class ForgotPasswordotp extends Component {
 
         if(this.state.alert.valid){
             alertContent = ( <Alert value={value} alertMsg ={this.state.alert.msg}
-                                    alertType={this.state.alert.alertType} /> )
-        }
+                                    alertType={this.state.alert.alertType} /> )}
 
-        
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
           }

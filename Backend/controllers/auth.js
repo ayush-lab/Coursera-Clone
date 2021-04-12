@@ -21,37 +21,20 @@ exports.signup = (req,res,next)=>{
     const name=req.body.name;
 
     let otp =null;
-    //let tokenGenerated=null;
+    let tokenGenerated=null;
+    console.log(name)
 
     const errors=validationResult(req);
     if(!errors.isEmpty()){
         const error=new Error('Validation failed')
         error.statusCode=422;
         error.data=errors.array();
-        return res.status(422).json({
-            data:error.data,
-            message:"Invalid credentials"
-        })
-
+        console.log(error,error[0])
+        res.status(422).json({message:errors.array()})
         throw error;
     }
 
-    User.findOne({email:email})
-    .then(user=>{
-        if(user)
-           {  
-            const error = new Error("email already exits in the database");
-            error.statusCode = 422;
-            error.data = {
-                value: email,
-                message: "User exist with an email",
-                param: "email",
-                location: "login",
-            }
-           throw error;
-           }
-
-        bcrypt.hash(password,12)
+    bcrypt.hash(password,12)
         .then(hashedPassword=>{
             const Newuser = new User(
                 {email:email,
@@ -62,25 +45,23 @@ exports.signup = (req,res,next)=>{
             Newuser.save();
             console.log("details saved in the database")
            
-            // const token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
-            //     algorithm: "HS256",
-            //     expiresIn:process.env.ACCESS_TOKEN_LIFE
-            // })
-            // tokenGenerated=token;
-            otp=Math.floor(Math.random()*100000);
+            const token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
+                algorithm: "HS256",
+                expiresIn:process.env.ACCESS_TOKEN_LIFE
+            })
+            tokenGenerated=token;
+            otp=Math.floor(Math.random()*1000000);
 
             const OTP=new Otp({
                  otp:otp,
-                //  token:token,
+                 token:token,
                  email:email
                 })
 
             OTP.save();
+            console.log(otp)
+            res.status(201).json({ message: "OTP sent to your Email" ,token:tokenGenerated});
         })
-        .then(result=>{
-            console.log(result)
-        })
-        .then(result=>{
             transporter.sendMail({
                 to:email,
                 from:"ayush.verma8750@gmail.com",
@@ -89,21 +70,16 @@ exports.signup = (req,res,next)=>{
                         <p>OTP:${otp}</p>'`
             })
             console.log("mail sent")
-            res.status(201).json({ message: "OTP sent to your Email" })
-        })
-    })
-   
-    .catch(err=>{
-        console.log(err);
-    })
-
+            
 }
 
 exports.otpVerification = (req,res,next)=>{
     const receivedOtp=req.body.otp;
-   // const receivedToken=req.body.token;
+    const receivedToken=req.body.token;
     const email=req.body.email;
+
     // validation
+    console.log(receivedOtp,email,receivedToken);
 
     Otp.findOne({email:email})
     .then(user=>{
@@ -116,14 +92,18 @@ exports.otpVerification = (req,res,next)=>{
             param: "otp",
             location: "otpVerification",
             };
+            res.status(422).json({message:errors.array()})
+
             throw error;
         }
+
+
         if(user.otp!=receivedOtp){
-            const error = new Error("Validation Failed");
+            const error = new Error("Wrong Otp entered");
             error.statusCode = 401;
             res.status(401).json({ message: "wrong otp entered " });
             error.data = {
-            value: recievedOtp,
+            value: receivedOtp,
             message: "Otp incorrect",
             param: "otp",
             location: "otp",
@@ -162,26 +142,89 @@ exports.otpVerification = (req,res,next)=>{
 
 }
 
+
+exports.resendOtp = (req,res,next)=>{
+    const email=req.body.email;
+    const received_otp=req.body.otp;
+    let otp =null;
+    //let tokenGenerated=null;
+
+    Otp.findOne({email:email})
+    .then(user=>{
+        if(!user){
+            const error = new Error("Email doesnt exist"); // when token not found
+            error.statusCode = 403;
+            error.data = {
+            value: received_otp,
+            message: "Invalid email",
+            param: "otp",
+            location: "otpVerification",
+            };
+            throw error;
+        }
+        otp=Math.floor(Math.random()*1000000);
+
+            user.otp=otp;
+            user.save();
+            console.log(otp);
+            res.status(201).json({ message: "OTP sent to your Email" });
+    })
+    .then( ()=>{
+        transporter.sendMail({
+            to:email,
+            from:"ayush.verma8750@gmail.com",
+            subject:"OTP Verification",
+            html:` '<h1>Please Verify your account using this OTP: !</h1>
+                    <p>OTP:${otp}</p>'`
+        })
+        console.log("mail sent")
+    })   
+
+    .catch(err=>{
+        err=>{
+            if (!err.statusCode) {
+                err.statusCode = 500;
+              }
+              next(err);
+        }
+    })
+}
+
+
+
+
+
 exports.login = (req,res,next)=>{
     const email=req.body.email;
     const password=req.body.password;
+
+    const errors=validationResult(req);
+    if(!errors.isEmpty()){
+        const error=new Error('Validation failed')
+        error.statusCode=422;
+        error.data=errors.array();
+        console.log(error,error[0])
+        res.status(422).json({message:errors.array()})
+        throw error;
+    }
 
     User.findOne({email:email})
     .then(user=>{
         if(!user){
             const error = new Error("Validation Failed");
             error.statusCode = 401;
-            res.status(401).json({ message: "User with this email doesn't exists" });
+            res.status(401).json({ message: "User with this email doesn't exist" });
             error.data = {
-            value: email,
-            message: " user doesnt exist"}
+                value: email,
+                message: " user doesnt exist"}
+
             throw error;
         }
         if(user.isverified==false){
             console.log("user isn't verified")
          
             otp=Math.floor(Math.random()*100000);
-             
+            console.log("otp =",otp)
             Otp.findOne({email:email})
             .then(user_data=>{
                 user_data.otp=otp;
@@ -196,16 +239,19 @@ exports.login = (req,res,next)=>{
                     <p>OTP:${otp}</p>'`
             })
             
-            console.log("mail sent")
-            res.status(201).json({ message: "OTP sent to your Email" , token:token})
-            
-            const error = new Error("Validation Failed");
-            error.statusCode = 401;
-            res.status(401).json({ message: "User with this email doesn't exists" });
-            error.data = {
-            value: email,
-            message: " user doesnt exist"}
-            throw error;
+             console.log("mail sent")
+             res.status(422).json({
+                message: " you have not verified your otp, new otp has been sent to your email THANK YOU!"
+              });
+              const error = new Error("Login failed, user not verified");
+              error.statusCode = 403;
+              error.data = {
+                message: "otp sent please verify yourself",
+                location: "login",
+                id: otp._id,
+              };
+              throw error;
+      
         }
 
         bcrypt
@@ -219,7 +265,7 @@ exports.login = (req,res,next)=>{
                 
                     user.Token=token;
                     user.save()
-                    res.status(201).json({message:"User logged in!"})
+                    res.status(201).json({message:"User logged in!",token:token})
                     
                 }
                 else {
@@ -232,8 +278,10 @@ exports.login = (req,res,next)=>{
     })
     .catch(err=>{
         err=>{
-            console.log(err);
-            console.log("back to login page");
+            if (!err.statusCode) {
+                err.statusCode = 500;
+              }
+              next(err);
         }
     })
 }
@@ -241,17 +289,30 @@ exports.login = (req,res,next)=>{
 exports.resetPassword = (req,res,next)=>{
 
     const email = req.body.email;
-    let otp=Math.floor(Math.random()*100000);
-        Otp.findOne({email:email})
+    console.log(email);
+    let otp=Math.floor(Math.random()*1000000);
+
+    User.findOne({email:email})
         .then(user=>{
-            if(!user){
-                console.log("email doesnt exists")
-                console.log("erorr")
-                return res.redirect('/')
-            }
-            user.otp=otp;
-            return user.save();
-        })
+        if(!user){
+            const error = new Error("Validation Failed");
+            error.statusCode = 401;
+            res.status(401).json({ message: "user doesnt exists" });
+            error.data = {
+            value: email,
+            message: " otp is incorrect"}
+            res.status(422).json({message: " User doesn't exists" });
+            throw error;
+        }
+        else{
+            const new_otp = new Otp({
+                otp:otp,
+                email:email
+            })
+             new_otp.save()
+        }
+    })
+       
         .then(result=>{
             transporter.sendMail({
                 to:email,
@@ -260,10 +321,14 @@ exports.resetPassword = (req,res,next)=>{
                 html:` '<h1>this is your otp to reset your password: ${otp}</h1>'`
             })
             console.log("mail sent  ",otp)
+            res.status(201).json({message:"otp sent to reset password"})
             
         })  
         .catch(err=>{
-            console.log(err)
+            if (!err.statusCode) {
+                err.statusCode = 500;
+              }
+            next(err);
         })
 }
 
@@ -271,6 +336,7 @@ exports.resetPassword = (req,res,next)=>{
 exports.resetOtpVerification = (req,res,next)=>{
     const email=req.body.email;
     const otp=req.body.otp;
+    console.log("reset::",otp);
 
     Otp.findOne({email:email})
     .then(user=>{
@@ -281,16 +347,24 @@ exports.resetOtpVerification = (req,res,next)=>{
             error.data = {
             value: email,
             message: " otp is incorrect"}
+            res.status(422).json({message: " otp is incorrect or otp expired!" });
             throw error;
         }
+       
          if(user.otp==otp){
-            res.status(201).json({ message: "Email verified successfully", email:email})}   
+            User.findOne({email:email})
+            .then(matched=>{
+                matched.isverified=true;
+            }) 
+            res.status(201).json({ message: "Email verified successfully", email:email})
+        }
+        else res.status(402).json({ message: "Wrong Otp entered", email:email})   
     })
     .catch(err=>{
-        err=>{
-            console.log(err);
-            console.log("back to login page");
-        }
+        if (!err.statusCode) {
+            err.statusCode = 500;
+          }
+        next(err);
     })
 }
 
@@ -299,7 +373,7 @@ exports.resetOtpVerification = (req,res,next)=>{
 
 exports.newPassword = (req,res,next)=>{
     const email=req.body.email;
-    const newPassword = req.body.password;
+    const newPassword = req.body.newPassword;
     const confirmPassword=req.body.confirmPassword;
     let resetUser;
 
@@ -313,6 +387,9 @@ exports.newPassword = (req,res,next)=>{
             error.data = {
             value: email,
             message: "user with this email doesnt exists"}
+            res.status(422).json({
+                message: " User doesn't exists"
+              });
             throw error;
         }
         resetUser=user;
@@ -325,11 +402,14 @@ exports.newPassword = (req,res,next)=>{
 
     .then(result=>{
         console.log("result",result)
-        res.status(201).json({message:"password changed succesafully",password:resetUser.password});
+        res.status(201).json({message:"password changed successfully"});
     })
   
     .catch(err=>{
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+          }
+        next(err);
     })
     
 }
