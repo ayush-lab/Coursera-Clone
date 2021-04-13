@@ -2,15 +2,12 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const multer = require('multer');
 require('dotenv').config()
-//const session = require('express-session');
-//const MongoDBStore = require('connect-mongodb-session')(session);
 
-//const errorController = require('./controllers/error');
-//const User = require('./models/user');
-
-// authentication routes
 const authRoutes = require('./routes/auth');
+const teacherRoutes=require('./routes/teacher')
+
 const isAuth= require('./middleware/is-auth');
 
 const MONGODB_URI =
@@ -18,25 +15,11 @@ const MONGODB_URI =
 
 const app = express();
 
-//const store = new MongoDBStore({
- // uri: MONGODB_URI,
- // collection: 'sessions'
-//});
 
-// app.set('view engine', 'ejs');
-// app.set('views', 'views');
-
+app.use(multer({dest:'images'}).single('image'))
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(
-//   session({
-//     secret: 'my secret',
-//     resave: false,
-//     saveUninitialized: false,
-//     store: store
-//   })
-// );
 app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform) problem 
   res.setHeader('Access-Control-Allow-Origin',"*"); // to allow all client we use *
   res.setHeader('Access-Control-Allow-Methods',"OPTIONS,GET,POST,PUT,PATCH,DELETE"); //these are the allowed methods 
@@ -45,11 +28,8 @@ app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform)
 })
 
 
-// app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
-
-
 app.use(authRoutes);
+app.use(teacherRoutes);
 //app.use(errorController.get404);
 
 mongoose

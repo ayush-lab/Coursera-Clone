@@ -25,7 +25,15 @@ const userSchema = new Schema({
         type:Boolean,
         required:true,
     },
-    
+
+    courses:[
+        {
+            type:Schema.Types.ObjectId,
+            required:true,
+            ref:"Courses",
+        }
+    ],
+
     Token:String,
     resetToken:String,
     resetTokenExpiration:Date,

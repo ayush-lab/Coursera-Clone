@@ -88,7 +88,7 @@ class TeacherPage extends Component{
                 value:'',
                 name:'',
                 validation: {
-                    required: true,
+                    required: false,
                     
                 },
                 valid:true,
@@ -307,7 +307,7 @@ class TeacherPage extends Component{
         for(let formElement in this.state.Form){
              
                 fd.append(formElement, this.state.Form[formElement].value);
-         
+                console.log(formElement,this.state.Form[formElement].value);
                 
         }
 
@@ -317,7 +317,7 @@ class TeacherPage extends Component{
         if(this.OverallValidity()){
 
         
-                    
+                
                 axios.post('creator/create-course',fd,{
                     onUploadProgress: progressEvent => {
                         //console.log("Progress bar");
@@ -332,27 +332,21 @@ class TeacherPage extends Component{
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "Access-Control-Allow-Origin": '*',
-                        Authorization: 'Bearer '+ localStorage.getItem('user') 
+                        //Authorization: 'Bearer '+ localStorage.getItem('user') 
                     }
                 })
-                .then( res=> { console.log(res);
-
-                    if(res.status ===201 || res.status ===200){
+                .then( res=> { 
+                    console.log(res);
                     this.setState({CourseId:res.data.newCourse._id})
                     this.AlertError("Your Course has been saved!", "success");
                     setTimeout( ()=> this.setState({redirect:true}) , 2000);
-                    
-                   
-                
-                }})
 
-
-            
+                })
 
                 .catch(error => { console.log(error.response)
                     this.AlertError(error.response.data.message, "danger");
-                    if(error.response.data.message ==="jwt malformed" )
-                        this.setState({redirect:"/login"})
+                    // if(error.response.data.message ==="jwt malformed" )
+                    //     this.setState({redirect:"/login"})
                 });
         
         }

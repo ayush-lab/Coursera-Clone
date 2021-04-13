@@ -206,22 +206,13 @@ exports.login = (req,res,next)=>{
         error.statusCode=422;
         error.data=errors.array();
         console.log(error,error[0])
-        res.status(422).json({message:errors.array()})
+        res.status(422).json({message:"User with this email doesnt exists"})
         throw error;
     }
 
     User.findOne({email:email})
     .then(user=>{
-        if(!user){
-            const error = new Error("Validation Failed");
-            error.statusCode = 401;
-            res.status(401).json({ message: "User with this email doesn't exist" });
-            error.data = {
-                value: email,
-                message: " user doesnt exist"}
-
-            throw error;
-        }
+        
         if(user.isverified==false){
             console.log("user isn't verified")
          
