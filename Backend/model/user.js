@@ -21,6 +21,11 @@ const userSchema = new Schema({
         type:Boolean,
         required:true
     },
+    resetVerified:{
+        type:Boolean,
+        required:true,
+    },
+    
     Token:String,
     resetToken:String,
     resetTokenExpiration:Date,

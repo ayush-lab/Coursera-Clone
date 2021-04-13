@@ -195,16 +195,12 @@ formHandler = (event)=> {
         }
         
         localStorage.setItem('email',this.state.Form["email"].value);
-        console.log(localStorage.getItem('email'));
+        
         AuthService.login(formData)
         .then(response => {
           
             console.log('Response:', response)
-            if(response.status ===201 || response.status ===200)
 
-                {
-                
-                //alert(response.data.message);
                 this.AlertError("Successfully Logged in", "success");
   
                 localStorage.setItem('user',response.data.token);
@@ -215,14 +211,9 @@ formHandler = (event)=> {
 
                 this.setState({loading:false})
                 
-                this.setState({redirect:'/HomePage'})
+                this.setState({redirect:'/HomePage'})})
              
-              //  window.location.reload();
-           
-            }
-            else 
-                alert("Something went wrong")})
-
+      
         .catch(error=>{console.log(error.response); 
             this.setState({loading:false});
             this.AlertError(error.response.data.message, "danger");

@@ -41,6 +41,7 @@ exports.signup = (req,res,next)=>{
                 password:hashedPassword,
                 isverified:false,
                 name:name,
+                resetVerified:false,
                 });
             Newuser.save();
             console.log("details saved in the database")
@@ -125,7 +126,8 @@ exports.otpVerification = (req,res,next)=>{
                 return res.status(200).json({
                     message: "otp entered is correct, user successfully added",
                     token:token, 
-                    userId:user._id.toString()
+                    userId:user._id.toString(),
+                    username:user.name,
                   });
 
             })
@@ -265,11 +267,12 @@ exports.login = (req,res,next)=>{
                 
                     user.Token=token;
                     user.save()
-                    res.status(201).json({message:"User logged in!",token:token})
+                    res.status(201).json({message:"User logged in!",token:token,username:user.name,userId:user._id})
                     
                 }
                 else {
                     res.status(401).json({message:"password don't match"})
+                    console.log("password dont match")
                 }
 
             })
@@ -354,7 +357,8 @@ exports.resetOtpVerification = (req,res,next)=>{
          if(user.otp==otp){
             User.findOne({email:email})
             .then(matched=>{
-                matched.isverified=true;
+                matched.resetVerified=true;
+                matched.save();
             }) 
             res.status(201).json({ message: "Email verified successfully", email:email})
         }
@@ -392,19 +396,27 @@ exports.newPassword = (req,res,next)=>{
               });
             throw error;
         }
-        resetUser=user;
-        return bcrypt.hash(newPassword,12);
-     })
-        .then(hashedPassword=>{
-               resetUser.password=hashedPassword;
-               return resetUser.save();
-            })
+        if(user.resetVerified){
+                resetUser=user;
+                resetUser.resetVerified=false;
+                return bcrypt.hash(newPassword,12)
+                .then(hashedPassword=>{
+                resetUser.password=hashedPassword;
+                return resetUser.save();
+                })
 
-    .then(result=>{
-        console.log("result",result)
-        res.status(201).json({message:"password changed successfully"});
-    })
-  
+                .then(result=>{
+                console.log("result",result)
+                res.status(201).json({message:"password changed successfully"});
+            })
+                            }  // end of if condition
+
+        else {
+            console.log("Please,verify your email first")
+            res.status(401).json({message:"Please,verify your email first "})
+        }
+
+ })
     .catch(err=>{
         if (!err.statusCode) {
             err.statusCode = 500;

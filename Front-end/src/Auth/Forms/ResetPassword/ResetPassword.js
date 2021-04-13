@@ -16,24 +16,24 @@ class ResetPassword extends Component {
     state = { 
             Form:{
                  
-                email: {
+            //     email: {
 
-                    placeholder: 'Email',
-                    value: "",
-                    valid: false,
-                    type: 'email',
-                    error: " ",
-                    msg: '',
+            //         placeholder: 'Email',
+            //         value: "",
+            //         valid: false,
+            //         type: 'email',
+            //         error: " ",
+            //         msg: '',
                     
 
-                    validation: {
-                        required: true,
-                        regex:/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+            //         validation: {
+            //             required: true,
+            //             regex:/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
                        
-                    },
-                    touched: false,
+            //         },
+            //         touched: false,
                 
-            },
+            // },
 
             newPassword: {
 
@@ -81,6 +81,7 @@ class ResetPassword extends Component {
         },
 
         alertPressed:false,
+        email:localStorage.getItem('email'),
        
     }
 
@@ -218,42 +219,26 @@ inputBlurHandler = (event,inputIdentifier)=> {
          
             const formData ={};
             for(let formElement in this.state.Form){
-                    formData[formElement]=this.state.Form[formElement].value;
-            }
-           
+                formData[formElement]=this.state.Form[formElement].value;}
+
+           formData['email']=this.state.email;
 
 
             
             AuthService.ResetPassword(formData) 
-            .then(response => {console.log('Response:', response)
-
-                if(response.status ===201 || response.status ===200){
-                    //  localStorage.setItem('token', response.data.token) 
-
-                    //  localStorage.setItem("valid",true);
-                    //  localStorage.setItem("type","success");
-                    //  localStorage.setItem("msg",response.data.message);
-                   
-                     this.setState({ redirect: "/login" });
-                }
-                 
-
-                else 
-                    this.AlertError("Something went wrong", "danger")})
-                  //  alert("Something went wrong")})
+            .then(response => {
+                console.log('Response:', response)
+                this.setState({ redirect: "/login" })})
 
             .catch(error=>{console.log(error);
                  this.setState({loading:false})
                  this.AlertError("Something went wrong", "danger")} );
-            
-            
-
         }
         
         else{ 
-         this.AlertError("Make sure the Validations are correct", "warning");
+         
+            this.AlertError("Make sure the Validations are correct", "warning");
        
-
         }
 
     }
@@ -319,7 +304,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
                 }
                
                 {SigninSumbitButton}
-                <p className="account-login"> Already have an account? <a href="/">Login</a></p>
+                <p className="account-login"> Already have an account? <a href="/login">Login</a></p>
                  {/* <hr/>
 
                  <p className="Link-teach" onClick={this.product} >Teach on S-help</p>           */}

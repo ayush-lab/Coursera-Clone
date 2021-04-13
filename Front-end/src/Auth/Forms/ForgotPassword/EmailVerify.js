@@ -253,7 +253,7 @@ render() {
             <p className="forgot-password"  >Back to Login</p></Link>
 
             {LoginSumbitButton}
-            <p className="account-login"> New User? <a href="/">Sign up</a></p>
+            <p className="account-login"> New User? <a href="/signup">Sign up</a></p>
          
 
                
