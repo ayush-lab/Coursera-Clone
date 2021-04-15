@@ -108,21 +108,16 @@ AlertError(alertmsg, alertType) {
         axios.post("/home/interests",formData, {
             headers: {
                 
-                Authorization: 'Bearer '+ this.state.token
+              //  Authorization: 'Bearer '+ this.state.token
                 
             }
         })
         .then(response => {
             
-
-            if(response.status ===201 || response.status ===200) {
-                console.log("Preference Added");
-                
+                console.log("Preference Added");    
                 this.AlertError("Preferences Added", "success");
                 this.setState({redirect:'/home/preferences'})
-                
-            }
-          
+
 
         })
         .catch(error => {

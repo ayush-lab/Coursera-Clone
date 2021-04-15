@@ -7,18 +7,38 @@ require('dotenv').config()
 
 const authRoutes = require('./routes/auth');
 const teacherRoutes=require('./routes/teacher')
-
-const isAuth= require('./middleware/is-auth');
+const homeRoutes= require('./routes/homepage')
+const courseRoutes=require('./routes/coursepage')
 
 const MONGODB_URI =
   'mongodb+srv://chadness:chadness@cluster0.ogixy.mongodb.net/Coursera?';
 
 const app = express();
 
+const fileStorage = multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null,'images');
+  },
+  filename: (req,file,cb)=>{
+    cb(null, new Date().toDateString() + '-' + file.originalname)
+  }
+})
 
-app.use(multer({dest:'images'}).single('image'))
+const fileFilter=(req,file,cb)=>{
+  if(file.mimetype ==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg"){
+    cb(null,true);
+  }
+  else {cb(null,false);
+        console.log("wrong file type")}
+}
+
+
+app.use(multer({storage:fileStorage,fileFilter:fileFilter}).single('image'))
+
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images',express.static(path.join(__dirname, 'images')));
+
 
 app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform) problem 
   res.setHeader('Access-Control-Allow-Origin',"*"); // to allow all client we use *
@@ -30,7 +50,8 @@ app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform)
 
 app.use(authRoutes);
 app.use(teacherRoutes);
-//app.use(errorController.get404);
+app.use(homeRoutes);
+app.use(courseRoutes);
 
 mongoose
   .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })

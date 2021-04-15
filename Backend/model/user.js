@@ -34,6 +34,8 @@ const userSchema = new Schema({
         }
     ],
 
+    preferences:[{type:String}],
+
     Token:String,
     resetToken:String,
     resetTokenExpiration:Date,

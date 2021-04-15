@@ -316,8 +316,6 @@ class TeacherPage extends Component{
 
         if(this.OverallValidity()){
 
-        
-                
                 axios.post('creator/create-course',fd,{
                     onUploadProgress: progressEvent => {
                         //console.log("Progress bar");
@@ -332,7 +330,7 @@ class TeacherPage extends Component{
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "Access-Control-Allow-Origin": '*',
-                        //Authorization: 'Bearer '+ localStorage.getItem('user') 
+                       // "Authorization": 'Bearer '+ localStorage.getItem('user') 
                     }
                 })
                 .then( res=> { 

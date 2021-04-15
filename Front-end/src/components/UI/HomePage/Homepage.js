@@ -42,9 +42,6 @@ class Homepage extends Component {
            
             this.setState({loading:false});
           //  console.log(this.state.Courses);
-
-          
-
         })
         .catch(error => {
             console.log(error);
@@ -61,22 +58,23 @@ class Homepage extends Component {
                     this.setState({Courses: response.data.course});
                 
                     this.setState({loading:false});
-                    let count=0;
-                    for(let j in response.data.course.videoContent){ 
-                        for (let i in response.data.course.videoContent[j].usersWatched){
-                            if(localStorage.getItem('userId')===response.data.course.videoContent[j].usersWatched[i]){
+                   
+                    // let count=0;
+                    // for(let j in response.data.course.videoContent){ 
+                    //     for (let i in response.data.course.videoContent[j].usersWatched){
+                    //         if(localStorage.getItem('userId')===response.data.course.videoContent[j].usersWatched[i]){
                                 
-                                count+=1;
+                    //             count+=1;
                                 
-                                break;
-                            }
-                        }
-                    }
+                    //             break;
+                    //         }
+                    //     }
+                    // }
                     
                    
-                  let progress = (count/response.data.course.videoContent.length)*100;
-                  this.setState({progress:progress})
-                    console.log(progress);
+                 // let progress = (count/response.data.course.videoContent.length)*100;
+                  //this.setState({progress:progress})
+                   // console.log(progress);
 
                 })
                 .catch(error => {
@@ -111,8 +109,7 @@ class Homepage extends Component {
             let CourseArray= this.state.Courses.slice(0);
 
             data = (
-              CourseArray.map(item =>  {
-            
+              CourseArray.map(item => {
                let rating=item.rating.ratingFinal;
                 if(rating ===0) rating=1;
                 
@@ -124,7 +121,7 @@ class Homepage extends Component {
                 key={item._id}
                 title={item.title}
                 teacher={item.name}
-                img={"https://shelp-webapp.herokuapp.com/" + item.imageurl}
+                img={"http://localhost:8080/" + item.imageurl}
                 rating={rating}
                 ratingtimesUpdated={item.rating.timesUpdated}
                 /></NavLink>)
@@ -133,29 +130,6 @@ class Homepage extends Component {
             
             BannerImage =   this.state.CourseLink 
             
-        if(true){
-            ProgressData= (
-                this.state.Courses.map(item =>  {
-              
-                 let rating=item.rating.ratingFinal;
-                  if(rating ===0) rating=1;
-                  
-                return(
-                
-                <NavLink className="productLink"
-                 exact to={`/course/${this.state.CourseLink}/${item._id}`}>
-                  <HomeProgressCourse  
-                  key={item._id}
-                  title={item.title}
-                  teacher={item.name}
-                  img={"https://shelp-webapp.herokuapp.com/" + item.imageurl}
-                  rating={rating}
-                  ratingtimesUpdated={item.rating.timesUpdated}
-                  progress={100}
-                  /></NavLink>)
-      
-                })  );
-        }
 
             };
         
@@ -190,13 +164,6 @@ class Homepage extends Component {
                                 <div className="Course-Content-wrap">
                                     {data}
                                 </div>
-
-                                <CourseTitle welcomeMessage ={"Welcome"}/>
-
-                                <div className="Course-Content-wrap">
-                                    {ProgressData}
-                                </div>
-
 
                                 <Recommendation/>
 

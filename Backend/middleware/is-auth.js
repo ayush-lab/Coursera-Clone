@@ -1,6 +1,5 @@
-exports.isAuth= (req,res,next)=>{
-    if(!req.session.isLoggedIn){
-        return res.redirect('/');
-    }
-    next();
+module.exports= (req,res,next)=>{
+
+   const access_token = req.get("Authorization")
+   console.log(access_token);
 }

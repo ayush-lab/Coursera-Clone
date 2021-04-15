@@ -2,10 +2,11 @@ const Course = require('../model/courses');
 
 exports.uploadCourse =(req,res,next)=>{
 
-    console.log(req.body)
+    console.log(req.file)
+
     const title=req.body.title;
     const category=req.body.category;
-    const imageUrl=req.file.filename;
+    const imageurl=req.file.path;
     const name=req.body.name;
     const willLearn=req.body.willLearn;
     const discription=req.body.discription;
@@ -14,12 +15,10 @@ exports.uploadCourse =(req,res,next)=>{
     const userId=req.body._id;
 
 
-    console.log(title);
-
     const course = new Course({
         title:title,
         category:category,
-        imageUrl:imageUrl,
+        imageurl:imageurl,
         name:name,
         willLearn:willLearn,
         discription:discription,

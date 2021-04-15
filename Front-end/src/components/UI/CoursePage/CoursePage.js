@@ -44,11 +44,6 @@ class CoursePage extends Component {
          'video3Duration':'0',
          'video4Duration':'0',
 
-
-
-
-
-
      }
 
     componentDidMount(){
