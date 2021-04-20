@@ -47,10 +47,9 @@
 .Interest-banner button{
     position:absolute;
     top:20%;
-    left:80%;
+    left:75%;
     border-radius: 2px;
-    width: 150px;
-    height: 40px;
+    padding:6px;
     margin-left:auto;
     margin-right:auto;
     text-align:center;

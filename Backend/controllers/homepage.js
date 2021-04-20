@@ -15,9 +15,10 @@ exports.fetchCourses = (req,res,next)=>{
         })
         .catch(err=>{
             console.log(err)
+            res.status(400).json({message:"error occured"})
         })
     }
-    if(category=="preferences"){
+    else if(category=="preferences"){
         const userId = req.body.userId; 
         let courseArray = []
         let no_of_course=0;

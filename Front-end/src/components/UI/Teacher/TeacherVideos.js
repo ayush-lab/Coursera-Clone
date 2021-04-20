@@ -65,9 +65,7 @@ class TeacherPage extends Component{
         }
         
     }
-
  
-
      OverallValidity = ()=>{
 
       if(this.state.Form.file.valid1 ||  this.state.Form.file.valid2 ||  this.state.Form.file.valid3 ||  
@@ -87,11 +85,6 @@ class TeacherPage extends Component{
 
     }
 
-    
-
-
-
-
     fileSelectorHandler = (event,index) =>{
     
         const selectedfile= {...this.state.Form};
@@ -101,16 +94,8 @@ class TeacherPage extends Component{
         selectedfile.file['valid'+index]=true;
 
         this.setState({Form:selectedfile })
-        console.log(selectedfile)
-
-     
-        
-       
+        console.log(selectedfile)  
     }
-
-
-    
-
 
     sumbitButton =()=> {
         
@@ -153,16 +138,10 @@ class TeacherPage extends Component{
                 })
                 .then( res=> { console.log(res);
 
-                    if(res.status ===201 || res.status ===200){
-
-
                     this.AlertError("Your Course has been saved!", "success");
                      setTimeout( ()=> this.setState({redirect:'/home'}) , 2000);
                 
-                }})
-
-
-            
+                })
 
                 .catch(error => { console.log(error.response)
                     this.AlertError(error.response.data.message, "danger");
@@ -173,13 +152,8 @@ class TeacherPage extends Component{
         }
         else
             this.AlertError("Validation Error,Upload atleast one video!", "warning");
-       
     }
- 
-    
-
     render(){
-
 //console.log(this.props.location.state.CourseId)
         let fileName1=null;
         let fileName2=null;

@@ -46,7 +46,7 @@ class CourseVideo extends Component {
          onProgress={this.HandleProgress}
          onDuration={this.HandleDuration}
          playing={this.props.playing}
-        url={"https://shelp-webapp.herokuapp.com/"+this.props.videoUrl.videoUrl} />
+        url={"http://localhost:8080/"+this.props.videoUrl.videoUrl} />
        
         {/* <div className="mt-5">
         <ProgressBar now={this.state.progress} />

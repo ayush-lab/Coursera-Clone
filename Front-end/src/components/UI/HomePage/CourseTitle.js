@@ -5,35 +5,17 @@ import AuthServices from '../../../ApiServices/auth.service';
 
 class CourseTitle extends Component {
     
-    state ={
-        userName:"",
-    }
-
-    componentDidMount(){
-        
-        let userName= AuthServices.getUserName();
-        if(userName!==null){
-            this.setState({userName:userName});
-        }
-    }
-
-    
-
-    
 
     render(){
 
+        let userName= AuthServices.getUserName();
         let WelcomeMsg = "Register to Start Learning!";
        
-       
-         
+        if(userName!==null){
+            WelcomeMsg = (this.props.welcomeMessage+ " " + userName + "!");
+        }
         
 
-
-        if(this.state.userName!==""){
-           
-            WelcomeMsg = (this.props.welcomeMessage+ " " + this.state.userName + "!");
-        }
 
     return(
       

@@ -6,14 +6,12 @@ import {Redirect} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import TeacherCard from './TeacherCard';
 import Layout from '../../../Layout/Layout';
-//import ProductApi from './../../../ApiServices/ProductApi';
 import AuthServices from "../../../../ApiServices/auth.service";
 import '../../HomePage/CSS/Homepage.css';
 
 
 
 class TeacherHomePage extends Component {
-
     state = {
         // CourseLink: this.props.match.params.CourseName,
          Courses: null,
@@ -28,10 +26,7 @@ class TeacherHomePage extends Component {
         const fd =new FormData();
         const form = {};
         form['userId'] = localStorage.getItem('userId');
-
         fd.append("userId",localStorage.getItem('userId'))
-       
-
               
                 AuthServices.TeacherUpload(form)
                 .then(response => {
@@ -118,7 +113,7 @@ class TeacherHomePage extends Component {
                 key={item._id}
                 title={item.title}
                 teacher={item.name}
-                img={"https://shelp-webapp.herokuapp.com/" + item.imageurl}
+                img={"http://localhost:8080/" + item.imageurl}
                 rating={item.rating.ratingFinal}
                 Link={`/course/${this.state.CourseLink}/${item._id}`}
                 CourseId={item._id}
@@ -148,20 +143,12 @@ class TeacherHomePage extends Component {
                     <div className="Course-Content-col">
 
                         {welcomeMessage}
-                               
 
                                 <div className="Course-Content-wrap">
                                     {data}
                                 </div>
-
-
-
                     </div>
-
                 </div>
-
-
-
             </div>
         </Layout>
         );

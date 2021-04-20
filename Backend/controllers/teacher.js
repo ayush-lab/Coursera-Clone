@@ -2,7 +2,7 @@ const Course = require('../model/courses');
 
 exports.uploadCourse =(req,res,next)=>{
 
-    console.log(req.file)
+   // console.log(req.file)
 
     const title=req.body.title;
     const category=req.body.category;
@@ -13,7 +13,7 @@ exports.uploadCourse =(req,res,next)=>{
     const discriptionLong=req.body.discriptionLong;
     const requirement=req.body.requirement;
     const userId=req.body._id;
-
+    console.log(userId,title)
 
     const course = new Course({
         title:title,
@@ -38,3 +38,37 @@ exports.uploadCourse =(req,res,next)=>{
     })
 
 }
+
+exports.uploadVideo = (req,res,next)=>{
+    const courseId = req.params.courseID;
+    console.log(req.files);
+    const videos  = req.files;
+   
+
+    let videoContent = []
+   
+    Course.findOne({_id:courseId})
+    .then(course=>{
+
+        videos.forEach(video=>{
+            let videoContentContainer = {
+                videoUrl:null,
+                usersWatched:[],
+            }
+            videoContentContainer.videoUrl = video.path;
+            videoContent.push(videoContentContainer);
+        })  
+        console.log(videoContent);
+        course.videoContent=videoContent;
+        course.save()
+        .then(result=>{
+            res.status(200).json({message:"successfully saved the video"})
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+
+
+} 
