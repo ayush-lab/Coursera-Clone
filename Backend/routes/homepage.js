@@ -7,7 +7,9 @@ const Auth = require('../middleware/is-auth');
 
 
 router.get('/home/:course',homeController.fetchCourses);
-router.post('/home/interests',homeController.getPreferences);
+router.post('/home/interests',Auth,homeController.getPreferences);
+router.post('/home/:course',Auth,homeController.preferenceCourses);
+
 
 
 module.exports = router;

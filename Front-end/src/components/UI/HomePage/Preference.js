@@ -108,7 +108,7 @@ AlertError(alertmsg, alertType) {
         axios.post("/home/interests",formData, {
             headers: {
                 
-              //  Authorization: 'Bearer '+ this.state.token
+               Authorization: 'Bearer '+ this.state.token + " " + localStorage.getItem('ref_token')
                 
             }
         })

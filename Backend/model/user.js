@@ -36,21 +36,10 @@ const userSchema = new Schema({
 
     preferences:[{type:String}],
 
-    Token:String,
-    resetToken:String,
-    resetTokenExpiration:Date,
-    // cart:{
-    //     items:[
-    //         {
-    //             productId:{
-    //                 type:Schema.Types.ObjectId,    
-    //                 ref:'Product',
-    //                 required:true
-    //             },
-    //             quantity:{type:Number,required:true}
-    //         }
-    //     ]
-    // }
+    //Token:String,
+    //resetToken:String,
+    //resetTokenExpiration:Date,
+    
 });
 
 module.exports = mongoose.model('User',userSchema);

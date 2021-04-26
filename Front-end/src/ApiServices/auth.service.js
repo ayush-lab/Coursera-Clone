@@ -66,7 +66,7 @@ class AuthServices {
         return axios.post(`/home/${CourseLink}`,data,{
             headers: {
                
-             //   Authorization: 'Bearer '+ localStorage.getItem('user') 
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }
         })
     }
@@ -82,7 +82,7 @@ class AuthServices {
         return axios.get(`/users/${userName}/${userId}`,{
             headers: {
                 
-                Authorization: 'Bearer '+ localStorage.getItem('user')
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }
         });
     }
@@ -96,7 +96,7 @@ class AuthServices {
         return axios.post(`/home/${CourseId}/${CourseName}`,data,{
             headers: {
                
-                Authorization: 'Bearer '+ localStorage.getItem('user') 
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }
         })
     
@@ -114,7 +114,7 @@ class AuthServices {
         return axios.get(`/course/${CourseName}/${CourseId}`,{
             headers: {
                 
-                Authorization: 'Bearer '+ localStorage.getItem('user')
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }
         } )
     
@@ -139,7 +139,7 @@ class AuthServices {
         return axios.post("/teacher/uploads",data,{
             headers: {
                
-                Authorization: 'Bearer '+ localStorage.getItem('user') 
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }
         })
     }

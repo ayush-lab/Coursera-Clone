@@ -46,22 +46,17 @@ exports.signup = (req,res,next)=>{
             Newuser.save();
             console.log("details saved in the database")
            
-            const token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
-                algorithm: "HS256",
-                expiresIn:process.env.ACCESS_TOKEN_LIFE
-            })
-            tokenGenerated=token;
+          
             otp=Math.floor(Math.random()*1000000);
 
             const OTP=new Otp({
                  otp:otp,
-                 token:token,
                  email:email
                 })
 
             OTP.save();
             console.log(otp)
-            res.status(201).json({ message: "OTP sent to your Email" ,token:tokenGenerated});
+            res.status(201).json({ message: "OTP sent to your Email" });
         })
             transporter.sendMail({
                 to:email,
@@ -76,11 +71,11 @@ exports.signup = (req,res,next)=>{
 
 exports.otpVerification = (req,res,next)=>{
     const receivedOtp=req.body.otp;
-    const receivedToken=req.body.token;
+  //  const receivedToken=req.body.token;
     const email=req.body.email;
 
     // validation
-    console.log(receivedOtp,email,receivedToken);
+    console.log(receivedOtp,email);
 
     Otp.findOne({email:email})
     .then(user=>{
@@ -116,16 +111,18 @@ exports.otpVerification = (req,res,next)=>{
             User.findOne({email:email})
             .then(user=>{
                 user.isverified=true;  
-                const token=jwt.sign({email:email,userId:user._id},process.env.ACCESS_TOKEN_SECRET,{
+                const access_token=jwt.sign({email:email,userId:user._id},process.env.ACCESS_TOKEN_SECRET,{
                     algorithm: "HS256",
                     expiresIn:process.env.ACCESS_TOKEN_LIFE
                 });
-                user.Token=token;
-                user.save();
+                const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                    algorithm: "HS256",
+                    expiresIn:process.env.REFRESH_TOKEN_LIFE})
 
                 return res.status(200).json({
                     message: "otp entered is correct, user successfully added",
-                    token:token, 
+                    access_token:access_token, 
+                    referesh_token:referesh_token,
                     userId:user._id.toString(),
                     username:user.name,
                   });
@@ -252,13 +249,18 @@ exports.login = (req,res,next)=>{
             .then(matchPass=>{
 
                 if(matchPass){
-                    const token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
+                    const access_token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
                     algorithm: "HS256",
                     expiresIn:process.env.ACCESS_TOKEN_LIFE})
+
+                    const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                        algorithm: "HS256",
+                        expiresIn:process.env.REFRESH_TOKEN_LIFE})
                 
-                    user.Token=token;
-                    user.save()
-                    res.status(201).json({message:"User logged in!",token:token,username:user.name,userId:user._id})
+
+                    // user.Token=token;
+                    // user.save()
+                    res.status(201).json({message:"User logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
                     
                 }
                 else {

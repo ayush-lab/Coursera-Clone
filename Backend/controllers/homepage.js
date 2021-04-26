@@ -18,7 +18,27 @@ exports.fetchCourses = (req,res,next)=>{
             res.status(400).json({message:"error occured"})
         })
     }
-    else if(category=="preferences"){
+    
+
+    
+    else{
+        Course.find({category:category})
+        .then(courses=>{
+            console.log(courses);
+            res.status(200).json({course:courses})
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
+}
+
+exports.preferenceCourses = (req,res,next)=>{
+    const category = req.params.course;
+  
+   
+    if(category=="preferences"){
         const userId = req.body.userId; 
         let courseArray = []
         let no_of_course=0;
@@ -35,7 +55,7 @@ exports.fetchCourses = (req,res,next)=>{
                     courseArray.push(...course);
 
                     if(no_of_course === user.preferences.length){
-                        console.log(courseArray);
+                      //  console.log(courseArray);
                         res.status(200).json({coursesarray:courseArray})
                     }
 
@@ -53,19 +73,6 @@ exports.fetchCourses = (req,res,next)=>{
        
 
     }
-
-    
-    else{
-        Course.find({category:category})
-        .then(courses=>{
-            console.log(courses);
-            res.status(200).json({course:courses})
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
-
 }
 
 exports.getPreferences = (req,res,next)=>{
@@ -77,7 +84,7 @@ exports.getPreferences = (req,res,next)=>{
         user.preferences=preferencesArray;
         user.save();
         console.log(user);
-        res.status(200).json({message:"Preference added"})
+        return res.status(200).json({message:"Preference added"})
     })
     .catch(err=>{
         console.log(err);

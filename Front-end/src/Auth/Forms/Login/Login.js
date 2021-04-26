@@ -203,7 +203,8 @@ formHandler = (event)=> {
 
                 this.AlertError("Successfully Logged in", "success");
   
-                localStorage.setItem('user',response.data.token);
+                localStorage.setItem('user',response.data.access_token);
+                localStorage.setItem('ref_token',response.data.referesh_token);
                 localStorage.setItem('userId',response.data.userId);
                 localStorage.setItem('userName',response.data.username);
 

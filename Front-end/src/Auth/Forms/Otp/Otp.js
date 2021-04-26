@@ -99,10 +99,6 @@ class Otp extends Component {
             AuthService.otp(formData)
             .then(response => {console.log('Response:', response) 
 
-            if(response.status ===201 || response.status ===200) 
-              
-                { 
-                 
                  this.setState({loading:false})    
 
 
@@ -112,22 +108,18 @@ class Otp extends Component {
                  localStorage.removeItem('msg') 
                  localStorage.removeItem('type') 
 
-                 localStorage.setItem('user',response.data.token);
+                 localStorage.setItem('user',response.data.access_token);
+                 localStorage.setItem('ref_token',response.data.referesh_token);
                  localStorage.setItem('userId',response.data.userId);
                  localStorage.setItem('userName',response.data.username); 
                  this.setState({redirect:'/HomePage'})
-       
-            
-                }
-               
-            else if(response.status===401) alert("Something went wrong")})
+        })
             
             .catch(error=>{console.log(error.response); this.setState({loading:false});
              this.AlertError(error.response.data.message, "danger");});
-           
-        }
+        
        // else this.AlertError("Make sure the Validations are correct", "warning");
-
+    }
     
 
     resendotp = ()=>{
