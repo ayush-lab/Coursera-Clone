@@ -33,7 +33,7 @@ class Cart extends Component{
             if(response.status ===200 || response.status===201){
             console.log("Bookmarked Courses",response);
        
-            this.setState({Courses: response.data.course.bookmarked});
+            this.setState({Courses: response.data.course.Bookmark});
          
            
             this.setState({loading:false});
@@ -164,7 +164,7 @@ class Cart extends Component{
                 key={item.id}
                 title={item.title}
                 teacher={item.name}
-                img={"https://shelp-webapp.herokuapp.com/" + item.imageurl}
+                img={"http://localhost:8080/"  + item.imageurl}
                 rating={rating}
                 courseId={item._id}
                // userId={this.state.userId}

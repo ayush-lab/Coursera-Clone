@@ -8,7 +8,8 @@ module.exports= (req,res,next)=>{
    if(!access_token){
       const error = new Error("not authenticated")
       error.statusCode=401;
-      throw error
+      throw error;
+      return res.status(401).json({message:"not authenticated"})
    }
 
    else{
@@ -21,6 +22,7 @@ module.exports= (req,res,next)=>{
       catch(err){
          err.statusCode = 500;
          throw err;
+         return res.status(500).json({message:"not authenticated"})
       }
 
       if(!payload){

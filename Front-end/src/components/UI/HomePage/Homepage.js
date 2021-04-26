@@ -4,7 +4,7 @@ import HomeBanner from './HomeBanner';
 import CourseCards from './CourseCards';
 import HomeProgressCourse from './HomeProgressCourse';
 import CourseTitle from './CourseTitle';
-import {NavLink} from 'react-router-dom';
+import {Redirect,NavLink} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import Layout from '../../Layout/Layout'
 import AuthServices from './../../../ApiServices/auth.service';
@@ -21,6 +21,7 @@ class Homepage extends Component {
         loading: true,
         img: "",
         progress:0,
+        redirect:null,
     }
 
 
@@ -44,7 +45,11 @@ class Homepage extends Component {
           //  console.log(this.state.Courses);
         })
         .catch(error => {
-            console.log(error);
+            console.log(error.response);
+            if(error.response.data.message == "not authenticated"){
+                localStorage.clear();
+                this.setState({redirect:"/login"})
+            }
         })
        
        }
@@ -90,6 +95,9 @@ class Homepage extends Component {
 
     render(){
 
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         let BannerImage ;
         let ProgressData=null;
 

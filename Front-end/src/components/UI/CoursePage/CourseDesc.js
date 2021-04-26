@@ -33,22 +33,14 @@ class CourseDesc extends Component {
                 AuthServices.BookMark(this.state.CourseId,this.props.CourseName,form)
                 .then(response => {
                     console.log("BookMarked",response);
-                    if(response.status ===201 || response.status ===200){
-                        this.setState({bookmarked:true})
-                        
-                    }
- 
-                
-                
-
+                    
+                    this.setState({bookmarked:true}) 
+                    console.log(this.state.bookmarked)       
                 })
                 .catch(error => {
                     console.log(error.response);
-                })
-
-                    
-
-                
+                })            
+            
         }   
         else{
                 

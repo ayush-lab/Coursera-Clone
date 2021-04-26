@@ -6,5 +6,7 @@ const Auth = require('../middleware/is-auth');
 
 
 router.get('/course/:courseName/:courseId',Auth,courseController.CoursePage);
+router.post('/home/:courseId/:courseName',Auth,courseController.Bookmark);
+router.get('/users/:userName/:userId',Auth,courseController.ShowBookmark)
 
 module.exports = router;

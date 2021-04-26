@@ -36,6 +36,13 @@ const userSchema = new Schema({
 
     preferences:[{type:String}],
 
+    Bookmark:[
+        {
+            type:Schema.Types.ObjectId,
+            required:false,
+            ref:"Course",
+        }]
+
     //Token:String,
     //resetToken:String,
     //resetTokenExpiration:Date,
