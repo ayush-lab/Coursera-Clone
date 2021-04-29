@@ -83,7 +83,7 @@ exports.getPreferences = (req,res,next)=>{
     .then(user=>{
         user.preferences=preferencesArray;
         user.save();
-        console.log(user);
+    
         return res.status(200).json({message:"Preference added"})
     })
     .catch(err=>{

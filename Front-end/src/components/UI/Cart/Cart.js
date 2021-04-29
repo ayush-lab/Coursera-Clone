@@ -4,11 +4,8 @@ import Loader from 'react-loader-spinner';
 import CartCard from './CartCard';
 import './CSS/Cart.css';
 import Layout from '../../Layout/Layout';
-//import CartPrice from './CartPrice';
 import EmptyCart from './EmptyCart';
 import AuthServices from '../../../ApiServices/auth.service';
-
-
 
 
 class Cart extends Component{
@@ -16,7 +13,6 @@ class Cart extends Component{
     state = {
         CourseLink: this.props.match.params.CourseName,
         Courses: null,
-        
         loading: true,
         img: "",
         userName:localStorage.getItem('userName'),
@@ -30,21 +26,14 @@ class Cart extends Component{
        AuthServices.bookmarkCourses(this.state.userName,this.state.userId) 
         .then(response => {
 
-            if(response.status ===200 || response.status===201){
             console.log("Bookmarked Courses",response);
-       
-            this.setState({Courses: response.data.course.Bookmark});
-         
-           
-            this.setState({loading:false});
-            
-
-          
-
-        }})
+            this.setState({Courses: response.data.course.Bookmark});            
+            this.setState({loading:false});                      
+        })
         .catch(error => {
             console.log(error.response);
             if(error.response.status ===500){
+                localStorage.clear();
                 this.setState({redirect:"/login"})
             }
 
@@ -64,22 +53,14 @@ class Cart extends Component{
         AuthServices.DeleteBookmark(form)
         .then(response => {
             console.log("Removed",response);
-       
-            
-         
-           
-        this.setState({loading:false});
-      
-        const updatedCourse =this.state.Courses;
-
-        for(let i=0;i<this.state.Courses.length;i++){
-            
-            if(id=== this.state.Courses[i]._id){
-               updatedCourse.splice(i,1);
+            this.setState({loading:false});
+            const updatedCourse =this.state.Courses;
+            for(let i=0;i<this.state.Courses.length;i++){                
+                if(id=== this.state.Courses[i]._id){
+                updatedCourse.splice(i,1);
+                }
+            this.setState({Courses:updatedCourse})
             }
-        this.setState({Courses:updatedCourse})
-
-        }
 
          //   this.AlertError("Course Removed,please refresh", "success");
             
@@ -92,11 +73,6 @@ class Cart extends Component{
         })
     }
 
-
-
-   
-    
-    
     render(){
 
         if(this.state.redirect!==null){

@@ -49,6 +49,6 @@ const ImagefileStorage = multer.diskStorage({
 
 
 router.post('/creator/create-course',imageMulter,teacherController.uploadCourse);
-router.post('/creator/videoUpload/:courseID',videoMulter,Auth,teacherController.uploadVideo);
+router.post('/creator/videoUpload/:courseID',videoMulter,teacherController.uploadVideo);
 
 module.exports = router;

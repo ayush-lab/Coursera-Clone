@@ -121,7 +121,7 @@ class TeacherPage extends Component{
                     
                 axios.post(`/creator/videoUpload/${this.props.location.state.CourseId}`,fd,{
                     onUploadProgress: progressEvent => {
-                        console.log("mmmmmm");
+              
                         const {loaded,total} =progressEvent;
                         let percent =Math.floor((loaded*100)/total);
                         console.log("percent" + percent)
@@ -133,7 +133,7 @@ class TeacherPage extends Component{
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "Access-Control-Allow-Origin": '*',
-                        Authorization: 'Bearer '+ localStorage.getItem('user') 
+                        Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
                     }
                 })
                 .then( res=> { console.log(res);

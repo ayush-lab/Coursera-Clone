@@ -40,6 +40,12 @@ const courseSchema = new Schema({
         required:true,
         ref:'User'
     },
+    bookmark:[{
+        type:Schema.Types.ObjectId,
+        required:false,
+        ref:'User'
+    }],
+
     videoContent:[{
         videoUrl:{
             type:String,

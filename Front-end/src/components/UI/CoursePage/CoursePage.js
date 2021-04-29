@@ -26,7 +26,7 @@ class CoursePage extends Component {
         progress:0,
         index:0,
         WatchedVideoCount:0,
-
+        bookmark:false,
         'video0':true,
          'video1':false,
          'video2':false,
@@ -53,10 +53,10 @@ class CoursePage extends Component {
         .then(response => {
             console.log("CoursePage Response",response);
        
-            this.setState({CoursesInfo: response.data.course});
+            this.setState({CoursesInfo: response.data.course,
+                           CurrentVideo:response.data.course.videoContent[0],
+                           loading:false});
 
-            this.setState({CurrentVideo:response.data.course.videoContent[0]})
-            this.setState({loading:false});
             let count=0;
 
         for(let j in response.data.course.videoContent){ 
@@ -69,19 +69,21 @@ class CoursePage extends Component {
                 }
             }
         }
-        this.setState({WatchedVideoCount:count})
+        
        
-      let progress = (this.state.WatchedVideoCount/this.state.CoursesInfo.videoContent.length)*100;
-      this.setState({progress:progress})
+      let progress = (count/this.state.CoursesInfo.videoContent.length)*100;
+      this.setState({WatchedVideoCount:count,progress:progress})
+     
 
           
 
         })
         .catch(error => {
             console.log(error.response);
-            if(error.response.data.message ==='jwt malformed')
+            
             if(error.response.status ===500)
-            this.setState({redirect:"/login"})
+            {localStorage.clear();
+             this.setState({redirect:"/login"})}
         })
        
     }
@@ -172,6 +174,7 @@ class CoursePage extends Component {
         let createdAt=null;
         let VideoUrl=null;
         let rating=null;
+        let bookmark=false;
         let ratingtimesUpdated=null;
         let requirement=null;
         let longDescription=null;
@@ -184,7 +187,6 @@ class CoursePage extends Component {
         let progressbar=null;
 
         if(this.state.loading ===false){
-                
 
                 title = (this.state.CoursesInfo.title);
                 short_description = (this.state.CoursesInfo.discription);
@@ -197,13 +199,11 @@ class CoursePage extends Component {
                 longDescription=parse(this.state.CoursesInfo.discriptionLong);
                 willLearn=parse(this.state.CoursesInfo.willLearn);
                 ratingtimesUpdated=(this.state.CoursesInfo.rating.timesUpdated);
-                 videourl=(this.state.CoursesInfo.videoContent.slice(0));
-   
+                videourl=(this.state.CoursesInfo.videoContent.slice(0));
                 CurrentVideo =this.state.CurrentVideo;
                 
-
-               
-                
+                bookmark = (this.state.CoursesInfo.bookmark.includes(localStorage.getItem('userId'))) 
+                console.log(bookmark)
                 
 
 
@@ -313,6 +313,7 @@ class CoursePage extends Component {
                         
 
                         <div className="Description-main">
+                            
                             <CourseDesc title={title}
                                         short_description={short_description}
                                         teacher={teacher}
@@ -321,6 +322,7 @@ class CoursePage extends Component {
                                         rating={rating}
                                         ratingtimesUpdated={ratingtimesUpdated}
                                         CourseName={this.state.CourseName}
+                                        bookmark={bookmark}
                             />
 
                         </div>

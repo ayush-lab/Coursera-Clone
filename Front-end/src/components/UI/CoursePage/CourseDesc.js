@@ -7,20 +7,29 @@ import AuthServices from '../../../ApiServices/auth.service';
 
 class CourseDesc extends Component {
 
-
     state ={
-        bookmarked:false,
+        bookmarked:this.props.bookmark,
         CourseId:this.props.CourseId,
+        count:0,
     }
 
+    static getDerivedStateFromProps(nextProps,prevState){
+       console.log("derivedState is called","prevState=",prevState.bookmarked," nextprops",nextProps.bookmark);
+    
+        if(nextProps.bookmark!== prevState.bookmarked && prevState.count==0){
+           
+            console.log(prevState.count)
+        return {
+            bookmarked:nextProps.bookmark,
+            count:7,
+        }}
+    }
+    
+    
     bookmark=()=> {
 
         let user = localStorage.getItem('userId');
-        
-
-        if(!this.state.bookmarked){
-
-                
+    
             const fd =new FormData();
             const form = {};
 
@@ -33,22 +42,17 @@ class CourseDesc extends Component {
                 AuthServices.BookMark(this.state.CourseId,this.props.CourseName,form)
                 .then(response => {
                     console.log("BookMarked",response);
-                    
-                    this.setState({bookmarked:true}) 
+                    //this.setState({bookmarked:true}) 
+                    this.setState(prevState=>({
+                        bookmarked:!prevState.bookmarked
+                    }))
                     console.log(this.state.bookmarked)       
                 })
                 .catch(error => {
                     console.log(error.response);
                 })            
             
-        }   
-        else{
-                
-                this.setState({bookmarked:false})
-                
-
-            }
-
+    
 
         } 
 
@@ -69,14 +73,11 @@ class CourseDesc extends Component {
         })
   
         
-    }  
-
-    
-
+    }      
 
      render(){
-         
-
+            console.log("count==",this.state.count)
+            //console.log("Coruse desc = ", this.props.bookmark,this.state.bookmarked)
             let classArray = [""];
 
             if(this.state.bookmarked) {

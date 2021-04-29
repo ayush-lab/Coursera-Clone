@@ -20,7 +20,7 @@ exports.Bookmark = (req,res,next)=>{
     const courseName=req.params.courseName;
     const userId = req.body._userID;
 
-    User.findOne({_id:userId})
+    User.findById({_id:userId})
     .then(user=>{
         if(!user.Bookmark.includes(courseId)){
             user.Bookmark.push(courseId);
@@ -34,7 +34,20 @@ exports.Bookmark = (req,res,next)=>{
     .catch(err=>{
         console.log(err)
     })
-    
+    Course.findById({_id:courseId})
+    .then(course=>{
+        if(!course.bookmark.includes(userId)){
+            course.bookmark.push(userId);
+            console.log("bookmarked")
+        }
+        else{
+            course.bookmark.splice(course.bookmark.indexOf(userId),1);
+        }
+        course.save();
+    })
+    .catch(err=>{
+        console.log(err);
+    })
 
 }
 
