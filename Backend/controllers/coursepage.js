@@ -65,3 +65,26 @@ exports.ShowBookmark =(req,res,next)=>{
         console.log(err)
     })
 }
+
+exports.unbookmark=(req,res,next)=>{
+    const userId= req.body.userId;
+    const courseId=req.body.id;
+
+    User.findById({_id:userId})
+    .then(user=>{
+        user.Bookmark.splice(user.Bookmark.indexOf(courseId),1);
+        user.save();
+        res.status(200).json({message:"successfully unbookmarked"})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+
+    Course.findById({_id:courseId})
+    .then(course=>{
+        course.bookmark.splice(course.bookmark.indexOf(userId),1);
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}

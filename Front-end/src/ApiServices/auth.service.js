@@ -73,7 +73,7 @@ class AuthServices {
 
 
     UpdatedCourse(data){
-        return axios.put('home/courseUpdate',data);
+        return axios.put('course/Update',data);
     }
 
     
@@ -88,7 +88,12 @@ class AuthServices {
     }
 
     DeleteBookmark(data){
-        return axios.post("/unbookmark",data);
+        return axios.post("/unbookmark",data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
+            }
+        });
     }
 
 
@@ -135,8 +140,8 @@ class AuthServices {
    
   
 
-    TeacherUpload(data){
-        return axios.post("/teacher/uploads",data,{
+    TeacherHomePage(data){
+        return axios.post("/creater/homepage",data,{
             headers: {
                
                 Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
@@ -146,7 +151,7 @@ class AuthServices {
 
 
     TeacherCourseDelete(data){
-        return axios.post("/Course/delete",data,{
+        return axios.post("/course/delete",data,{
             headers: {
                
                 Authorization: 'Bearer '+ localStorage.getItem('user') 

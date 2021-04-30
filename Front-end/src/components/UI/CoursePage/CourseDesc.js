@@ -14,11 +14,11 @@ class CourseDesc extends Component {
     }
 
     static getDerivedStateFromProps(nextProps,prevState){
-       console.log("derivedState is called","prevState=",prevState.bookmarked," nextprops",nextProps.bookmark);
+       console.log("state of course desc=",prevState.bookmarked,"props",nextProps.bookmark);
     
         if(nextProps.bookmark!== prevState.bookmarked && prevState.count==0){
            
-            console.log(prevState.count)
+            console.log("changing state")
         return {
             bookmarked:nextProps.bookmark,
             count:7,
@@ -44,7 +44,8 @@ class CourseDesc extends Component {
                     console.log("BookMarked",response);
                     //this.setState({bookmarked:true}) 
                     this.setState(prevState=>({
-                        bookmarked:!prevState.bookmarked
+                        bookmarked:!prevState.bookmarked,
+                        count:7,
                     }))
                     console.log(this.state.bookmarked)       
                 })

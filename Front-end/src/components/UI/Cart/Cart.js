@@ -47,8 +47,8 @@ class Cart extends Component{
 
        
         const form ={};
-        form['_userID']=this.state.userId;
-        form['_id']=id;
+        form['userId']=this.state.userId;
+        form['id']=id;
 
         AuthServices.DeleteBookmark(form)
         .then(response => {
@@ -62,10 +62,6 @@ class Cart extends Component{
             this.setState({Courses:updatedCourse})
             }
 
-         //   this.AlertError("Course Removed,please refresh", "success");
-            
-
-          
 
         })
         .catch(error => {

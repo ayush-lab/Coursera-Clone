@@ -176,7 +176,7 @@ class TeacherPage extends Component{
         fd.append('courseId',this.props.location.aboutProps.CourseId);
 
 
-        axios.put("/home/edit",form,{
+        axios.post("/course/edit",form,{
             headers: {
                 Authorization: 'Bearer '+ localStorage.getItem('user') 
             }
@@ -184,7 +184,7 @@ class TeacherPage extends Component{
         .then(response => {
             console.log("Edit details",response);
 
-            this.setState({CourseDetails:response.data});
+            this.setState({CourseDetails:response.data.course});
             this.setState({loading:false});
                  
         const updatedFormCategory = {...this.state.Form}
@@ -317,8 +317,8 @@ class TeacherPage extends Component{
         const UpdatedSelectedFile={...this.state.CourseDetails}
 
         selectedfile.file.value= event.target.files[0];
-        UpdatedSelectedFile.imageurl=event.target.files[0];
-        console.log(UpdatedSelectedFile.imageurl)
+        UpdatedSelectedFile.image=event.target.files[0];
+        console.log(UpdatedSelectedFile.image)
 
        selectedfile.file.name= URL.createObjectURL(event.target.files[0]);
 
@@ -343,21 +343,10 @@ class TeacherPage extends Component{
         fd.append('courseId',localStorage.getItem('courseId'));
         for(let formElement in this.state.CourseDetails){
              
-            fd.append(formElement, this.state.CourseDetails[formElement]);
-       
-  
-    
-       
+            fd.append(formElement, this.state.CourseDetails[formElement]);      
         } 
 
-
-       
-
       //  if(this.OverallValidity()){
-
-        
-              
-
 
              AuthServices.UpdatedCourse(fd, {
                 onUploadProgress: progressEvent => {
@@ -637,7 +626,7 @@ class TeacherPage extends Component{
                     
                         <label className="custom-image-upload">
 
-                            <input type="file" name='imageurl'  
+                            <input type="file" name='image'  
                             onChange={this.fileSelectorHandler}/>
                             Upload Image
                     </label>

@@ -28,18 +28,12 @@ class TeacherHomePage extends Component {
         form['userId'] = localStorage.getItem('userId');
         fd.append("userId",localStorage.getItem('userId'))
               
-                AuthServices.TeacherUpload(form)
+                AuthServices.TeacherHomePage(form)
                 .then(response => {
-                    
                     console.log("Teacher Uploaded Courses",response);
-                    
                     this.setState({Courses: response.data.data});
-                
                     this.setState({loading:false});
                  //   console.log(this.state.Courses);
-
-                
-
                 })
                 .catch(error => {
                     console.log(error.response);
@@ -47,19 +41,13 @@ class TeacherHomePage extends Component {
                         this.setState({redirect:'/login'})
                     }
                 })
-        
-
     }
+    
 
-    
-    
     DeleteCourse=(event,id)=> {
         const form ={};
         form['courseId']=id;
     
-
-    
-      
         AuthServices.TeacherCourseDelete(form)
         .then(response => {
             console.log("Removed Course",response);

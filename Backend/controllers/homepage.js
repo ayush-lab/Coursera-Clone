@@ -18,9 +18,7 @@ exports.fetchCourses = (req,res,next)=>{
             res.status(400).json({message:"error occured"})
         })
     }
-    
-
-    
+ 
     else{
         Course.find({category:category})
         .then(courses=>{
@@ -31,7 +29,6 @@ exports.fetchCourses = (req,res,next)=>{
             console.log(err)
         })
     }
-
 }
 
 exports.preferenceCourses = (req,res,next)=>{

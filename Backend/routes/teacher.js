@@ -1,9 +1,9 @@
 const express = require('express');
 const router= express.Router();
 const multer = require('multer');
-
 const teacherController =require('../controllers/teacher');
 const Auth = require('../middleware/is-auth');
+
 
 const ImagefileStorage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -50,5 +50,10 @@ const ImagefileStorage = multer.diskStorage({
 
 router.post('/creator/create-course',imageMulter,teacherController.uploadCourse);
 router.post('/creator/videoUpload/:courseID',videoMulter,teacherController.uploadVideo);
+router.post('/creater/homepage',Auth,teacherController.teacherHome);
+router.post('/course/delete',Auth,teacherController.deleteCourse);
+router.post('/course/edit',Auth,teacherController.editCourse);
+router.put('/course/Update',imageMulter,teacherController.updateCourse)
+
 
 module.exports = router;
