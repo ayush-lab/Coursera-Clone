@@ -9,5 +9,6 @@ router.get('/course/:courseName/:courseId',Auth,courseController.CoursePage);
 router.post('/home/:courseId/:courseName',Auth,courseController.Bookmark);
 router.get('/users/:userName/:userId',Auth,courseController.ShowBookmark);
 router.post('/unbookmark',Auth,courseController.unbookmark);
+router.put('/rating',courseController.rating);
 
 module.exports = router;

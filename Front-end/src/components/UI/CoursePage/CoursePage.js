@@ -9,7 +9,7 @@ import Layout from '../../Layout/Layout';
 import parse from 'html-react-parser';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import AuthServices from '../../../ApiServices/auth.service';
-
+import Rating from './Rating';
 
 class CoursePage extends Component {
 
@@ -319,7 +319,7 @@ class CoursePage extends Component {
                                         teacher={teacher}
                                         createdat={createdAt}
                                         CourseId={this.state.CourseId}
-                                        rating={rating}
+                                        rating={parseInt(rating)}
                                         ratingtimesUpdated={ratingtimesUpdated}
                                         CourseName={this.state.CourseName}
                                         bookmark={bookmark}
@@ -385,12 +385,21 @@ class CoursePage extends Component {
 
                  </div>
 
-                    <div className="flex-center">
+                    <div style={{marginBottom:"100px"}} className="flex-center">
         
                         {VideoUrl}
                         <div className='progressBar'>
                             
                            {progressbar}
+
+                        </div>
+
+                        <div>
+                            <p className="Rating_coursePage">Rate the course here please</p>
+                            <Rating rating={rating}
+                                edit={true}
+                                specialrating={true} 
+                                CourseId={this.state.CourseId}/>
                         </div>
                      </div>
 

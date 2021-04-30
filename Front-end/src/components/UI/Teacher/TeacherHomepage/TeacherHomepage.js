@@ -98,14 +98,14 @@ class TeacherHomePage extends Component {
            
 
                 <TeacherCard  
-                key={item._id}
-                title={item.title}
-                teacher={item.name}
-                img={"http://localhost:8080/" + item.imageurl}
-                rating={item.rating.ratingFinal}
-                Link={`/course/${this.state.CourseLink}/${item._id}`}
-                CourseId={item._id}
-                DeleteCourse={(event)=>this.DeleteCourse(event,item._id)}
+                    key={item._id}
+                    title={item.title}
+                    teacher={item.name}
+                    img={"http://localhost:8080/" + item.imageurl}
+                    rating={parseInt(item.rating.ratingFinal)}
+                    Link={`/course/${this.state.CourseLink}/${item._id}`}
+                    CourseId={item._id}
+                    DeleteCourse={(event)=>this.DeleteCourse(event,item._id)}
                 />)
     
             );

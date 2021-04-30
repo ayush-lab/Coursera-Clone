@@ -88,3 +88,25 @@ exports.unbookmark=(req,res,next)=>{
         console.log(err)
     })
 }
+
+exports.rating=(req,res,next)=>{
+    const courseId=req.body.courseId;
+    const new_Rating=req.body.rating;
+
+    Course.findById({_id:courseId})
+    .then(course=>{
+        const total_rating=course.rating.ratingSum+new_Rating;
+        const times_updated=  course.rating.timesUpdated+1;
+        course.rating.timesUpdated+=1;
+        course.rating.ratingSum+=new_Rating;
+        course.rating.ratingFinal= (total_rating/times_updated);
+        
+        course.save();
+        console.log(course)
+        res.status(200).json({course:course})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+}
