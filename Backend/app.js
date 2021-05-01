@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images',express.static(path.join(__dirname, 'images')));
 app.use('/videos',express.static(path.join(__dirname, 'videos')));
-
+app.use('/Files',express.static(path.join(__dirname,'Files')));
 
 app.use((req, res, next) =>{  // To remove CROS (cross-resource-origin-platform) problem 
   res.setHeader('Access-Control-Allow-Origin',"*"); // to allow all client we use *

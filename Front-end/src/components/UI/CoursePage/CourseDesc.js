@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './CSS/CourseDesc.css';
 import Rating from './Rating';
 import AuthServices from '../../../ApiServices/auth.service';
-
+import Url from '../../../ApiServices/BackendUrl';
 
 
 class CourseDesc extends Component {
@@ -62,10 +62,10 @@ class CourseDesc extends Component {
        
         AuthServices.Download(this.state.CourseId)
         .then(response => {
-            let path ="https://shelp-webapp.herokuapp.com/"+'invoice-' + 
-            this.state.CourseId + '.pdf';
+            console.log(Url)
+            let path =Url+'Files'+'/invoice-'+ this.state.CourseId + '.pdf';
 
-         
+            console.log(path)
             window.open(path);
         
         })

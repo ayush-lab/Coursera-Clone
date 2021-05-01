@@ -10,5 +10,6 @@ router.post('/home/:courseId/:courseName',Auth,courseController.Bookmark);
 router.get('/users/:userName/:userId',Auth,courseController.ShowBookmark);
 router.post('/unbookmark',Auth,courseController.unbookmark);
 router.put('/rating',courseController.rating);
+router.get('/pdf/download/:courseId',courseController.pdf);
 
 module.exports = router;

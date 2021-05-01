@@ -109,7 +109,7 @@ class AuthServices {
 
 
     Download(CourseId){
-        return axios.get(`/home/download/${CourseId}`)
+        return axios.get(`/pdf/download/${CourseId}`)
     }
 
 
