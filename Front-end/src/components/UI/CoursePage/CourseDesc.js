@@ -14,7 +14,7 @@ class CourseDesc extends Component {
     }
 
     static getDerivedStateFromProps(nextProps,prevState){
-       console.log("state of course desc=",prevState.bookmarked,"props",nextProps.bookmark);
+       //console.log("state of course desc=",prevState.bookmarked,"props",nextProps.bookmark);
     
         if(nextProps.bookmark!== prevState.bookmarked && prevState.count==0){
            
@@ -62,7 +62,7 @@ class CourseDesc extends Component {
        
         AuthServices.Download(this.state.CourseId)
         .then(response => {
-            console.log(Url)
+            //console.log(Url)
             let path =Url+'Files'+'/invoice-'+ this.state.CourseId + '.pdf';
 
             console.log(path)
@@ -77,7 +77,7 @@ class CourseDesc extends Component {
     }      
 
      render(){
-            console.log("count==",this.state.count)
+            //console.log("count==",this.state.count)
             //console.log("Coruse desc = ", this.props.bookmark,this.state.bookmarked)
             let classArray = [""];
 

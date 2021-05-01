@@ -70,6 +70,34 @@ exports.uploadVideo = (req,res,next)=>{
     })
 } 
 
+exports.watchedByUsers = (req,res,next)=>{
+    const userId=req.body.userId;
+    const videoId=req.body.videoId;
+    const courseId=req.body.courseId;
+    console.log(videoId);
+    Course.findById({_id:courseId})
+    .then(course=>{
+        course.videoContent.every(video=>{
+            console.log(video)
+            if(video._id == videoId){
+                if(!video.usersWatched.includes(userId)){
+                    video.usersWatched.push(userId);
+                }
+                console.log("matched found")
+                return false;
+            }
+            return true;
+            console.log("ran")
+        })
+        course.save();
+        console.log(course.videoContent)
+        res.status(200).json({message:"ko"})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
 exports.teacherHome =(req,res,next)=>{
     userId = req.body.userId;
     Course.find({creator:userId})
@@ -142,3 +170,4 @@ exports.updateCourse=(req,res,next)=>{
      
  
 }
+

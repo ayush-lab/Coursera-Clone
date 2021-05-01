@@ -29,7 +29,8 @@ const ImagefileStorage = multer.diskStorage({
       cb(null,'videos');
     },
     filename: (req,file,cb)=>{
-      cb(null, new Date().toDateString() + '-' + file.originalname)
+      const currentDate= new Date();
+      cb(null, currentDate.toDateString() +'-' + file.originalname)
     }
   })
   
@@ -41,12 +42,9 @@ const ImagefileStorage = multer.diskStorage({
           console.log("wrong file type")}
   }
   
-  
-  const imageMulter=multer({storage:ImagefileStorage,fileFilter:ImagefileFilter}).single('image')
-  const videoMulter=multer({storage:VideofileStorage,fileFilter:VideofileFilter}).any()
 
-  
-
+const imageMulter=multer({storage:ImagefileStorage,fileFilter:ImagefileFilter}).single('image')
+const videoMulter=multer({storage:VideofileStorage,fileFilter:VideofileFilter}).any()
 
 router.post('/creator/create-course',imageMulter,teacherController.uploadCourse);
 router.post('/creator/videoUpload/:courseID',videoMulter,teacherController.uploadVideo);
@@ -54,6 +52,6 @@ router.post('/creater/homepage',Auth,teacherController.teacherHome);
 router.post('/course/delete',Auth,teacherController.deleteCourse);
 router.post('/course/edit',Auth,teacherController.editCourse);
 router.put('/course/Update',imageMulter,teacherController.updateCourse)
-
+router.post('/watchedByuser',teacherController.watchedByUsers)
 
 module.exports = router;

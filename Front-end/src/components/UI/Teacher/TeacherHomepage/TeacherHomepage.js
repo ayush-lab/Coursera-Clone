@@ -7,6 +7,7 @@ import Loader from 'react-loader-spinner';
 import TeacherCard from './TeacherCard';
 import Layout from '../../../Layout/Layout';
 import AuthServices from "../../../../ApiServices/auth.service";
+import Url from '../../../../ApiServices/BackendUrl';
 import '../../HomePage/CSS/Homepage.css';
 
 
@@ -101,7 +102,7 @@ class TeacherHomePage extends Component {
                     key={item._id}
                     title={item.title}
                     teacher={item.name}
-                    img={"http://localhost:8080/" + item.imageurl}
+                    img={Url + item.imageurl}
                     rating={parseInt(item.rating.ratingFinal)}
                     Link={`/course/${this.state.CourseLink}/${item._id}`}
                     CourseId={item._id}

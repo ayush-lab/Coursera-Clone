@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactPlayer from 'react-player';
 import './CSS/CoursePage.css';
-
+import Url from '../../../ApiServices/BackendUrl';
 
 
 class CourseVideo extends Component {
@@ -46,7 +46,7 @@ class CourseVideo extends Component {
          onProgress={this.HandleProgress}
          onDuration={this.HandleDuration}
          playing={this.props.playing}
-        url={"http://localhost:8080/"+this.props.videoUrl.videoUrl} />
+        url={Url+this.props.videoUrl.videoUrl} />
        
         {/* <div className="mt-5">
         <ProgressBar now={this.state.progress} />

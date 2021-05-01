@@ -10,7 +10,7 @@ import Layout from '../../Layout/Layout'
 import AuthServices from './../../../ApiServices/auth.service';
 import Recommendation from './Recommendation';
 import './CSS/Homepage.css';
-
+import Url from '../../../ApiServices/BackendUrl';
 
 
 class Homepage extends Component {
@@ -129,7 +129,7 @@ class Homepage extends Component {
                 key={item._id}
                 title={item.title}
                 teacher={item.name}
-                img={"http://localhost:8080/" + item.imageurl}
+                img={Url + item.imageurl}
                 rating={parseInt(rating)}
                 ratingtimesUpdated={item.rating.timesUpdated}
                 /></NavLink>)

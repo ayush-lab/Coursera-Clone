@@ -126,10 +126,10 @@ class CoursePage extends Component {
 
 
         const form = {}; 
-        form['courseID']= this.state.CourseId;
-        form['userID']=localStorage.getItem('userId');
-        form['videoID']=this.state.CoursesInfo.videoContent[index].videoUrl;
-    
+        form['courseId']= this.state.CourseId;
+        form['userId']=localStorage.getItem('userId');
+        form['videoId']=this.state.CoursesInfo.videoContent[index]._id;
+        console.log(form['videoId'])
            axios.post('/watchedByuser',form)
            
            .then(response => {

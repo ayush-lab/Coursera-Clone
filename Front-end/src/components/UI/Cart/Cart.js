@@ -6,7 +6,7 @@ import './CSS/Cart.css';
 import Layout from '../../Layout/Layout';
 import EmptyCart from './EmptyCart';
 import AuthServices from '../../../ApiServices/auth.service';
-
+import Url from '../../../ApiServices/BackendUrl';
 
 class Cart extends Component{
 
@@ -136,8 +136,8 @@ class Cart extends Component{
                 key={item.id}
                 title={item.title}
                 teacher={item.name}
-                img={"http://localhost:8080/"  + item.imageurl}
-                rating={rating}
+                img={Url  + item.imageurl}
+                rating={parseInt(rating)}
                 courseId={item._id}
                // userId={this.state.userId}
                 Link={`/course/${this.state.CourseLink}/${item._id}`}
