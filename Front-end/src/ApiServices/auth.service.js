@@ -52,6 +52,12 @@ class AuthServices {
         return userName;
     }
 
+    // google auth
+
+    Google_login(data) { // done
+        return axios.post('/google_login',data)
+    }
+
 
     //   ----------------------- end of auth routes --------------------
 
@@ -113,7 +119,6 @@ class AuthServices {
     }
 
 
-    
 
     FetchCourses(CourseName,CourseId){
         return axios.get(`/course/${CourseName}/${CourseId}`,{

@@ -8,6 +8,7 @@ import SpinnerButton from '../../../components/UI/Spinners/SpinnerButton';
 import MainPage from '../../../components/UI/MainPage/MainPage';
 //import axios from '../../../ApiServices/axiosUrl';
 import Google_logo from '../../../components/UI/Logo/google';
+import GoogleLogin from 'react-google-login';
 import SumbitButton from '../../../components/UI/Buttons/SumbitButton';
 import Alert from '../alert';
 
@@ -207,11 +208,8 @@ formHandler = (event)=> {
                 localStorage.setItem('ref_token',response.data.referesh_token);
                 localStorage.setItem('userId',response.data.userId);
                 localStorage.setItem('userName',response.data.username);
-
-
-
-                this.setState({loading:false})
                 
+                this.setState({loading:false})
                 this.setState({redirect:'/HomePage'})})
              
       
@@ -228,11 +226,42 @@ formHandler = (event)=> {
         else this.AlertError("Make sure the Validations are correct", "warning");
     }
 
+    // google authentication using Oauth2
+    responseGoogle = (response)=>{
+        console.log(response)
+        const form={};
+        form['tokenId']=response.tokenId;
+        
+        AuthService.Google_login(form)
+        .then(response=>{
+            console.log(response)
+            localStorage.setItem('user',response.data.access_token);
+            localStorage.setItem('ref_token',response.data.referesh_token);
+            localStorage.setItem('userId',response.data.userId);
+            localStorage.setItem('userName',response.data.username);
+
+            this.setState({redirect:'/HomePage'})
+                
+        })
+        .catch(error=>{
+            console.log(error); 
+            this.AlertError(error.response.data.message, "danger");
+            if(error.response.data.message ===' you have not verified your otp  , new otp has been sent to your email THANK YOU!'){
+                this.setState({redirect:'signup/otp'})
+            }
+
+          });
+    }
+
+    FailResponseGoogle = ()=>{
+        console.log("something is wrong");
+    }
 
    
-
-
 render() {
+    console.log(process.env.REACT_APP_OauthClientId)
+
+
    localStorage.removeItem('valid');
    localStorage.removeItem('msg');
    localStorage.removeItem('type');
@@ -267,7 +296,20 @@ render() {
 
     let form = (
       <div className="login-form">
-          <button className="google-btn"> <Google_logo/>  Continue using google</button>
+      
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+            render={renderProps => (
+            <button onClick={renderProps.onClick} 
+                    disabled={renderProps.disabled} 
+                    className="google-btn"> <Google_logo/>  Continue using google</button>
+            
+            )}
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.FailResponseGoogle}
+            cookiePolicy={'single_host_origin'}/>
+
           <p className="devider-or">OR</p>
         <form onSubmit={this.formHandler} >
         

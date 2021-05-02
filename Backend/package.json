@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
+    "google-auth-library": "^7.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.3",

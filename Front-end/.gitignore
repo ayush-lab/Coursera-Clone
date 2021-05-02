@@ -7,5 +7,6 @@ package.json
 package-lock.json
 yarn.lock
 .firebase
+.env
 build
 .firebaserc

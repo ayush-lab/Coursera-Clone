@@ -1,5 +1,6 @@
 const express = require('express');
 const authController =require('../controllers/auth');
+const googleController=require('../controllers/google');
 
 const {check} = require('express-validator/check');
 
@@ -52,5 +53,10 @@ router.post('/signup/resetOtp',authController.resetPassword);
 router.post('/signup/otp-resend',authController.resendOtp)
 router.post('/signup/checkOtp',authController.resetOtpVerification);
 router.post('/signup/reset-password',authController.newPassword);
+
+// google authentication route
+
+router.post("/google_login",googleController.googleLogin);
+
 
 module.exports = router;

@@ -1,75 +1,78 @@
 .SideContent {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-around;
-    align-items:center;
-    justify-items: center;
-
-    
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  justify-items: center;
 }
 
-
-.Sumbit-btn{
-    height:42px;
-    width:100%;
-    text-align: center;
-    color: #FCFCFC;
-    background: #2D81F7 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    font:16px/19px;
+.Sumbit-btn {
+  height: 42px;
+  width: 100%;
+  text-align: center;
+  color: #fcfcfc;
+  background: #2d81f7 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  font: 16px/19px;
 }
 
 .google-btn {
-    width:100%;
-    height: 42px;
-    background-color:white;
-    box-shadow: 1px 1px 5px rgb(163,177,198,0.6), 
-    -1px -1px 5px  
-    rgba(255,255,255, 0.5);
-    border-radius: 8px;
-    font: normal normal normal 16px/19px Gilroy;
-    letter-spacing: 0px;
-    color: #707070;
-    border:none;
-
+  width: 100%;
+  height: 42px;
+  background-color: white;
+  box-shadow: 1px 1px 5px rgb(163, 177, 198, 0.6),
+    -1px -1px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font: normal normal normal 16px/19px Gilroy;
+  letter-spacing: 0px;
+  color: #707070;
+  border: none;
+  outline: none;
 }
 
-.devider-or{
-    text-align: center;
-    opacity:0.8;
-    line-height: 1px;
-    margin-top:20px;
+.google-btn:hover {
+  opacity: 0.7;
+  outline: none;
+}
+.google-btn :focus,
+.google-btn :active {
+  outline: none;
 }
 
-.account-login{
-    opacity:0.8;
-    text-align:center;
-    margin-top:10px;
+.devider-or {
+  text-align: center;
+  opacity: 0.8;
+  line-height: 1px;
+  margin-top: 20px;
 }
 
-.account-login a{
-    text-decoration: none;
-    color: #2D81F7;
-    
-}
-.Link-teach{
-    color: #2D81F7;
-    text-align: center;
-    margin-top:20px;
-    cursor:pointer;
-
+.account-login {
+  opacity: 0.8;
+  text-align: center;
+  margin-top: 10px;
 }
 
-.login-form{
-    margin-top:40px;
+.account-login a {
+  text-decoration: none;
+  color: #2d81f7;
 }
-.login-form-otp{
-    margin-top:100px;
+.Link-teach {
+  color: #2d81f7;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-.forgot-password{
-    color: #707070;
-    font:normal normal normal 15px/12px Gilroy;
-    margin-left:3px;
-    cursor:pointer;
+.login-form {
+  margin-top: 40px;
+}
+.login-form-otp {
+  margin-top: 100px;
+}
+
+.forgot-password {
+  color: #707070;
+  font: normal normal normal 15px/12px Gilroy;
+  margin-left: 3px;
+  cursor: pointer;
 }

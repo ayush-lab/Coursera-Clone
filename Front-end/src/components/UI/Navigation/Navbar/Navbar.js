@@ -3,6 +3,7 @@ import './Navbar.css';
 import {NavLink,Redirect} from 'react-router-dom';
 import Logo from '../../../UI/Logo/Logo';
 import AuthServices from '../../../../ApiServices/auth.service';
+import { GoogleLogout } from 'react-google-login';
 
 class Navbar extends Component {
     
@@ -27,8 +28,6 @@ class Navbar extends Component {
      logout=() => {
        this.setState({redirect:"/login"})
         AuthServices.logout();
-
-
     }
 
 
@@ -66,8 +65,19 @@ class Navbar extends Component {
         </li> */}
 
 
+
         <li className="nav-item">
-          <NavLink to="/" className="nav-link logoutlink" onClick={this.logout}>Logout</NavLink>
+         
+            <GoogleLogout
+              clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+              buttonText="Logout"
+              render={renderProps => (
+                <NavLink to="/" onClick={renderProps.onClick} 
+                disabled={renderProps.disabled}  className="nav-link logoutlink" > Logout </NavLink>
+                )}
+              onLogoutSuccess={this.logout}>
+            </GoogleLogout>
+         
          
         </li>
       </ul>
