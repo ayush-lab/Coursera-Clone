@@ -1,0 +1,101 @@
+.payment {
+  display: flex;
+  background: red !important;
+}
+
+.Checkout {
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 10px;
+  width: 50%;
+}
+.Checkout > h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #60a0f9;
+  opacity: 0.8;
+}
+.CheckoutForm {
+  margin: 0 auto;
+}
+
+.CardElement {
+  margin-bottom: 20px;
+}
+.pay {
+  text-align: center;
+}
+
+.pay button {
+  outline: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  border: 0.5px solid rgba(128, 128, 128, 0.466);
+  color: rgba(0, 0, 0, 0.774);
+  transition: all ease 0.2s;
+}
+
+.pay button:hover {
+  background: #08bd80;
+  color: white;
+}
+.pay button:active {
+  opacity: 0.5;
+}
+
+.Course {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.Course_detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Course_detail p,
+span {
+  color: #888888;
+  font-size: 15px;
+}
+.Course_detail span {
+  color: #08bd80 !important;
+}
+.courseName {
+  color: #08bd80 !important;
+  text-decoration: underline;
+}
+
+.teacherName {
+  color: #888888 !important;
+  overflow: none;
+}
+
+@media (max-width: 1100px) {
+  .Course {
+    width: 75%;
+  }
+}
+
+@media (max-width: 950px) {
+  .Course {
+    width: 90%;
+  }
+}
+
+@media (max-width: 560px) {
+  .Course {
+    width: 100%;
+  }
+  .Checkout {
+    margin: 0 auto;
+    margin-top: 100px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px;
+    width: 90%;
+  }
+}

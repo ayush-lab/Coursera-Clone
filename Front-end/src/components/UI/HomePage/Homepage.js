@@ -131,6 +131,7 @@ class Homepage extends Component {
                 teacher={item.name}
                 img={Url + item.imageurl}
                 rating={parseInt(rating)}
+                price={item.price}
                 ratingtimesUpdated={item.rating.timesUpdated}
                 /></NavLink>)
     

@@ -142,6 +142,20 @@ class TeacherPage extends Component{
                  valid:false,
             },
 
+            price:{
+                label: "Price of this course (INR)?",
+                rows: "1",
+                cols: "50",
+                placeholder: '100',
+                value: "",
+                validation: {
+                    required: true,
+                    minLength:1,
+                    
+                },
+                 valid:false,
+            },
+
             
      
     },
@@ -553,12 +567,20 @@ class TeacherPage extends Component{
             rows={this.state.Form.requirement.rows}
             cols={this.state.Form.requirement.cols}
             placeholder={this.state.Form.requirement.placeholder}
-            changed={(event,editor)=> this.CKEditorHandler(event,editor,"requirement")}
-            
-            
-          
-            />
+            changed={(event,editor)=> this.CKEditorHandler(event,editor,"requirement")} />
         
+        </div>
+
+        <div className="Teacher-Head-Class">
+           
+            <Tinput
+            label={this.state.Form.price.label}
+            rows={this.state.Form.price.rows}
+            cols={this.state.Form.price.cols}
+            placeholder={this.state.Form.price.placeholder}
+            changed={(event)=> this.inputchangeHandler(event,"price")}
+            />
+
         </div>
         
          {/* <button className="NextBtn">Next</button>  */}

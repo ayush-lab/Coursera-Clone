@@ -19,6 +19,7 @@ exports.CoursePage = (req,res,next)=>{
 }
 
 exports.Bookmark = (req,res,next)=>{
+
     const courseId=req.params.courseId;
     const courseName=req.params.courseName;
     const userId = req.body._userID;
@@ -27,36 +28,45 @@ exports.Bookmark = (req,res,next)=>{
     .then(user=>{
         if(!user.Bookmark.includes(courseId)){
             user.Bookmark.push(courseId);
+            console.log("added to bookamrk fro user")
         }
         else{
             user.Bookmark.splice(user.Bookmark.indexOf(courseId),1);
+            console.log('removed from user bookmark')
         }
-        user.save();
+        user.save()
+        .then(result=>{
+            Course.findById({_id:courseId})
+            .then(course=>{
+                if(!course.bookmark.includes(userId)){
+                    course.bookmark.push(userId);
+                    console.log("bookmarked --- course")
+                }
+                else{
+                    course.bookmark.splice(course.bookmark.indexOf(userId),1);
+                }
+                course.save();
+                console.log(user)
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        
+        })
+      
+        console.log(user)
         res.status(202).json({message:"successfully bookmarked"})
     })  
     .catch(err=>{
         console.log(err)
     })
-    Course.findById({_id:courseId})
-    .then(course=>{
-        if(!course.bookmark.includes(userId)){
-            course.bookmark.push(userId);
-            console.log("bookmarked")
-        }
-        else{
-            course.bookmark.splice(course.bookmark.indexOf(userId),1);
-        }
-        course.save();
-    })
-    .catch(err=>{
-        console.log(err);
-    })
-
+   
 }
 
 exports.ShowBookmark =(req,res,next)=>{
     const userId = req.params.userId;
-    console.log("route hit")
+    console.log(userId)
+
     User.findById({_id:userId})
     .populate('Bookmark')
     .exec()

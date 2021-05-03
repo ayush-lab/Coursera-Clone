@@ -61,8 +61,21 @@ class AuthServices {
 
     //   ----------------------- end of auth routes --------------------
 
+    // payment stripe
 
+    StripePayment(data) {
+        return axios.post('/stripe/payment',data,{
+            headers: {
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
+            }})
+    }
     
+    StripePayment_course(CourseLink){
+        return axios.get(`/stripe/${CourseLink}`,{
+            headers: {
+                Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
+            }})
+    }
 
     HomepageCourse(CourseLink){
         return axios.get(`/home/${CourseLink}`)

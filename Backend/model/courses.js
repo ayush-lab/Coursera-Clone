@@ -35,6 +35,10 @@ const courseSchema = new Schema({
         type: String,
         require:false
     },
+    price:{
+        type:String,
+        required:false,
+    },
     creator:{
         type: Schema.Types.ObjectId, //for refrencing the person who created it 
         required:true,

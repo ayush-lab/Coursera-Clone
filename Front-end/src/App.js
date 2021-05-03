@@ -16,7 +16,7 @@ import TeacherHomePage from './components/UI/Teacher/TeacherHomepage/TeacherHome
 import TeacherEdit from './components/UI/Teacher/TeacherHomepage/TeacherEdit';
 import CoursePage from './components/UI/CoursePage/CoursePage';
 import Preference from './components/UI/HomePage/Preference';
-
+import Stripe from './components/UI/payment/StripeContainer';
 
 
 class App extends Component {
@@ -44,6 +44,9 @@ class App extends Component {
 
 
        <Route path="/Cart" component={Cart}/>
+       
+       <Route path="/stripe/:CourseLink" exact render={props=>
+       <Stripe key={props.location.pathname} {...props} />}/>
 
        <Route path="/Teacher" component={TeacherPage}/>
         <Route path="/TeacherVideos" 

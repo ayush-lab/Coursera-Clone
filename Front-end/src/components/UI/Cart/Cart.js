@@ -139,7 +139,7 @@ class Cart extends Component{
                 img={Url  + item.imageurl}
                 rating={parseInt(rating)}
                 courseId={item._id}
-               // userId={this.state.userId}
+                price={item.price}
                 Link={`/course/${this.state.CourseLink}/${item._id}`}
                 remove={(event)=>this.remove(event,item._id)}
 

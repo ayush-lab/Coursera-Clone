@@ -23,14 +23,14 @@ const userSchema = new Schema({
     },
     resetVerified:{
         type:Boolean,
-        required:true,
+        required:false,
     },
 
     courses:[
         {
             type:Schema.Types.ObjectId,
             required:true,
-            ref:"Courses",
+            ref:"Course",
         }
     ],
 

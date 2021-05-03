@@ -3,7 +3,6 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import './CSS/Cart.css';
 import Rating from '../CoursePage/Rating';
-import axios from '../../../ApiServices/axiosUrl'
 //import Alert from '../../../Auth/Forms/alert'
 
 class CartCard extends Component{
@@ -72,7 +71,11 @@ class CartCard extends Component{
                                 <div className="CardParent2"> 
                                   
                                         <span className="CourseRating">{this.props.rating}</span>  
-                                        <span className="Coursestar"><Rating rating={this.props.rating}/></span> 
+                                        <span className="Coursestar">
+                                            <Rating 
+                                                rating={this.props.rating}
+                                                edit={false}/>
+                                        </span> 
                                    
                                   
                                         <p className="CourseSave">Go to Course</p>
@@ -81,12 +84,16 @@ class CartCard extends Component{
 
                                 
                                 <div className="CardParent3">
-                                    <p className="CoursePrice">₹ 500</p>
+                                    <p className="CoursePrice">₹ {this.props.price}</p>
                                     <p className="CourseWhishlist">Move to Whishlist</p>
                                 </div>
 
-                                <div className="CourseBuy"> <p>Buy Now</p></div>
-                                
+                                <div className="CourseBuy">
+                                    <Link to={`/stripe/${this.props.courseId}`} style={{textDecoration:"none"}}> 
+                                        <p>Buy Now</p>
+                                    </Link>
+                                 </div>
+
 
                     </div>
 

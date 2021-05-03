@@ -3,16 +3,10 @@ const Course = require('../model/courses');
 exports.uploadCourse =(req,res,next)=>{
 
    // console.log(req.file)
-
-    const title=req.body.title;
-    const category=req.body.category;
-    const imageurl=req.file.path;
-    const name=req.body.name;
-    const willLearn=req.body.willLearn;
-    const discription=req.body.discription;
-    const discriptionLong=req.body.discriptionLong;
-    const requirement=req.body.requirement;
+    const imageurl=req.file.path; 
     const userId=req.body._id;
+    const {title,category,name,willLearn,discription,discriptionLong,requirement,price} = req.body;
+    
     console.log(userId,title)
 
     const course = new Course({
@@ -25,6 +19,7 @@ exports.uploadCourse =(req,res,next)=>{
         discriptionLong:discriptionLong,
         requirement:requirement,
         rating:0,
+        price:price,
         creator:userId,
     });
 

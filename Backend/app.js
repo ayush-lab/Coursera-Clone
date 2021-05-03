@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const teacherRoutes=require('./routes/teacher')
 const homeRoutes= require('./routes/homepage')
 const courseRoutes=require('./routes/coursepage')
+const stripeRoute=require('./routes/stripe')
 
 const MONGODB_URI =
   'mongodb+srv://chadness:chadness@cluster0.ogixy.mongodb.net/Coursera?';
@@ -34,6 +35,7 @@ app.use(authRoutes);
 app.use(teacherRoutes);
 app.use(homeRoutes);
 app.use(courseRoutes);
+app.use(stripeRoute);
 
 mongoose
   .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })

@@ -259,9 +259,7 @@ formHandler = (event)=> {
 
    
 render() {
-    console.log(process.env.REACT_APP_OauthClientId)
-
-
+    
    localStorage.removeItem('valid');
    localStorage.removeItem('msg');
    localStorage.removeItem('type');
