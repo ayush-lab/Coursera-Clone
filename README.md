@@ -1,11 +1,19 @@
 # Coursera Clone 
-## S.H.E.L.P (Sharing and helping E-Learning Platform)
-##### It is a fully responsive Coursera Clone made using React.js as Frontend and Node.js as backend.
+
+## Fully responsive single page application made using MERN Stack!
+
+### TECH USED
+#### React
+#### Node
+#### Mongo db
+#### Express
 
 ### Features
 
 #### Student
 - [x] Proper Authentication system with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
+- [x] Google authentication (Oauth2) using react-google-login and google auth-library
+- [x] Stripe Payment gateway integrated with backend to buy courses
 - [x] Homepage with courses being fetched categorically
 - [x] Recommended Courses based on user's preferences
 - [x] Rating of Courses
