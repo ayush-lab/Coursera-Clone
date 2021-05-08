@@ -35,6 +35,8 @@ To run a development environment, you can use the `npm start` command. This will
     
 ## Docker Compose
 
+  Coursera Clone is dockerised and docker hub repository can be found here https://hub.docker.com/repository/docker/ayushverma/coursera/general
+
   If you use Docker and Docker Compose, you can start the entire project with:
 
   ```
