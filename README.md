@@ -8,6 +8,39 @@
 #### Mongo db
 #### Express
 
+## Getting Started
+
+To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 8080. These development servers will automatically reload if changes are made to the source.
+
+  - Install dependencies with:
+
+    ```
+    npm i
+    ```
+  
+  - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+   
+  - Start the development environment:
+
+    ```
+    npm start
+    ```
+
+  - add your environmental variables
+    - create a  .env file in the root directory and add your tokens there
+    - ACCESS_TOKEN_SECRET
+    - ACCESS_TOKEN_LIFE
+    - REFRESH_TOKEN_SECRET
+    - REFRESH_TOKEN_LIFE
+    
+## Docker Compose
+
+  If you use Docker and Docker Compose, you can start the entire project with:
+
+  ```
+  docker-compose up
+  ```
+
 ### Features
 
 #### Student
