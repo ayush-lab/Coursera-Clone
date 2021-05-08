@@ -1,0 +1,21 @@
+version: "2"
+services:
+  frontend:
+    env_file: "./Front-end/.env"
+    build: ./Front-end
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    env_file: "./Backend/.env"
+    build: ./Backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
