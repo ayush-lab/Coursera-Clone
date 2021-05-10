@@ -10,7 +10,7 @@
 
 ## Getting Started
 
-To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 8080. These development servers will automatically reload if changes are made to the source.
+To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000 for frontend, and a nodemon-watched API server on port 8080. These development servers will automatically reload if changes are made to the source.
 
   - Install dependencies with:
 
