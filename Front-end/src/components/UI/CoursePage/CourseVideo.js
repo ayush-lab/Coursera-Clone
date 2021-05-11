@@ -16,7 +16,7 @@ class CourseVideo extends Component {
   
     let progress =( (state.playedSeconds/this.state.duration)*100);
 
-    if(progress==0){
+    if(progress===0){
       this.props.videoDuration(this.state.duration,this.props.index);
     }
 
@@ -39,19 +39,16 @@ class CourseVideo extends Component {
         <div className='player-wrapper'> 
 
         <ReactPlayer 
-        className='react-player'
-        width='100%'
+         className='react-player'
+         width='100%'
          height='100%'
          controls={true}
          onProgress={this.HandleProgress}
          onDuration={this.HandleDuration}
          playing={this.props.playing}
-        url={Url+this.props.videoUrl.videoUrl} />
+         url={Url+this.props.videoUrl.videoUrl} />
        
-        {/* <div className="mt-5">
-        <ProgressBar now={this.state.progress} />
-        </div>
-         */}
+
         </div>
        
       )

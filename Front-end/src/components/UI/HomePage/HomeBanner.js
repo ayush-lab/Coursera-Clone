@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import {Link} from 'react-router-dom';
 import './CSS/HomeBanner.css';
-
+import Url from '../../../ApiServices/BackendUrl';
 
 class HomepageBanner extends Component{
 
@@ -14,7 +14,7 @@ class HomepageBanner extends Component{
              Banner=( <div className="BannerSection">
 
              <img className="BannerImage" 
-             src={"https://shelp-webapp.herokuapp.com/" + this.props.img +".jpg"} alt="banner1"/>
+             src={Url + this.props.img +".jpg"} alt="banner1"/>
 
             </div>);
             }

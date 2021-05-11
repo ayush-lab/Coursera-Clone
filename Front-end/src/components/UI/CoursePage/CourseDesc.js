@@ -16,7 +16,7 @@ class CourseDesc extends Component {
     static getDerivedStateFromProps(nextProps,prevState){
        //console.log("state of course desc=",prevState.bookmarked,"props",nextProps.bookmark);
     
-        if(nextProps.bookmark!== prevState.bookmarked && prevState.count==0){
+        if(nextProps.bookmark!== prevState.bookmarked && prevState.count===0){
            
             console.log("changing state")
         return {
@@ -63,7 +63,7 @@ class CourseDesc extends Component {
         AuthServices.Download(this.state.CourseId)
         .then(response => {
             //console.log(Url)
-            let path =Url+'Files'+'/invoice-'+ this.state.CourseId + '.pdf';
+            let path =Url+'Files/invoice-'+ this.state.CourseId + '.pdf';
 
             console.log(path)
             window.open(path);

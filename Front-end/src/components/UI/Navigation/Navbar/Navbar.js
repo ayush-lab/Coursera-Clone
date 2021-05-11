@@ -123,7 +123,8 @@ class Navbar extends Component {
     <ul className="navbar-nav mr-auto">
 
     <li className="nav-item dropdown" >
-            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href={'/'} className="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Category
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -132,7 +133,7 @@ class Navbar extends Component {
                    <NavLink className="dropdown-item" to='/home/Web Development' activeClassName="active-categoryMenu">Web Development </NavLink>
                    <NavLink className="dropdown-item" to='/home/Web Designing' activeClassName="active-categoryMenu" >Web Designing </NavLink>
                    <NavLink className="dropdown-item" to='/home/React' activeClassName="active-categoryMenu">React</NavLink>
-                    <NavLink className="dropdown-item" to='/home/NodeJs' activeClassName="active-categoryMenu">NodeJs</NavLink>
+                   <NavLink className="dropdown-item" to='/home/NodeJs' activeClassName="active-categoryMenu">NodeJs</NavLink>
                    <NavLink className="dropdown-item" to='/home/ML' activeClassName="active-categoryMenu">Machine Learning </NavLink>
                    <NavLink className="dropdown-item" to='/home/Photography' activeClassName="active-categoryMenu">Photography</NavLink>
                    <NavLink className="dropdown-item" to='/home/IOT' activeClassName="active-categoryMenu">IOT </NavLink>

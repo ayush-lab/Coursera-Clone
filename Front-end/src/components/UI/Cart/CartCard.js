@@ -1,9 +1,7 @@
 import React,{Component} from 'react';
-//import Webdev from '../../../assets/Images/webdev.png';
 import {Link} from 'react-router-dom';
 import './CSS/Cart.css';
 import Rating from '../CoursePage/Rating';
-//import Alert from '../../../Auth/Forms/alert'
 
 class CartCard extends Component{
 
@@ -40,10 +38,7 @@ class CartCard extends Component{
         //         alertMsg ={this.state.alert.msg} 
         //         alertType={this.state.alert.alertType} /> )
         // }
-        
-        
     
-   
     return(
 
     <div className="CartContent">

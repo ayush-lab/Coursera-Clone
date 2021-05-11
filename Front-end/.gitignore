@@ -3,8 +3,6 @@ node_modules
 
 #Dependency npm install --save-dev babel-plugin-react-html-attrs
 firebase.json
-package.json
-package-lock.json
 yarn.lock
 .firebase
 .env

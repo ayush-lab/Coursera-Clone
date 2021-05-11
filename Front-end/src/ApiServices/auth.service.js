@@ -6,33 +6,33 @@ class AuthServices {
     // --------------------- Authentication routes --------------------------
 
 
-    register(data) { // done
+    register(data) { 
         return axios.post('/signup',data)
      }
 
-    otp(data){  // done
+    otp(data){  
         return axios.post("/signup/otp",data)
       }
 
 
-    otpResend(data){ // done
+    otpResend(data){ 
         return axios.post('/signup/otp-resend',data)
     }
 
 
-    login(data) { // done
+    login(data) { 
         return axios.post('/login',data)
     }
 
-    VerifyEmail(data){ // done
+    VerifyEmail(data){ 
         return axios.post('/signup/resetOtp',data);
     }
 
-    VerifyOtp(data){ // done
+    VerifyOtp(data){ 
         return axios.post('/signup/checkOtp',data);
     }
 
-    ResetPassword(data){  // done
+    ResetPassword(data){  
         return axios.post('/signup/reset-password',data);
     }
 
@@ -76,6 +76,8 @@ class AuthServices {
                 Authorization: 'Bearer '+ localStorage.getItem('user') + " " + localStorage.getItem('ref_token')
             }})
     }
+
+    // General Coursera routes
 
     HomepageCourse(CourseLink){
         return axios.get(`/home/${CourseLink}`)

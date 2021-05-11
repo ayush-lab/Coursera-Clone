@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Categories from './Categories';
 import HomeBanner from './HomeBanner';
 import CourseCards from './CourseCards';
-import HomeProgressCourse from './HomeProgressCourse';
 import CourseTitle from './CourseTitle';
 import {Redirect,NavLink} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -46,7 +45,7 @@ class Homepage extends Component {
         })
         .catch(error => {
             console.log(error.response);
-            if(error.response.data.message == "not authenticated"){
+            if(error.response.data.message === "not authenticated"){
                 localStorage.clear();
                 this.setState({redirect:"/login"})
             }
@@ -99,7 +98,7 @@ class Homepage extends Component {
             return <Redirect to={this.state.redirect}/>
         }
         let BannerImage ;
-        let ProgressData=null;
+        // let ProgressData=null;
 
         let data = (<Loader
             type="Puff"
@@ -126,14 +125,16 @@ class Homepage extends Component {
               <NavLink className="productLink"
                exact to={`/course/${this.state.CourseLink}/${item._id}`}>
                 <CourseCards   
-                key={item._id}
-                title={item.title}
-                teacher={item.name}
-                img={Url + item.imageurl}
-                rating={parseInt(rating)}
-                price={item.price}
-                ratingtimesUpdated={item.rating.timesUpdated}
-                /></NavLink>)
+                    key={item._id}
+                    title={item.title}
+                    teacher={item.name}
+                    img={Url + item.imageurl}
+                    rating={parseInt(rating)}
+                    price={item.price}
+                    ratingtimesUpdated={item.rating.timesUpdated}
+                    />
+            
+             </NavLink>)
     
               })  );
             

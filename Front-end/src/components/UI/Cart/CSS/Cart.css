@@ -84,6 +84,19 @@
 .CardParent3 {
   display: flex;
 }
+.CardParent2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.CourseRating {
+  transform: translateY(-2px);
+}
+
+.CourseSave {
+  margin: 0 auto;
+}
 
 .CoursePrice {
   font: normal normal bold 20px/25px Gilroy;
@@ -106,7 +119,8 @@
   margin-top: 12px;
 }
 
-.Coursestar {
+.CourseWhishlist {
+  text-decoration: line-through;
 }
 
 .CourseRemove,

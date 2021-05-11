@@ -6,8 +6,6 @@ import { Link,Redirect } from 'react-router-dom';
 import Input from '../../../components/UI/Input/FormInput';
 import SpinnerButton from '../../../components/UI/Spinners/SpinnerButton';
 import MainPage from '../../../components/UI/MainPage/MainPage';
-//import axios from '../../../ApiServices/axiosUrl';
-import Google_logo from '../../../components/UI/Logo/google';
 import SumbitButton from '../../../components/UI/Buttons/SumbitButton';
 import Alert from '../alert';
 

@@ -15,25 +15,6 @@ class ResetPassword extends Component {
 
     state = { 
             Form:{
-                 
-            //     email: {
-
-            //         placeholder: 'Email',
-            //         value: "",
-            //         valid: false,
-            //         type: 'email',
-            //         error: " ",
-            //         msg: '',
-                    
-
-            //         validation: {
-            //             required: true,
-            //             regex:/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
-                       
-            //         },
-            //         touched: false,
-                
-            // },
 
             newPassword: {
 

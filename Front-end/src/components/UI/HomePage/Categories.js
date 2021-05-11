@@ -25,7 +25,7 @@ const Categories =(props)=>{
                   <NavLink to='/home/ML' activeClassName="active-category">Machine Learning</NavLink>
                    <NavLink to='/home/NodeJs' activeClassName="active-category">NodeJs</NavLink>
                   <NavLink to='/home/preferences' className="recommended" 
-                  activeClassName="active-category">Recommended Courses!</NavLink>
+                  activeClassName="active-category">Recommended!</NavLink>
                 
             </div>
 

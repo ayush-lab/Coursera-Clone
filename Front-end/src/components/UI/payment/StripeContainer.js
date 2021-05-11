@@ -3,12 +3,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { CheckoutForm } from "./CheckoutForm";
 import Navbar from '../Navigation/Navbar/Navbar';
-import styles from './stripe.module.css';
 import AuthService from '../../../ApiServices/auth.service';
 
 const Stripe = (props) => {
 
-  const [courseLink,setLink] = React.useState(props.match.params.CourseLink);
+  const [courseLink,] = React.useState(props.match.params.CourseLink);
   const [course,setCourse]= React.useState(null);
 
   const stripeTestPromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
