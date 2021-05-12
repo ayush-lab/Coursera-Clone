@@ -1,12 +1,18 @@
-# Coursera Clone 
+# Coursera Clone :blue_heart:
+https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
 
-## Fully responsive single page application made using MERN Stack!
+## Fully responsive single page application made using MERN Stack! :white_heart:
 
 ### TECH USED
-#### React
-#### Node
-#### Mongo db
-#### Express
+  -   React
+  -   Node
+  -   Mongo db
+  -   Express
+  -   Redux
+
+
+---
 
 ## Getting Started
 
@@ -42,13 +48,14 @@ To run a development environment, you can use the `npm start` command. This will
   ```
   docker-compose up
   ```
+---
 
-### Features
+## 🏭 Features
 
 #### Student
-- [x] Proper Authentication system with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
-- [x] Google authentication (Oauth2) using react-google-login and google auth-library
-- [x] Stripe Payment gateway integrated with backend to buy courses
+- [x] **Authentication system** with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
+- [x] **Google authentication (Oauth2)** using react-google-login and google auth-library
+- [x] **Stripe Payment** gateway integrated with backend to buy courses
 - [x] Homepage with courses being fetched categorically
 - [x] Recommended Courses based on user's preferences
 - [x] Rating of Courses
