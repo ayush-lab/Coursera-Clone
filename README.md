@@ -1,6 +1,7 @@
 # Coursera Clone :blue_heart:
-https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+<img src="{BadgeURLHere}" />
+<img src="{BadgeURLHere}" />
+
 
 ## Fully responsive single page application made using MERN Stack! :white_heart:
 
