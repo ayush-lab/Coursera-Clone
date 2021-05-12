@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from "react-redux";
+import * as actionCreators from "../../../store/actions/actions";
 import Categories from './Categories';
 import HomeBanner from './HomeBanner';
 import CourseCards from './CourseCards';
@@ -6,7 +8,6 @@ import CourseTitle from './CourseTitle';
 import {Redirect,NavLink} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import Layout from '../../Layout/Layout'
-import AuthServices from './../../../ApiServices/auth.service';
 import Recommendation from './Recommendation';
 import './CSS/Homepage.css';
 import Url from '../../../ApiServices/BackendUrl';
@@ -14,9 +15,11 @@ import Url from '../../../ApiServices/BackendUrl';
 
 class Homepage extends Component {
 
+    IsMounted=false;
+
     state = {
         CourseLink: this.props.match.params.CourseName,
-        Courses: null,
+        Courses: this.props.Courses,
         loading: true,
         img: "",
         progress:0,
@@ -25,6 +28,7 @@ class Homepage extends Component {
 
 
     componentDidMount(){
+        this.IsMounted=true;
 
         const fd =new FormData();
         const form = {};
@@ -32,74 +36,27 @@ class Homepage extends Component {
         fd.append("userId",localStorage.getItem('userId'))
 
        
-       if(this.state.CourseLink === "preferences"){
-    
-        AuthServices.PreferenceCourse(this.state.CourseLink,form)
-        .then(response => {
-            console.log("Courses Response",response);
-            
-            this.setState({Courses: response.data.coursesarray});
-           
-            this.setState({loading:false});
-          //  console.log(this.state.Courses);
-        })
-        .catch(error => {
-            console.log(error.response);
-            if(error.response.data.message === "not authenticated"){
-                localStorage.clear();
-                this.setState({redirect:"/login"})
-            }
-        })
-       
-       }
-       
-       else{    
-
-        AuthServices.HomepageCourse(this.state.CourseLink)
-                .then(response => {
-                    console.log("Courses Response",response);
-                    
-                    this.setState({Courses: response.data.course});
-                
-                    this.setState({loading:false});
-                   
-                    // let count=0;
-                    // for(let j in response.data.course.videoContent){ 
-                    //     for (let i in response.data.course.videoContent[j].usersWatched){
-                    //         if(localStorage.getItem('userId')===response.data.course.videoContent[j].usersWatched[i]){
-                                
-                    //             count+=1;
-                                
-                    //             break;
-                    //         }
-                    //     }
-                    // }
-                    
-                   
-                 // let progress = (count/response.data.course.videoContent.length)*100;
-                  //this.setState({progress:progress})
-                   // console.log(progress);
-
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-
-    }
-   
-    
+         if(this.state.CourseLink === "preferences" && this.IsMounted)
+            this.props.fetchPreferenceCourses(this.state.CourseLink,form);
     
 
+        // fetch all courses only once 
+        if(this.props.Courses.length===0 && this.IsMounted)
+            this.props.fetchCourses()
 
-    render(){
+     }
 
+     componentWillUnmount(){
+         this.IsMounted=false;
+     }
+
+    render(){ 
+        
         if(this.state.redirect){
             return <Redirect to={this.state.redirect}/>
         }
         let BannerImage ;
-        // let ProgressData=null;
-
+        
         let data = (<Loader
             type="Puff"
             color="#08BD80"
@@ -111,9 +68,21 @@ class Homepage extends Component {
     
          />);
 
-        if(!this.state.loading){
-           
-            let CourseArray= this.state.Courses.slice(0);
+        if(this.props.Courses.length>0){
+
+            // by default, it displays all the courses
+            let CourseArray= this.props.Courses;
+
+            if(this.state.CourseLink !== "all" && this.state.CourseLink!=="preferences"){
+                CourseArray = this.props.Courses.filter(course=>
+                    course.category === this.state.CourseLink
+                );
+            }
+
+            // this is the preference link
+            else if(this.state.CourseLink==="preferences")
+                CourseArray =this.props.PreferenceCourses; 
+
 
             data = (
               CourseArray.map(item => {
@@ -190,4 +159,18 @@ class Homepage extends Component {
 
 }
 
-export default Homepage;
+const mapStateToProps = (state) => {
+    return {
+         Courses: state.filter.Courses,
+         PreferenceCourses: state.filter.PreferenceCourse,
+    //   selectedCourse: state.filter.selectedCourse,
+    };
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+         fetchCourses:()=>dispatch(actionCreators.fetchAsyncCourses()),
+         fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
+    };
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

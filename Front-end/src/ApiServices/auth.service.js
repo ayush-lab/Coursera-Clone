@@ -79,6 +79,12 @@ class AuthServices {
 
     // General Coursera routes
 
+    // storing courses in a redux store
+
+    AllCourses(){
+        return axios.get('/home/allCourses')
+    }
+
     HomepageCourse(CourseLink){
         return axios.get(`/home/${CourseLink}`)
     }

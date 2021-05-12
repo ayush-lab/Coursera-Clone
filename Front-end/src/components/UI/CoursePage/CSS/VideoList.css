@@ -63,7 +63,7 @@
 .video-duration {
   padding: 15px;
 }
-
+/* 
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -74,11 +74,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background: RoyalBlue; */
+  
   background: grey;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #1e90ff;
-}
+} */

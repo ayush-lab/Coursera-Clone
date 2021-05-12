@@ -18,6 +18,7 @@ exports.CoursePage = (req,res,next)=>{
 
 }
 
+
 exports.Bookmark = (req,res,next)=>{
 
     const courseId=req.params.courseId;

@@ -22,8 +22,11 @@
     "react-loader-spinner": "^3.1.14",
     "react-player": "^2.6.2",
     "react-rating-stars-component": "^2.2.0",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
