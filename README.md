@@ -1,4 +1,4 @@
-# Coursera Clone :blue_heart:
+# Coursera Clone https://img.shields.io/github/stars/ayush-lab/Coursera-Clone?style=social 
 
 <p float="left">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" width="100" />
 </p>
 
-## Fully responsive single page application made using MERN Stack!
+## Fully responsive single page application made using MERN Stack! :blue_heart:
 
 ### TECH USED
   -   React
