@@ -63,6 +63,7 @@ To run a development environment, you can use the `npm start` command. This will
 - [x] **Authentication system** with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
 - [x] **Google authentication (Oauth2)** using react-google-login and google auth-library
 - [x] **Stripe Payment** gateway integrated with backend to buy courses
+- [x] **Redux store** to easily manage states
 - [x] Homepage with courses being fetched categorically
 - [x] Recommended Courses based on user's preferences
 - [x] Rating of Courses
@@ -71,6 +72,7 @@ To run a development environment, you can use the `npm start` command. This will
 - [x] Responsive React Video player for videos
 - [x] Progress bar 
 - [x] CoursePage with all the content of the course
+- [x] Searching based on course and teacher using useRef hook 
 
 #### Teacher
 - [x] Proper Authentication system with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
