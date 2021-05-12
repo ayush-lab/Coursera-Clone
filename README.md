@@ -1,4 +1,4 @@
-# Coursera Clone https://img.shields.io/github/stars/ayush-lab/Coursera-Clone?style=social 
+# Coursera Clone <img src="https://img.shields.io/github/stars/ayush-lab/Coursera-Clone?style=social" alt="star repo" />
 
 <p float="left">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
