@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './CSS/CourseDesc.css';
+import {Link} from 'react-router-dom';
 import Rating from './Rating';
 import AuthServices from '../../../ApiServices/auth.service';
 import Url from '../../../ApiServices/BackendUrl';
@@ -123,7 +124,7 @@ class CourseDesc extends Component {
                 <div className="Course-Teacher-bookmark">
                     <div className="Course-teacher-name">
                     <p>Created at {this.props.createdat}</p>
-                        <h2>By {this.props.teacher}</h2>
+                       <Link to={`/chat/?room=${this.state.CourseId}&TeacherName=${this.props.teacher}&UserName=${localStorage.getItem('userName')}`}> <h2>By {this.props.teacher}</h2></Link>
                     </div>
 
                 <div className="flex-row">

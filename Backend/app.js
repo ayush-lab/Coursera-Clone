@@ -1,7 +1,9 @@
 const path = require('path');
+const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const socketio = require('socket.io');
 require('dotenv').config()
 
 const authRoutes = require('./routes/auth');
@@ -10,10 +12,44 @@ const homeRoutes= require('./routes/homepage')
 const courseRoutes=require('./routes/coursepage')
 const stripeRoute=require('./routes/stripe')
 
+const {addUser,getUser} = require('./chat');
+
 const MONGODB_URI =
   'mongodb+srv://chadness:chadness@cluster0.ogixy.mongodb.net/Coursera?';
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+io.on('connect',(socket)=>{
+  
+  // console.log(socket.id)
+
+  socket.on('join',({UserName,room},callback)=>{
+    console.log(UserName,room);
+    const {user,error} = addUser({id:socket.id,UserName,room});
+
+    if(error){
+      callback(error);
+    }
+    socket.join(user.room);
+    socket.emit('Received_message',{user:'admin',text:"welcome"});
+    socket.broadcast.to(user.room).emit('Received_message', { user: 'admin', text: `${user.userName} has joined!` });
+
+  })
+
+  socket.on('sendMessage',({message})=>{
+    const user = getUser(socket.id);
+    console.log(user)
+    console.log(`message sent by ${user.userName} is::`,message);
+
+    io.to(user.room).emit('Received_message', { user: user.userName, text: message });
+  })
+
+  socket.on('disconnect',()=>{
+    console.log('disconnected')
+  })
+})
 
 
 
@@ -40,7 +76,7 @@ app.use(stripeRoute);
 mongoose
   .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })
   .then(result => {
-        app.listen(8080);
+        server.listen(8080);
         console.log("Server Started!")
     })
   .catch(err => {

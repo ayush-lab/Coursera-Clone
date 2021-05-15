@@ -17,6 +17,7 @@ import TeacherEdit from './components/UI/Teacher/TeacherHomepage/TeacherEdit';
 import CoursePage from './components/UI/CoursePage/CoursePage';
 import Preference from './components/UI/HomePage/Preference';
 import Stripe from './components/UI/payment/StripeContainer';
+import Chat from './components/UI/Chat/Chat';
 
 
 class App extends Component {
@@ -53,7 +54,11 @@ class App extends Component {
         render={(props)=> <TeacherVideos {...props}/> }/>
 
        <Route path="/TeacherHome" component={TeacherHomePage}/>
-          <Route path="/TeacherEdit" component={TeacherEdit}/>
+        <Route path="/TeacherEdit" component={TeacherEdit}/>
+
+      {/* chat room for teacher and student */}
+
+      <Route path="/chat" component={Chat}/>
 
        <Redirect to="/home/all"/>
 
