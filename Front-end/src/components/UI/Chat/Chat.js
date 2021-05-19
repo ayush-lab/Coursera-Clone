@@ -1,18 +1,27 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import queryString from 'query-string';
 import Url from '../../../ApiServices/BackendUrl';
 import io from "socket.io-client";
 import Layout from '../../Layout/Layout';
+import Chatbox from './Chatbox';
+import './Chat.css';
 
 let socket;
 const user = localStorage.getItem('userName');
 
 export default function Chat({location}){
 
-    const [Username, setName] = useState('');
+    const [UserName, setName] = useState('');
     const [room, setRoom] = useState('');
-    const [message,setMessage]=useState(null);
+    const [message,setMessage]=useState('');
     const [ReceivedMessage,setReceivedMessage] = useState([]);
+    const [history,setHistory]=useState([]);
+
+    const messageEndRef = useRef(null)
+
+    const scrollToButtom = ()=>{
+      messageEndRef.current.scrollIntoView({behavior:"smooth"}) 
+    }
 
     useEffect(() => {
        
@@ -36,46 +45,48 @@ export default function Chat({location}){
      
      useEffect(()=>{
         socket.on('Received_message',messages=>{
-            console.log('here is the message from admin',message);
+            console.log('here is the message',message);
             setReceivedMessage(message=>[...message,messages])
         })
 
-       
-     },[message]) 
+        socket.on('history',messages=>{
+          console.log(messages);
+          setHistory(messages);
+        })
+        socket.on('admin',message=>{
+          console.log(message)
+        })
+     },[]) 
+
+     useEffect(()=>{
+       scrollToButtom()
+     },[message]);
+
 
      const sendMessage=()=>{
-         socket.emit('sendMessage',{message}, ()=>{
-            setMessage(null)
+
+      if(message){
+         socket.emit('sendMessage',{UserName,room,message}, ()=>{
+            setMessage('')
+            console.log(message)
          })
+        }
+
      }
       
-     console.log(ReceivedMessage)
+     console.log(message)
 
     return(<Layout>
                  
-                  <div> 
-                      {ReceivedMessage.length!==0?
-                         ReceivedMessage.map(message=>{
-                             if(message.user ==user){
-                                return (  <div>
-                                    <p>{message.text}</p>
-                                    <h3> {message.user}</h3>
-                                 </div>)
-                                }
-                             else{
-                                return (<div>
-                                <p>{message.text}</p>
-                                    <h3> {message.user}</h3>
-                               </div>)
-                             }
-                         })
-                        
-                        : null }
-                       
+                  <Chatbox history={history} ReceivedMessage={ReceivedMessage} user={user}/>
+                  <div className="Chat_input"> 
+                    <input
+                      ref={messageEndRef}
+                      placeholder="Enter your message" 
+                      value={message}
+                      onKeyPress={event => event.key === 'Enter' ? sendMessage() : null}
+                      onChange={(e)=>{setMessage(e.target.value)}} />
+                    <button onClick={sendMessage}>send</button>
                   </div>
-
-
-                  <input onChange={(e)=>{setMessage(e.target.value)}} />
-                  <button onClick={sendMessage}>send</button>
            </Layout>);
 }

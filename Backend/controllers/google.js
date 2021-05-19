@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require('../model/user');
+const api_key= require('../config/config')
 const {OAuth2Client} = require('google-auth-library')
 
 
-const client = new OAuth2Client(process.env.OAuth2Client);
+const client = new OAuth2Client(api_key.googleAuth);
 
 
 exports.googleLogin = (req,res,next)=>{
@@ -12,7 +13,7 @@ exports.googleLogin = (req,res,next)=>{
     const {tokenId} = req.body;
     
     //console.log(process.env.OAuth2Client)
-    client.verifyIdToken({idToken:tokenId,audience:process.env.OAuth2Client})
+    client.verifyIdToken({idToken:tokenId,audience:api_key.googleAuth})
     .then(response =>{
         const {email,email_verified,name} = response.payload;
         console.log(response.payload);
@@ -39,13 +40,13 @@ exports.googleLogin = (req,res,next)=>{
                                 });
                             Newuser.save()
                             .then(result=>{
-                                const access_token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
+                                const access_token = jwt.sign({email:email}, api_key.accessToken,{
                                     algorithm: "HS256",
-                                    expiresIn:process.env.ACCESS_TOKEN_LIFE})
+                                    expiresIn:api_key.accessTokenLife})
                 
-                                    const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                                    const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                                         algorithm: "HS256",
-                                        expiresIn:process.env.REFRESH_TOKEN_LIFE})
+                                        expiresIn:api_key.refereshTokenLife})
                 
                                     res.status(201).json({message:"User signed up and logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
                             })
@@ -56,13 +57,13 @@ exports.googleLogin = (req,res,next)=>{
               }
 
                else {
-                    const access_token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
+                    const access_token = jwt.sign({email:email},api_key.accessToken,{
                     algorithm: "HS256",
-                    expiresIn:process.env.ACCESS_TOKEN_LIFE})
+                    expiresIn:api_key.accessTokenLife})
 
-                    const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                    const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                         algorithm: "HS256",
-                        expiresIn:process.env.REFRESH_TOKEN_LIFE})
+                        expiresIn:api_key.refereshTokenLife})
 
                     res.status(201).json({message:"User logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
                 }

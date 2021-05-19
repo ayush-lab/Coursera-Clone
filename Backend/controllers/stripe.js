@@ -1,4 +1,5 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TOKEN);
+const api_key=require('../config/config');
+const stripe = require("stripe")(api_key.stripePayment);
 const Course = require('../model/courses')
 
 exports.stripeCourse =(req,res)=>{

@@ -1,1 +1,24 @@
-exports.databaseKey ='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'
+// mongo database
+exports.databaseKey =process.env.MONGO_DATABASE_KEY;
+exports.mongo = process.env.MONGO_DATABASE;
+
+
+// jwt authentication 
+exports.accessToken=process.env.ACCESS_TOKEN_SECRET;
+exports.refereshToken=process.env.REFRESH_TOKEN_SECRET;
+
+exports.accessTokenLife=process.env.ACCESS_TOKEN_LIFE;
+exports.refereshTokenLife=process.env.REFRESH_TOKEN_LIFE;
+
+
+//Redis
+exports.redisHost = process.env.REDIS_HOST;
+exports.redisPassword=process.env.REDIS_PASSWORD;
+exports.redisPort=process.env.REDIS_PORT
+
+// google auth
+exports.googleAuth = process.env.OAuth2Client;
+
+//stripe payment
+exports.stripePayment = process.env.STRIPE_SECRET_TOKEN;
+

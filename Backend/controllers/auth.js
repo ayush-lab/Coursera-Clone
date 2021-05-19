@@ -111,13 +111,13 @@ exports.otpVerification = (req,res,next)=>{
             User.findOne({email:email})
             .then(user=>{
                 user.isverified=true;  
-                const access_token=jwt.sign({email:email,userId:user._id},process.env.ACCESS_TOKEN_SECRET,{
+                const access_token=jwt.sign({email:email,userId:user._id},api_key.accessToken,{
                     algorithm: "HS256",
-                    expiresIn:process.env.ACCESS_TOKEN_LIFE
+                    expiresIn:api_key.accessTokenLife
                 });
-                const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                     algorithm: "HS256",
-                    expiresIn:process.env.REFRESH_TOKEN_LIFE})
+                    expiresIn:api_key.refereshTokenLife})
 
                 return res.status(200).json({
                     message: "otp entered is correct, user successfully added",
@@ -249,13 +249,13 @@ exports.login = (req,res,next)=>{
             .then(matchPass=>{
 
                 if(matchPass){
-                    const access_token = jwt.sign({email:email}, process.env.ACCESS_TOKEN_SECRET,{
+                    const access_token = jwt.sign({email:email}, api_key.accessToken,{
                     algorithm: "HS256",
-                    expiresIn:process.env.ACCESS_TOKEN_LIFE})
+                    expiresIn:api_key.accessTokenLife})
 
-                    const referesh_token = jwt.sign({email:email}, process.env.REFRESH_TOKEN_SECRET,{
+                    const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                         algorithm: "HS256",
-                        expiresIn:process.env.REFRESH_TOKEN_LIFE})
+                        expiresIn:api_key.refereshTokenLife})
                 
 
                     // user.Token=token;

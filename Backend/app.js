@@ -1,10 +1,17 @@
 const path = require('path');
 const http = require('http');
+require('dotenv').config()
+
+const redis = require('redis');
+const mongoose = require('mongoose');
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+
+
 const socketio = require('socket.io');
-require('dotenv').config()
+
+const api_key =require('./config/config');
 
 const authRoutes = require('./routes/auth');
 const teacherRoutes=require('./routes/teacher')
@@ -12,14 +19,19 @@ const homeRoutes= require('./routes/homepage')
 const courseRoutes=require('./routes/coursepage')
 const stripeRoute=require('./routes/stripe')
 
-const {addUser,getUser} = require('./chat');
+// const {addRoom,getUser} = require('./chat');
 
-const MONGODB_URI =
-  'mongodb+srv://chadness:chadness@cluster0.ogixy.mongodb.net/Coursera?';
+const MONGODB_URI =api_key.mongo;
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+const client = redis.createClient({
+  host: api_key.redisHost,
+  port: api_key.redisPort,
+  password: api_key.redisPassword
+});
 
 io.on('connect',(socket)=>{
   
@@ -27,23 +39,77 @@ io.on('connect',(socket)=>{
 
   socket.on('join',({UserName,room},callback)=>{
     console.log(UserName,room);
-    const {user,error} = addUser({id:socket.id,UserName,room});
-
-    if(error){
-      callback(error);
+    // const {Singleroom,error} = addRoom({UserName,room});
+    // console.log("user added info:",Singleroom,'error=',error);
+ 
+    if(client.EXISTS(room)){
+      client.lrange(room,0,-1,function(err,result){
+        if(err){
+          callback(err);
+        }
+        else{
+          console.log("lrange result join=",result);
+          const History=[];
+          result.forEach(message=>{
+              History.push(JSON.parse(message))
+          })
+          socket.emit('history',History);
+        }
+    });
+    } 
+    else {
+      client.hset( room, null, function(err,result){
+        if(err)
+        callback(err);
+        else{
+          console.log("setting redis hset::",result)
+        }
+      });
     }
-    socket.join(user.room);
-    socket.emit('Received_message',{user:'admin',text:"welcome"});
-    socket.broadcast.to(user.room).emit('Received_message', { user: 'admin', text: `${user.userName} has joined!` });
+    
 
+    socket.join(room);
+   
+    socket.broadcast.to(room).emit('admin', { UserName: 'admin', Message: `${UserName} has joined!` });
+    callback()
   })
 
-  socket.on('sendMessage',({message})=>{
-    const user = getUser(socket.id);
-    console.log(user)
-    console.log(`message sent by ${user.userName} is::`,message);
+  socket.on('sendMessage',({UserName,room,message},callback)=>{
 
-    io.to(user.room).emit('Received_message', { user: user.userName, text: message });
+    // const user = getUser(socket.id);
+    //console.log(user)
+    const user = {"UserName":UserName,"Message":message}
+
+    if(client.EXISTS(room)){
+      client.rpush(room,JSON.stringify(user),function(err,result){
+        if(err)
+        console.log(err)
+        else{
+          console.log("rpush::",result)
+        }
+  });
+
+    } else{
+      client.hset( room,JSON.stringify(user), function(err,result){
+        if(err)
+        console.log(err)
+        else{
+          console.log("hset::",result)
+        }
+      });
+   }
+
+    client.lrange(room,0,-1,function(err,result){
+      console.log("redis result=",result)
+      if(err){
+        console.log(err)
+      }
+    })
+
+    console.log(`${room} message sent by ${UserName} is::`,message);
+
+    io.to(room).emit('Received_message', { UserName: UserName, Message: message });
+    callback()
   })
 
   socket.on('disconnect',()=>{

@@ -1,24 +1,28 @@
 // user=[{name:user,id:"21"}]
-const users = [];
 
-const addUser = ({id,UserName,room})=>{
+// rooms= [{roomId:"###",conversations:[{userName:"&&&",text:"&&", ...  }]}]
+
+const rooms= [];
+
+const addRoom = ({UserName,room})=>{
 
     const error = "User already exists";
     const userName = UserName.trim().toLowerCase();
     room = room.trim().toLowerCase();
 
-    let userExist=false;
-    users.forEach(user=>{
-       if( (user.name === userName) || (user.id== id) ){
-            userExist=true;
-       }
-   })
+    let roomExist=false;
 
-   const user = {userName,id,room};
+    rooms.forEach(room=>{
+        if(room.roomId === room){
+            roomExist=true;
+        }
+    })
 
-   if(!userExist){
-       users.push(user)
-       return {user};
+    const Singleroom = {roomId:room,convo:[]}
+
+   if(!roomExist){
+       rooms.push(Singleroom)
+       return {Singleroom};
    }
 
    else return {error:erorr};
@@ -26,9 +30,12 @@ const addUser = ({id,UserName,room})=>{
 }
 
 const getUser = (id)=>{
-    
    return users.find(user=>user.id === id)
 }
 
+const removeUser = (id)=>{
+    
+}
 
-module.exports = {addUser,getUser};
+
+module.exports = {addRoom,getUser,removeUser};
