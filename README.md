@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" width="100" />
   <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" width="100" />
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" width="100" />
+  <img src="https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white" width="100" />
   	
 </p>
 
@@ -19,7 +20,11 @@
   -   Mongo db
   -   Express
   -   Redux
+  -   Redis
 
+## DATABASED USED
+  - Mongo
+  - Redis
 
 ---
 
@@ -27,26 +32,36 @@
 
 To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000 for frontend, and a nodemon-watched API server on port 8080. These development servers will automatically reload if changes are made to the source.
 
-  - Install dependencies with:
+  - Install dependencies for frontend and backend with:
 
     ```
     npm i
     ```
-  
+    
+  - BACKEND SETUP
   - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  
+  - add your environmental variables
+    - create a .env file in the root directory and add your tokens there with respect to the config files variables.
+    - ACCESS_TOKEN_SECRET
+    - ACCESS_TOKEN_LIFE
+    - REFRESH_TOKEN_SECRET
+    - REFRESH_TOKEN_LIFE
+    - MONGO_DATABASE_KEY
+    - MONGO_DATABASE
+    - OAuth2Client
+    - STRIPE_SECRET_TOKEN
+    - REDIS_HOST
+    - REDIS_PASSWORD
+    - REDIS_PORT
    
-  - Start the development environment:
+  - Start the development environment: for backend(cd Backend) and for frontend (cd Front-end)
 
     ```
     npm start
     ```
 
-  - add your environmental variables
-    - create a  .env file in the root directory and add your tokens there
-    - ACCESS_TOKEN_SECRET
-    - ACCESS_TOKEN_LIFE
-    - REFRESH_TOKEN_SECRET
-    - REFRESH_TOKEN_LIFE
+
     
 ## Docker Compose
 
@@ -67,14 +82,15 @@ To run a development environment, you can use the `npm start` command. This will
 - [x] **Stripe Payment** gateway integrated with backend to buy courses
 - [x] **Redux store** to easily manage states
 - [x] Homepage with courses being fetched categorically
-- [x] Recommended Courses based on user's preferences
-- [x] Rating of Courses
-- [x] Bookmarked Courses where users can remove or add bookmark
-- [x] Download resourses (pdf - notes)
+- [x] **Recommended Courses** based on user's preferences
+- [x] **Rating** of Courses
+- [x] **Bookmarked** Courses where users can remove or add bookmark
+- [x] Download **resourses** (pdf - notes)
 - [x] Responsive React Video player for videos
 - [x] Progress bar 
 - [x] CoursePage with all the content of the course
-- [x] Searching based on course and teacher using useRef hook 
+- [x] **Searching** based on course and teacher
+- [x] **Real Time Live Group classes**
 
 #### Teacher
 - [x] Proper Authentication system with signup,login,otp verification,resend otp,forgot password (fully validated with bootstrap alerts)
@@ -84,6 +100,8 @@ To run a development environment, you can use the `npm start` command. This will
 - [x] Teacher can see their uploaded courses
 - [x] Teacher can delete their course
 - [x] Teacher can edit their course
+
+## Real Time Live Group Classes using socket.io and Optimized with redis for caching messages
 
 ### Screenshots
 #### Authentication pages
