@@ -24,6 +24,7 @@ class CourseDesc extends Component {
             bookmarked:nextProps.bookmark,
             count:7,
         }}
+        else return null
     }
     
     
@@ -124,7 +125,10 @@ class CourseDesc extends Component {
                 <div className="Course-Teacher-bookmark">
                     <div className="Course-teacher-name">
                     <p>Created at {this.props.createdat}</p>
-                       <Link to={`/chat/?room=${this.state.CourseId}&TeacherName=${this.props.teacher}&UserName=${localStorage.getItem('userName')}`}> <h2>By {this.props.teacher}</h2></Link>
+                    <h2>By {this.props.teacher}</h2>
+                    <Link to={`/chat/?room=${this.state.CourseId}&TeacherName=${this.props.teacher}&UserName=${localStorage.getItem('userName')}`}>
+                        <h4 className="Course_live_classes">Join Live discussion</h4>
+                    </Link>
                     </div>
 
                 <div className="flex-row">

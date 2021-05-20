@@ -1,15 +1,16 @@
 import React from 'react';
 import './Chat.css';
 import Profile from '../../../assets/Images/user.png'
+import Admin from '../../../assets/Images/admin.png'
 
-export default function Chatbox({ReceivedMessage,user,history}){
-    
+export default function Chatbox({admin,ReceivedMessage,user,history}){
+
     return(
-     <div> 
+     <div className="Chat" > 
         
         {history.length!==0?
           history.map((message,index)=>{
-            if(message.UserName == user){
+            if(message.UserName === user){
               return(<div key={index}className="Chat_right">
                         <div className="Chat_Profile_right">
                           <img src={Profile} alt="profile picture"/>
@@ -39,9 +40,15 @@ export default function Chatbox({ReceivedMessage,user,history}){
           }):null
         }
 
+
+      {admin!=null ?  <div className="admin">
+                          <div className="adminImage"><img src={Admin} alt="admin profile picture"/></div>
+                          <span>{admin.Message}</span>
+                        </div> :null} 
+
         {ReceivedMessage.length!==0?
            ReceivedMessage.map((message,index)=>{
-               if(message.UserName ==user){
+               if(message.UserName ===user){
                   return (
                    <div key={index}className="Chat_right">
                       <div className="Chat_Profile_right">
@@ -72,6 +79,7 @@ export default function Chatbox({ReceivedMessage,user,history}){
            })
           
           : null }
+
          
     </div>
   )

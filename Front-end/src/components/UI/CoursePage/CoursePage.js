@@ -259,7 +259,7 @@ class CoursePage extends Component {
         
         if(this.state.progress===100){
         progressbar = <p>Congratulations {localStorage.getItem('userName')}!  
-          <i class="fa fa-birthday-cake" style={{marginLeft:'5px'}} aria-hidden="true"></i></p>
+          <i className="fa fa-birthday-cake" style={{marginLeft:'5px'}} aria-hidden="true"></i></p>
         }
 
         else{
@@ -287,7 +287,7 @@ class CoursePage extends Component {
                                     Home
                                 </NavLink></li>
 
-                            <li class="breadcrumb-item">
+                            <li className="breadcrumb-item">
                                 <NavLink to={`/Home/${this.state.CourseName}`}
 
                                 >

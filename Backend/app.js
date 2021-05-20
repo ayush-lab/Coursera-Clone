@@ -22,7 +22,6 @@ const stripeRoute=require('./routes/stripe')
 // const {addRoom,getUser} = require('./chat');
 
 const MONGODB_URI =api_key.mongo;
-
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -35,13 +34,12 @@ const client = redis.createClient({
 
 io.on('connect',(socket)=>{
   
-  // console.log(socket.id)
 
   socket.on('join',({UserName,room},callback)=>{
     console.log(UserName,room);
-    // const {Singleroom,error} = addRoom({UserName,room});
-    // console.log("user added info:",Singleroom,'error=',error);
- 
+    let alreadyUser=true;
+    let users=[];
+
     if(client.EXISTS(room)){
       client.lrange(room,0,-1,function(err,result){
         if(err){
@@ -50,10 +48,18 @@ io.on('connect',(socket)=>{
         else{
           console.log("lrange result join=",result);
           const History=[];
-          result.forEach(message=>{
-              History.push(JSON.parse(message))
+          if(result.length == 0){
+            alreadyUser=false;
+          }
+          result.forEach(user=>{
+              user= JSON.parse(user)
+              History.push(user)
+              if(!users.includes(user.UserName)){
+                users.push(user.UserName);
+              }
           })
-          socket.emit('history',History);
+          console.log(users)
+          socket.emit('history',{History:History,users:users});
         }
     });
     } 
@@ -66,24 +72,26 @@ io.on('connect',(socket)=>{
         }
       });
     }
+    console.log(users)
+    socket.join(room)   
+    io.to(room).emit('admin',
+       { users:users,
+         UserName: 'admin', 
+         newUser:false,
+         Message:alreadyUser ? `Welcome Back to the class ${UserName}`:`Welcome to the class ${UserName}` });
     
-
-    socket.join(room);
-   
-    socket.broadcast.to(room).emit('admin', { UserName: 'admin', Message: `${UserName} has joined!` });
+         socket.broadcast.to(room).emit('admin', { users:users,UserName: `${UserName}`, newUser:alreadyUser,Message: `${UserName} has joined!` });
     callback()
   })
 
   socket.on('sendMessage',({UserName,room,message},callback)=>{
-
-    // const user = getUser(socket.id);
-    //console.log(user)
+    
     const user = {"UserName":UserName,"Message":message}
 
     if(client.EXISTS(room)){
       client.rpush(room,JSON.stringify(user),function(err,result){
         if(err)
-        console.log(err)
+        callback(err)
         else{
           console.log("rpush::",result)
         }
@@ -92,22 +100,19 @@ io.on('connect',(socket)=>{
     } else{
       client.hset( room,JSON.stringify(user), function(err,result){
         if(err)
-        console.log(err)
+        callback(err)
         else{
           console.log("hset::",result)
         }
       });
    }
-
     client.lrange(room,0,-1,function(err,result){
       console.log("redis result=",result)
       if(err){
         console.log(err)
       }
     })
-
     console.log(`${room} message sent by ${UserName} is::`,message);
-
     io.to(room).emit('Received_message', { UserName: UserName, Message: message });
     callback()
   })

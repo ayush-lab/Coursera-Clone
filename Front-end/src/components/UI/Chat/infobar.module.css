@@ -1,0 +1,40 @@
+.infoBar {
+  width: 100%;
+  height: 60px;
+  background: #09bd80;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  box-shadow: 0px 3px 11px #bad8fd40;
+}
+
+.infoBar_left {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.groupIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.infoBar_detail {
+  max-height: 60px;
+  margin-left: 10px;
+  color: white;
+  font-style: normal !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.groupName {
+  font-weight: bolder;
+}
+
+i {
+  font-style: normal;
+}
