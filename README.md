@@ -47,7 +47,7 @@ To run a development environment, you can use the `npm start` command. This will
     - ACCESS_TOKEN_LIFE
     - REFRESH_TOKEN_SECRET
     - REFRESH_TOKEN_LIFE
-    - MONGO_DATABASE_KEY
+    - SENDGRID_KEY
     - MONGO_DATABASE
     - OAuth2Client
     - STRIPE_SECRET_TOKEN
