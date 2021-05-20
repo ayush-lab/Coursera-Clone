@@ -15,7 +15,7 @@ class CoursePage extends Component {
 
     state = {
         CourseId: this.props.match.params.Courseid,
-        CourseName:this.props.match.params.Course,
+        CourseType:this.props.match.params.Course,
         CoursesInfo: null,
         loading: true,
         token:localStorage.getItem('user'),
@@ -49,7 +49,7 @@ class CoursePage extends Component {
     componentDidMount(){
       
       
-        AuthServices.FetchCourses(this.state.CourseName,this.state.CourseId)
+        AuthServices.FetchCourses(this.state.CoursType,this.state.CourseId)
         .then(response => {
             console.log("CoursePage Response",response);
        
@@ -288,16 +288,16 @@ class CoursePage extends Component {
                                 </NavLink></li>
 
                             <li className="breadcrumb-item">
-                                <NavLink to={`/Home/${this.state.CourseName}`}
+                                <NavLink to={`/Home/${this.state.CourseType}`}
 
                                 >
-                                    {this.state.CourseName}
+                                    {this.state.CourseType}
                                 </NavLink>
                             </li>
 
 
                             <li className="breadcrumb-item">
-                                <NavLink to={`/course/${this.state.CourseName}/${this.state.CourseId}`}
+                                <NavLink to={`/course/${this.state.CourseType}/${this.state.CourseId}`}
 
                                 activeStyle={{textDecoration:'underline'}}>
                                     {title}
@@ -321,8 +321,9 @@ class CoursePage extends Component {
                                         CourseId={this.state.CourseId}
                                         rating={parseInt(rating)}
                                         ratingtimesUpdated={ratingtimesUpdated}
-                                        CourseName={this.state.CourseName}
+                                        CourseType={this.state.CourseType}
                                         bookmark={bookmark}
+                         
                             />
 
                         </div>

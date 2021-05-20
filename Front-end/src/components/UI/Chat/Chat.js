@@ -13,7 +13,9 @@ const user = localStorage.getItem('userName');
 export default function Chat({location}){
 
     const [UserName, setName] = useState('');
+    const [Course,setCourse]=useState('')
     const [room, setRoom] = useState('');
+    const [userId, setUserId] = useState(null);
     const [users,setUsers]=useState([]);
     const [message,setMessage]=useState('');
     const [ReceivedMessage,setReceivedMessage] = useState([]);
@@ -29,14 +31,16 @@ export default function Chat({location}){
 
     useEffect(() => {
        
-        const { UserName,Teachername, room } = queryString.parse(location.search);
+        const { UserName,CourseName, room,userId } = queryString.parse(location.search);
     
         socket = io(Url,{transports:['websocket']});
         scrollToButtom()
         setRoom(room)
         setName(UserName)
+        setCourse(CourseName)
+        setUserId(userId)
     
-        socket.emit('join', { room,UserName }, (error)=> {
+        socket.emit('join', { room,UserName,userId }, (error)=> {
 
         console.log('join signal sent')
           if(error) {
@@ -61,13 +65,14 @@ export default function Chat({location}){
         
         })
         socket.on('admin',message=>{
+          console.log("admin info",message)
           setAdminMessage(message)
           // const newUsers = [...users];
           // console.log(message,users)
           // if(message.newUser){
           //   newUsers.push(message.UserName);
           // }
-          // setUsers(newUsers);
+          setUsers(message.users);
         })
 
         
@@ -81,7 +86,7 @@ export default function Chat({location}){
      const sendMessage=()=>{
 
       if(message){
-         socket.emit('sendMessage',{UserName,room,message}, ()=>{
+         socket.emit('sendMessage',{UserName,room,userId,message}, ()=>{
             setMessage('')
          })
         }
@@ -89,7 +94,7 @@ export default function Chat({location}){
      }
 
     return(<Layout>
-                  <InfoBar users={users} room={room}/>
+                  <InfoBar users={users} CourseName={Course}/>
                   <Chatbox admin={adminMessage} history={history} ReceivedMessage={ReceivedMessage} user={user}/>
                   <div className="Chat_input"> 
                     <input

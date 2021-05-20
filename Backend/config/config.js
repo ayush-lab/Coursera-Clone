@@ -1,5 +1,7 @@
+// sendgrid key
+exports.Sendgrid=process.env.SENDGRID_KEY;
+
 // mongo database
-exports.databaseKey =process.env.MONGO_DATABASE_KEY;
 exports.mongo = process.env.MONGO_DATABASE;
 
 

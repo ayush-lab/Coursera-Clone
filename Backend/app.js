@@ -35,11 +35,12 @@ const client = redis.createClient({
 io.on('connect',(socket)=>{
   
 
-  socket.on('join',({UserName,room},callback)=>{
-    console.log(UserName,room);
-    let alreadyUser=true;
-    let users=[];
-
+  socket.on('join',({UserName,room,userId},callback)=>{
+    console.log(UserName,room,userId);
+    let newUser=false;
+    let users=[{id:[],names:[]}];
+  
+    
     if(client.EXISTS(room)){
       client.lrange(room,0,-1,function(err,result){
         if(err){
@@ -48,18 +49,39 @@ io.on('connect',(socket)=>{
         else{
           console.log("lrange result join=",result);
           const History=[];
-          if(result.length == 0){
-            alreadyUser=false;
-          }
+
           result.forEach(user=>{
               user= JSON.parse(user)
               History.push(user)
-              if(!users.includes(user.UserName)){
-                users.push(user.UserName);
+          
+              if(!users[0].id.includes(user.userId) ){
+                users[0].id.push(user.userId);
+                users[0].names.push(user.UserName);
+                console.log("user added to list")
               }
+            
           })
           console.log(users)
-          socket.emit('history',{History:History,users:users});
+       
+          if(!users[0].id.includes(userId)){
+                newUser=true;
+                console.log("userUser")
+                users[0].id.push(userId);
+                users[0].names.push(UserName);
+
+          }
+
+          socket.emit('history',{History:History,users:users[0].names});
+          socket.join(room)   
+          io.to(room).emit('admin',
+        { users:users[0].names,
+          UserName: 'admin', 
+          newUser:newUser,
+          Message:newUser ? `Welcome to the class ${UserName}!`:`Welcome back to the class ${UserName}!`
+        });
+
+          socket.broadcast.to(room).emit('admin', { users:users,UserName: `${UserName}`, users:users[0].names, newUser:newUser,Message: `${UserName} has joined!` });
+          newUser=false;
         }
     });
     } 
@@ -72,21 +94,13 @@ io.on('connect',(socket)=>{
         }
       });
     }
-    console.log(users)
-    socket.join(room)   
-    io.to(room).emit('admin',
-       { users:users,
-         UserName: 'admin', 
-         newUser:false,
-         Message:alreadyUser ? `Welcome Back to the class ${UserName}`:`Welcome to the class ${UserName}` });
-    
-         socket.broadcast.to(room).emit('admin', { users:users,UserName: `${UserName}`, newUser:alreadyUser,Message: `${UserName} has joined!` });
+
     callback()
   })
 
-  socket.on('sendMessage',({UserName,room,message},callback)=>{
+  socket.on('sendMessage',({UserName,userId,room,message},callback)=>{
     
-    const user = {"UserName":UserName,"Message":message}
+    const user = {"UserName":UserName,"Message":message,"userId":userId}
 
     if(client.EXISTS(room)){
       client.rpush(room,JSON.stringify(user),function(err,result){

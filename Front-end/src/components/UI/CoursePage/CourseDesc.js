@@ -41,7 +41,7 @@ class CourseDesc extends Component {
                 form['_id']=this.state.CourseId;
                 
               
-                AuthServices.BookMark(this.state.CourseId,this.props.CourseName,form)
+                AuthServices.BookMark(this.state.CourseId,this.props.CourseType,form)
                 .then(response => {
                     console.log("BookMarked",response);
                     //this.setState({bookmarked:true}) 
@@ -126,7 +126,7 @@ class CourseDesc extends Component {
                     <div className="Course-teacher-name">
                     <p>Created at {this.props.createdat}</p>
                     <h2>By {this.props.teacher}</h2>
-                    <Link to={`/chat/?room=${this.state.CourseId}&TeacherName=${this.props.teacher}&UserName=${localStorage.getItem('userName')}`}>
+                    <Link to={`/chat/?room=${this.state.CourseId}&CourseName=${this.props.title}&UserName=${localStorage.getItem('userName')}&userId=${localStorage.getItem('userId')}`}>
                         <h4 className="Course_live_classes">Join Live discussion</h4>
                     </Link>
                     </div>

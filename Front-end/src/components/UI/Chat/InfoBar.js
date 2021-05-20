@@ -9,7 +9,7 @@ export default function Infobar(props){
             <div className={styles.infoBar_left}>
                 <div><img className={styles.groupIcon} src={GroupIcon} alt="group picture"/></div>
                 <div className={styles.infoBar_detail}>
-                    <i className={styles.groupName}>{props.room}</i>
+                    <i className={styles.groupName}>{props.CourseName}</i>
                     <i className={styles.name}>{props.users.map((user,index)=>(
                         index === props.users.length-1 ? <i key={index}>{user}</i> : <i key={index}>{user},</i>
                     ))}</i>

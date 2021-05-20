@@ -9,7 +9,7 @@ const api_key = require('../config/config');
 
 const transporter =nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:api_key.databaseKey
+        api_key:api_key.Sendgrid
     }
 }))
 
@@ -111,6 +111,7 @@ exports.otpVerification = (req,res,next)=>{
             User.findOne({email:email})
             .then(user=>{
                 user.isverified=true;  
+                
                 const access_token=jwt.sign({email:email,userId:user._id},api_key.accessToken,{
                     algorithm: "HS256",
                     expiresIn:api_key.accessTokenLife
@@ -118,14 +119,17 @@ exports.otpVerification = (req,res,next)=>{
                 const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                     algorithm: "HS256",
                     expiresIn:api_key.refereshTokenLife})
-
-                return res.status(200).json({
-                    message: "otp entered is correct, user successfully added",
-                    access_token:access_token, 
-                    referesh_token:referesh_token,
-                    userId:user._id.toString(),
-                    username:user.name,
-                  });
+                
+                user.save(result=>{
+                    return res.status(200).json({
+                        message: "otp entered is correct, user successfully added",
+                        access_token:access_token, 
+                        referesh_token:referesh_token,
+                        userId:user._id.toString(),
+                        username:user.name,
+                      });
+                })
+               
 
             })
         }
@@ -231,7 +235,8 @@ exports.login = (req,res,next)=>{
             
              console.log("mail sent")
              res.status(422).json({
-                message: " you have not verified your otp, new otp has been sent to your email THANK YOU!"
+                message: " you have not verified your otp, new otp has been sent to your email THANK YOU!",
+                redirect:true,
               });
               const error = new Error("Login failed, user not verified");
               error.statusCode = 403;

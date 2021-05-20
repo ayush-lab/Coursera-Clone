@@ -216,7 +216,7 @@ formHandler = (event)=> {
         .catch(error=>{console.log(error.response); 
             this.setState({loading:false});
             this.AlertError(error.response.data.message, "danger");
-            if(error.response.data.message ===' you have not verified your otp  , new otp has been sent to your email THANK YOU!'){
+            if(error.response.data.redirect){
                 this.setState({redirect:'signup/otp'})
             }
 
