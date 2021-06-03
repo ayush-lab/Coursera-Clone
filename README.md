@@ -22,7 +22,7 @@
   -   Redux
   -   Redis
 
-## DATABASED USED
+## DATABASE USED
   - Mongo
   - Redis
 
