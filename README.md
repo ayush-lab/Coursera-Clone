@@ -22,7 +22,7 @@
   -   Redux
   -   Redis
 
-## DATABASED USED
+## DATABASE USED
   - Mongo
   - Redis
 
@@ -47,7 +47,7 @@ To run a development environment, you can use the `npm start` command. This will
     - ACCESS_TOKEN_LIFE
     - REFRESH_TOKEN_SECRET
     - REFRESH_TOKEN_LIFE
-    - MONGO_DATABASE_KEY
+    - SENDGRID_KEY
     - MONGO_DATABASE
     - OAuth2Client
     - STRIPE_SECRET_TOKEN
@@ -103,53 +103,61 @@ To run a development environment, you can use the `npm start` command. This will
 
 ## Real Time Live Group Classes using socket.io and Optimized with redis for caching messages
 
-### Screenshots
-#### Authentication pages
+## Screenshots
+### Authentication pages
  
- ```  Signup Page ```
+#### Signup Page 
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shelpSignup.png)
 
- ```  Login Page ```
+ #### Login Page 
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/loginShelp.png)
 
- ```  Otp and Resend Otp Page ```
+ #### Otp and Resend Otp Page 
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/otp.png)
 
  
- ```  Forgot Password Page ```
+ ####  Forgot Password Page
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/forgotPassword.png)
 
  ---
- #### Main Screens
+ ### Main Screens
 
-  ```Homepage```
+ #### Homepage
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/homepage.png)
 
 
-```Course Page```
+#### Course Page
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/coursePage.png)
 
+#### Bookmark Page
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/bookmark.png)
 
-```Preference Page```
+#### Payment Checkout Page
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/checkout.png)
+
+#### Live Classes Page
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/chat.png)
+
+#### Preference Page
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shlepPreference.png)
 
-```Teacher's Courses ```
+#### Teacher's Courses 
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/teachershelp.png)
 
-```Teacher Uploading Details```
+#### Teacher Uploading Details
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/TeacherUploadCourse.png)
 
 
-```Teacher Uploading Videos```
+#### Teacher Uploading Videos
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/uploadshelp.png)
 
 ---
-#### Responsive Designs
-```Mobile Design Authentication```
+### Responsive Designs
+#### Mobile Design Authentication
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobileLogin.png)
 
  
-```Mobile Design CoursePage```
+#### Mobile Design CoursePage
 ![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobilecourse.png)
 
 
