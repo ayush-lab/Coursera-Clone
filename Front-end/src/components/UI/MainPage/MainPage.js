@@ -9,9 +9,10 @@ const mainPage = (props)=> {
 
     if(props.shelp){
             
-            shelp = (<reactFrag><br/><span className="heading-3">S-</span>
+            shelp = (<>
+                        <br/><span className="heading-3">S-</span>
                         <span className="heading-4">HELP</span>
-                        </reactFrag>); 
+                    </>); 
 
                   }
 

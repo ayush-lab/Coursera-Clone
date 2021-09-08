@@ -2,7 +2,7 @@
   position: absolute;
   background: white;
   border-radius: 3px;
-  width: 240px;
+  width: auto;
   white-space: nowrap;
 }
 
@@ -13,9 +13,11 @@
   margin: 0;
   padding: 10px;
   padding-right: 20px;
-  overflow-y: scroll;
-  overflow-x: none !important;
-  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 220px;
+  border: 1px solid #8080809e;
+  border-radius:4px;
 }
 
 .searchItems ul li {
@@ -37,4 +39,11 @@
 .name span {
   margin-left: 10px;
   /* opacity: 0.6; */
+}
+.author{
+  padding:4px;
+  border-radius:12px;
+  border:2px solid #2D81F7;
+  background:#5d98eb59;
+  color:#0000ffc9;
 }

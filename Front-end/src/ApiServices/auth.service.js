@@ -5,6 +5,10 @@ class AuthServices {
 
     // --------------------- Authentication routes --------------------------
 
+    // fetching 
+    // RefreshToken(data){
+    //     return axios.post('/auth/token',data);
+    // }
 
     register(data) { 
         return axios.post('/signup',data)
@@ -54,10 +58,14 @@ class AuthServices {
 
     // google auth
 
-    Google_login(data) { // done
+    Google_login(data) { 
         return axios.post('/google_login',data)
     }
-
+    
+    Google_Signup(data) { 
+        return axios.post('/google_signup',data)
+    }
+    
 
     //   ----------------------- end of auth routes --------------------
 

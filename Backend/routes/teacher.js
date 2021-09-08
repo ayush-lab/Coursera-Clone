@@ -2,7 +2,7 @@ const express = require('express');
 const router= express.Router();
 const multer = require('multer');
 const teacherController =require('../controllers/teacher');
-const Auth = require('../middleware/is-auth');
+const Auth = require('../Authentication/is-auth');
 
 
 const ImagefileStorage = multer.diskStorage({
@@ -48,9 +48,9 @@ const videoMulter=multer({storage:VideofileStorage,fileFilter:VideofileFilter}).
 
 router.post('/creator/create-course',imageMulter,teacherController.uploadCourse);
 router.post('/creator/videoUpload/:courseID',videoMulter,teacherController.uploadVideo);
-router.post('/creater/homepage',Auth,teacherController.teacherHome);
-router.post('/course/delete',Auth,teacherController.deleteCourse);
-router.post('/course/edit',Auth,teacherController.editCourse);
+router.post('/creater/homepage',Auth.authentication,teacherController.teacherHome);
+router.post('/course/delete',Auth.authentication,teacherController.deleteCourse);
+router.post('/course/edit',Auth.authentication,teacherController.editCourse);
 router.put('/course/Update',imageMulter,teacherController.updateCourse)
 router.post('/watchedByuser',teacherController.watchedByUsers)
 

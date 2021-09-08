@@ -1,10 +1,8 @@
 const express = require('express');
 const authController =require('../controllers/auth');
-const googleController=require('../controllers/google');
-
+const googleController=require('../controllers/googleAuth');
 const {check} = require('express-validator/check');
-
-const Auth = require('../middleware/is-auth');
+const Auth = require('../Authentication/is-auth');
 const router= express.Router();
 const User=require('../model/user');
 
@@ -57,6 +55,10 @@ router.post('/signup/reset-password',authController.newPassword);
 // google authentication route
 
 router.post("/google_login",googleController.googleLogin);
+router.post("/google_signup",googleController.googleSignUp);
+
+// Fetching access Token using refresh token
+router.post("/auth/token/",Auth.GetnewAccessToken);
 
 
 module.exports = router;

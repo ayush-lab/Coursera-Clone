@@ -64,9 +64,9 @@ function Search(props){
             <div className={styles.searchItems} ref={searchNode}>
             {isOpen ? <ul>
                 {SearchItems.map((item,index)=>{
-                    return <Link to={`/course/all/${item._id}`} style={{textDecoration:'none'}}><li className={styles.name} key={index}>
+                    return <Link key={index} to={`/course/all/${item._id}`} style={{textDecoration:'none'}}><li className={styles.name} key={index}>
                                         {item.title}
-                                        <span>- {item.name}</span></li>
+                                        <span className={styles.author}>- {item.name}</span></li>
                             </Link>
                 })}
                     

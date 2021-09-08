@@ -14,14 +14,14 @@ const transporter =nodemailer.createTransport(sendgridTransport({
 }))
 
 
-exports.signup = (req,res,next)=>{
+exports.signup = (req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
-    const confirmPassword=req.body.confirmPassword;
+    // const confirmPassword=req.body.confirmPassword;
     const name=req.body.name;
 
     let otp =null;
-    let tokenGenerated=null;
+    // let tokenGenerated=null;
     console.log(name)
 
     const errors=validationResult(req);
@@ -47,7 +47,7 @@ exports.signup = (req,res,next)=>{
             console.log("details saved in the database")
            
           
-            otp=Math.floor(Math.random()*1000000);
+            otp=Math.floor(100000 + Math.random()*900000);
 
             const OTP=new Otp({
                  otp:otp,
@@ -71,7 +71,6 @@ exports.signup = (req,res,next)=>{
 
 exports.otpVerification = (req,res,next)=>{
     const receivedOtp=req.body.otp;
-  //  const receivedToken=req.body.token;
     const email=req.body.email;
 
     // validation
@@ -80,7 +79,7 @@ exports.otpVerification = (req,res,next)=>{
     Otp.findOne({email:email})
     .then(user=>{
         if(!user){
-            const error = new Error("Validation failed ,this otp does not exist"); // when token not found
+            const error = new Error("Validation failed ,this user does not exist"); // when user not found
             error.statusCode = 403;
             error.data = {
             value: receivedOtp,
@@ -88,7 +87,7 @@ exports.otpVerification = (req,res,next)=>{
             param: "otp",
             location: "otpVerification",
             };
-            res.status(422).json({message:errors.array()})
+            res.status(422).json({message:error.data})
 
             throw error;
         }
@@ -145,27 +144,27 @@ exports.otpVerification = (req,res,next)=>{
 
 }
 
-
+// to re send the otp to user
 exports.resendOtp = (req,res,next)=>{
     const email=req.body.email;
     const received_otp=req.body.otp;
     let otp =null;
-    //let tokenGenerated=null;
 
     Otp.findOne({email:email})
     .then(user=>{
         if(!user){
             const error = new Error("Email doesnt exist"); // when token not found
-            error.statusCode = 403;
+            error.statusCode = 401;
             error.data = {
             value: received_otp,
             message: "Invalid email",
             param: "otp",
             location: "otpVerification",
             };
+            res.status(401).json({ message: "Email doesn't exist" });
             throw error;
         }
-        otp=Math.floor(Math.random()*1000000);
+        otp=Math.floor(100000 + Math.random()*900000);
 
             user.otp=otp;
             user.save();
@@ -195,13 +194,12 @@ exports.resendOtp = (req,res,next)=>{
 
 
 
-
-
 exports.login = (req,res,next)=>{
     const email=req.body.email;
     const password=req.body.password;
 
     const errors=validationResult(req);
+
     if(!errors.isEmpty()){
         const error=new Error('Validation failed')
         error.statusCode=422;
@@ -217,72 +215,93 @@ exports.login = (req,res,next)=>{
         if(user.isverified==false){
             console.log("user isn't verified")
          
-            otp=Math.floor(Math.random()*100000);
+            otp=Math.floor(100000 + Math.random()*900000);
             console.log("otp =",otp)
             Otp.findOne({email:email})
-            .then(user_data=>{
-                user_data.otp=otp;
-                user_data.save();
+            .then(user=>{
+                    // if the otp record is deleted
+                    if(!user){
+                        const OTP=new Otp({
+                            otp:otp,
+                            email:email
+                           })
+           
+                        OTP.save()
+                        .then(()=>{
+                            transporter.sendMail({
+                                to:email,
+                                from:"ayush.verma8750@gmail.com",
+                                subject:"OTP Verification",
+                                html:` '<h1>Please Verify your account using this OTP: !</h1>
+                                        <p>OTP:${otp}</p>'`
+                                })
+                                
+                                 console.log("mail sent ",otp)
+                                 return res.status(422).json({
+                                    message: " you have not verified your otp, new otp has been sent to your email THANK YOU!",
+                                    redirect:true,
+                                  });      
+                        })
+                    }
+                    else{
+                        user.otp=otp;
+                        user.save()
+                        .then(()=>{
+                            transporter.sendMail({
+                                to:email,
+                                from:"ayush.verma8750@gmail.com",
+                                subject:"OTP Verification",
+                                html:` '<h1>Please Verify your account using this OTP: !</h1>
+                                        <p>OTP:${otp}</p>'`
+                                })
+                                
+                                console.log("mail sent")
+                                return res.status(422).json({
+                                    message: " you have not verified your otp, new otp has been sent to your email THANK YOU!",
+                                    redirect:true,
+                                });
+                        })
+                    }
+               
             })
 
-            transporter.sendMail({
-            to:email,
-            from:"ayush.verma8750@gmail.com",
-            subject:"OTP Verification",
-            html:` '<h1>Please Verify your account using this OTP: !</h1>
-                    <p>OTP:${otp}</p>'`
-            })
-            
-             console.log("mail sent")
-             res.status(422).json({
-                message: " you have not verified your otp, new otp has been sent to your email THANK YOU!",
-                redirect:true,
-              });
-              const error = new Error("Login failed, user not verified");
-              error.statusCode = 403;
-              error.data = {
-                message: "otp sent please verify yourself",
-                location: "login",
-                id: otp._id,
-              };
-              throw error;
-      
         }
 
-        bcrypt
-        .compare(password,user.password)
-            .then(matchPass=>{
+        else {
 
-                if(matchPass){
-                    const access_token = jwt.sign({email:email}, api_key.accessToken,{
-                    algorithm: "HS256",
-                    expiresIn:api_key.accessTokenLife})
+            bcrypt
+            .compare(password,user.password)
+                .then(matchPass=>{
 
-                    const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
+                    if(matchPass){
+                        const access_token = jwt.sign({email:email}, api_key.accessToken,{
                         algorithm: "HS256",
-                        expiresIn:api_key.refereshTokenLife})
-                
+                        expiresIn:api_key.accessTokenLife})
 
-                    // user.Token=token;
-                    // user.save()
-                    res.status(201).json({message:"User logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
+                        const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
+                            algorithm: "HS256",
+                            expiresIn:api_key.refereshTokenLife})
                     
-                }
-                else {
-                    res.status(401).json({message:"password don't match"})
-                    console.log("password dont match")
-                }
 
-            })
+                        // user.Token=token;
+                        // user.save()
+                        return res.status(201).json({message:"User logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
+                        
+                    }
+                    else {
+                        return res.status(401).json({message:"password don't match"})
+                    }
 
-                
-    })
-    .catch(err=>{
-        err=>{
-            if (!err.statusCode) {
-                err.statusCode = 500;
-              }
-              next(err);
+                })
+                    
+        .catch(err=>{
+            err=>{
+                if (!err.statusCode) {
+                    err.statusCode = 500;
+                }
+                next(err);
+                }
+            })  
         }
     })
 }
@@ -291,7 +310,7 @@ exports.resetPassword = (req,res,next)=>{
 
     const email = req.body.email;
     console.log(email);
-    let otp=Math.floor(Math.random()*1000000);
+    let otp=Math.Math.floor(100000 + Math.random()*900000);
 
     User.findOne({email:email})
         .then(user=>{

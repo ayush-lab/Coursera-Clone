@@ -12,19 +12,19 @@ class Layout extends Component
     render(){
 
 
-    return (
-        <>
+        return (
+            <>
 
-        <Navbar />
-        
-        <main className="Content">
-           
-            {this.props.children}
-       
-        </main>
-        
-        </>
-    );
+                <Navbar/>
+                
+                <main className="Content">
+                
+                    {this.props.children}
+            
+                </main>
+            
+            </>
+        );
         
 
     }
