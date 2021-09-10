@@ -15,7 +15,7 @@ exports.authentication= (req,res,next)=>{
    else{
       let access = access_token.split(' ')[1];
       let payload;
-      console.log(access)
+      // console.log(access)
       try{
          payload = jwt.verify(access,api_key.accessToken);
       }
@@ -55,7 +55,6 @@ exports.GetnewAccessToken = (req,res)=>{
    else{ 
          jwt.verify(refresh_token,api_key.refereshToken, function(err, decoded){
             if(err){
-               console.log("catch")
                const error = new Error("Not authenticated.");
                res.status(401).json({messages:"not authenticated"})
                error.statusCode = 401;

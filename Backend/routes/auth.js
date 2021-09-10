@@ -1,7 +1,7 @@
 const express = require('express');
 const authController =require('../controllers/auth');
 const googleController=require('../controllers/googleAuth');
-const {check} = require('express-validator/check');
+const {check} = require('express-validator');
 const Auth = require('../Authentication/is-auth');
 const router= express.Router();
 const User=require('../model/user');

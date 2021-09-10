@@ -5,15 +5,15 @@ const fs = require('fs');
 const path= require('path')
 
 exports.CoursePage = (req,res,next)=>{
-    const courseName=req.params.courseName;
+    // const courseName=req.params.courseName;
     const courseId=req.params.courseId;
-
     Course.findOne({_id:courseId})
     .then(course=>{
         res.status(200).json({course:course})
     })
     .catch(err=>{
         console.log(err)
+        next()
     })
 
 }
@@ -22,21 +22,21 @@ exports.CoursePage = (req,res,next)=>{
 exports.Bookmark = (req,res,next)=>{
 
     const courseId=req.params.courseId;
-    const courseName=req.params.courseName;
+    // const courseName=req.params.courseName;
     const userId = req.body._userID;
 
     User.findById({_id:userId})
     .then(user=>{
         if(!user.Bookmark.includes(courseId)){
             user.Bookmark.push(courseId);
-            console.log("added to bookamrk fro user")
+            console.log("added to bookmark for user")
         }
         else{
             user.Bookmark.splice(user.Bookmark.indexOf(courseId),1);
             console.log('removed from user bookmark')
         }
         user.save()
-        .then(result=>{
+        .then(()=>{
             Course.findById({_id:courseId})
             .then(course=>{
                 if(!course.bookmark.includes(userId)){
@@ -56,10 +56,11 @@ exports.Bookmark = (req,res,next)=>{
         })
       
         console.log(user)
-        res.status(202).json({message:"successfully bookmarked"})
+        res.status(202).json({message:"successfully bookmarked/unbookmarked"})
     })  
     .catch(err=>{
-        console.log(err)
+        // console.log(err)
+        throw err;
     })
    
 }
@@ -77,6 +78,7 @@ exports.ShowBookmark =(req,res,next)=>{
     })
     .catch(err=>{
         console.log(err)
+        next()
     })
 }
 
@@ -100,6 +102,7 @@ exports.unbookmark=(req,res,next)=>{
     })
     .catch(err=>{
         console.log(err)
+        next()
     })
 }
 
@@ -121,6 +124,7 @@ exports.rating=(req,res,next)=>{
     })
     .catch(err=>{
         console.log(err);
+        next();
     })
 
 }

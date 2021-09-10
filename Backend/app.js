@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-
 const socketio = require('socket.io');
 
 const api_key =require('./config/config');
@@ -158,12 +157,16 @@ app.use(homeRoutes);
 app.use(courseRoutes);
 app.use(stripeRoute);
 
-mongoose
-  .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })
-  .then(result => {
-        server.listen(8080);
-        console.log("Server Started!")
-    })
-  .catch(err => {
-    console.log(err);
-  });
+if (process.env.NODE_ENV !== 'test') {
+  mongoose
+    .connect(MONGODB_URI,{ useUnifiedTopology: true,useNewUrlParser: true })
+    .then(()=> {
+          server.listen(8080);
+          console.log("Server Started!")
+      })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+module.exports = app;

@@ -4,7 +4,7 @@ const User = require('../model/user');
 const Otp = require('../model/otp');
 const nodemailer=require('nodemailer');
 const sendgridTransport=require('nodemailer-sendgrid-transport');
-const {validationResult} =require('express-validator/check')
+const {validationResult}=require('express-validator')
 const api_key = require('../config/config');
 
 const transporter =nodemailer.createTransport(sendgridTransport({
@@ -282,9 +282,6 @@ exports.login = (req,res,next)=>{
                             algorithm: "HS256",
                             expiresIn:api_key.refereshTokenLife})
                     
-
-                        // user.Token=token;
-                        // user.save()
                         return res.status(201).json({message:"User logged in!",access_token:access_token,referesh_token:referesh_token,username:user.name,userId:user._id})
                         
                     }
