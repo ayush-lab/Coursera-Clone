@@ -21,6 +21,7 @@
   -   Express
   -   Redux
   -   Redis
+  -   Jest
 
 ## DATABASE USED
   - Mongo
@@ -30,19 +31,16 @@
 
 ## Getting Started
 
-To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000 for frontend, and a nodemon-watched API server on port 8080. These development servers will automatically reload if changes are made to the source.
+Clone the repo to your local environment, you have to seperately install all the dependencies for backend and frontend. 
 
-  - Install dependencies for frontend and backend with:
+For Backend, go to the backend folder (cd Backend) and run 
+``` npm i ```
 
-    ```
-    npm i
-    ```
-    
-  - BACKEND SETUP
   - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
   
   - add your environmental variables
-    - create a .env file in the root directory and add your tokens there with respect to the config files variables.
+  - Create a .env file in the root directory of the backend folder and add your tokens there with respect to the config files variables.
+ 
     - ACCESS_TOKEN_SECRET
     - ACCESS_TOKEN_LIFE
     - REFRESH_TOKEN_SECRET
@@ -54,14 +52,20 @@ To run a development environment, you can use the `npm start` command. This will
     - REDIS_HOST
     - REDIS_PASSWORD
     - REDIS_PORT
-   
-  - Start the development environment: for backend(cd Backend) and for frontend (cd Front-end)
 
-    ```
-    npm start
-    ```
+  ### Note: Make sure the .env files variables matches with that of the config files.
+
+For Frontend, go to the frontend folder (cd Front-end) and run
+``` npm i ```
 
 
+To run a development environment, you can use the `npm start` command. This will start up a development web server on port 3000 for frontend, and a nodemon-watched API server on port 8080.
+
+Note: you have to do npm start for backend and frontend seperately.
+
+## Testing
+
+You can test the backend, express end points using command ( npm test )
     
 ## Docker Compose
 
@@ -100,6 +104,8 @@ To run a development environment, you can use the `npm start` command. This will
 - [x] Teacher can see their uploaded courses
 - [x] Teacher can delete their course
 - [x] Teacher can edit their course
+
+### Testing using jest and supertest for express endpoints.
 
 ## Real Time Live Group Classes using socket.io and Optimized with redis for caching messages
 
