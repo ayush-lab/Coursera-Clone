@@ -63,9 +63,9 @@ To run a development environment, you can use the `npm start` command. This will
 
 Note: you have to do npm start for backend and frontend seperately.
 
-## Testing
+## Unit testing
 
-You can test the backend, express end points using command ( npm test )
+You can test the backend, express endpoints using command ( npm test )
     
 ## Docker Compose
 
