@@ -30,6 +30,13 @@ export const fetchData = (data) => {
   }
 
 
+  export const EditCourseFromStore = (data) => {
+      return{
+        type: 'EDIT_COURSE_FROM_STORE',
+        data: data
+      }
+    }
+
   // Async calls using redux thunks 
 
   export const fetchAsyncCourses = () => {

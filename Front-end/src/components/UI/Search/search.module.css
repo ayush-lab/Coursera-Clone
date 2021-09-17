@@ -29,6 +29,7 @@
   color: #5e6474;
   border-radius: 2px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .searchItems ul li:hover {

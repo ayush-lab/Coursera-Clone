@@ -81,6 +81,10 @@
   letter-spacing: 0.48px;
   color: #3c4852;
 }
+.react-stars-wrapper-0438576352612168{
+ display:flex !important;
+ justify-Content:center !important;
+}
 
 @media (max-width: 1280px) {
   .Section2 {

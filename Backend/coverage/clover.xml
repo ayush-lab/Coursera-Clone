@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1631877939999" clover="3.2.0">
-  <project timestamp="1631877940000" name="All files">
-    <metrics statements="735" coveredstatements="310" conditionals="113" coveredconditionals="21" methods="145" coveredmethods="35" elements="993" coveredelements="366" complexity="0" loc="735" ncloc="735" packages="7" files="18" classes="18"/>
+<coverage generated="1631892707390" clover="3.2.0">
+  <project timestamp="1631892707391" name="All files">
+    <metrics statements="735" coveredstatements="295" conditionals="113" coveredconditionals="19" methods="145" coveredmethods="34" elements="993" coveredelements="348" complexity="0" loc="735" ncloc="735" packages="7" files="18" classes="18"/>
     <package name="Backend">
       <metrics statements="94" coveredstatements="37" conditionals="22" coveredconditionals="1" methods="13" coveredmethods="1"/>
       <file name="app.js" path="/home/ayush/Desktop/Coursera/Backend/app.js">
@@ -85,10 +85,10 @@
         <line num="143" count="4" type="stmt"/>
         <line num="144" count="4" type="stmt"/>
         <line num="146" count="4" type="stmt"/>
-        <line num="147" count="17" type="stmt"/>
-        <line num="148" count="17" type="stmt"/>
-        <line num="149" count="17" type="stmt"/>
-        <line num="150" count="17" type="stmt"/>
+        <line num="147" count="16" type="stmt"/>
+        <line num="148" count="16" type="stmt"/>
+        <line num="149" count="16" type="stmt"/>
+        <line num="150" count="16" type="stmt"/>
         <line num="154" count="4" type="stmt"/>
         <line num="155" count="4" type="stmt"/>
         <line num="156" count="4" type="stmt"/>
@@ -163,9 +163,9 @@
       </file>
     </package>
     <package name="Backend.controllers">
-      <metrics statements="477" coveredstatements="147" conditionals="68" coveredconditionals="12" methods="116" coveredmethods="26"/>
+      <metrics statements="477" coveredstatements="133" conditionals="68" coveredconditionals="11" methods="116" coveredmethods="25"/>
       <file name="auth.js" path="/home/ayush/Desktop/Coursera/Backend/controllers/auth.js">
-        <metrics statements="186" coveredstatements="55" conditionals="38" coveredconditionals="6" methods="33" coveredmethods="5"/>
+        <metrics statements="186" coveredstatements="41" conditionals="38" coveredconditionals="5" methods="33" coveredmethods="4"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -176,28 +176,28 @@
         <line num="8" count="4" type="stmt"/>
         <line num="10" count="4" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
         <line num="68" count="1" type="stmt"/>
         <line num="72" count="4" type="stmt"/>
@@ -685,9 +685,9 @@
       </file>
     </package>
     <package name="Backend.routes">
-      <metrics statements="83" coveredstatements="70" conditionals="11" coveredconditionals="4" methods="10" coveredmethods="4"/>
+      <metrics statements="83" coveredstatements="69" conditionals="11" coveredconditionals="3" methods="10" coveredmethods="4"/>
       <file name="auth.js" path="/home/ayush/Desktop/Coursera/Backend/routes/auth.js">
-        <metrics statements="24" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <metrics statements="24" coveredstatements="23" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -696,9 +696,9 @@
         <line num="6" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
         <line num="34" count="4" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
         <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>

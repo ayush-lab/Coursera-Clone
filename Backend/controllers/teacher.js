@@ -140,6 +140,7 @@ exports.updateCourse=(req,res,next)=>{
      const discription=req.body.discription;
      const discriptionLong=req.body.discriptionLong;
      const requirement=req.body.requirement;
+     const price = req.body.price
      //const userId=req.body._id;
 
      Course.findById({_id:courseId})
@@ -152,10 +153,11 @@ exports.updateCourse=(req,res,next)=>{
          course.discription=discription;
          course.discriptionLong=discriptionLong;
          course.requirement=requirement;
-         course.rating=0;
-        
+        //  course.rating=0;
+         course.price=price;
+
          course.save();
-         res.status(201).json({message:"Course editted successfully"})
+         res.status(201).json({message:"Course editted successfully",course:course})
 
      })
      .catch(err=>{

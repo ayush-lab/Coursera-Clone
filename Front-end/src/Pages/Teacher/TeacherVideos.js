@@ -109,16 +109,8 @@ class TeacherPage extends Component{
                
         }
     
-    
-
-      
-
-       
-
         if(this.OverallValidity()){
 
-        
-                    
                 axios.post(`/creator/videoUpload/${this.props.location.state.CourseId}`,fd,{
                     onUploadProgress: progressEvent => {
               

@@ -18,7 +18,7 @@ class Rating extends Component {
                 .then(response => {
                     console.log("Rating",response);
                     this.setState({loading:false});
-                   
+                    alert("Your rating has successfully added")
                 })
                 .catch(error => {
                     console.log(error);

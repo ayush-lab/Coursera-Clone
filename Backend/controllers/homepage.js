@@ -14,10 +14,11 @@ exports.allCourses = (req,res)=>{
 
 // this fetches courses based on the category
 
-exports.fetchCourses = (req,res,next)=>{
+exports.fetchCourses = (req,res)=>{
     const category = req.params.course;
    // console.log(category)
-    if(category =="all" || category==""){
+    // if(category =="all" || category==""){
+
         Course.find()
         .then(courses=>{
            // console.log(courses);
@@ -27,17 +28,18 @@ exports.fetchCourses = (req,res,next)=>{
             console.log(err)
             res.status(400).json({message:"error occured"})
         })
-    }
-    else{
-        Course.find({category:category})
-        .then(courses=>{
-            //console.log(courses);
-            res.status(200).json({course:courses})
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
+        
+    // }
+    // else{
+    //     Course.find({category:category})
+    //     .then(courses=>{
+    //         //console.log(courses);
+    //         res.status(200).json({course:courses})
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //     })
+    // }
 }
 
 

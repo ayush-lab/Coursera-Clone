@@ -356,9 +356,10 @@ class CoursePage extends Component {
 
                         </div>
 
-                        <div>
+                        <div className="progressBar">
                             <p className="Rating_coursePage">Rate the course here please</p>
-                            <Rating rating={parseInt(rating)}
+                            <Rating style={{justifyContent:'center'}}
+                                rating={parseInt(rating)}
                                 edit={true}
                                 specialrating={true} 
                                 CourseId={this.state.CourseId}/>

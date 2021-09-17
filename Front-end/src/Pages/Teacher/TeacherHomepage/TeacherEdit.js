@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import Layout from '../../../components/Layout/Layout'
 import Loader from 'react-loader-spinner';
 import Tinput from '../TinputFields';
+import { connect } from "react-redux";
+import * as actionCreators from "../../../store/actions/actions";
 import TeacherTittle from '../TeacherTittle';
 import {Redirect} from 'react-router-dom'
 import Cloud from '../../../assets/Images/cloud.png';
@@ -142,7 +144,19 @@ class TeacherPage extends Component{
                  valid:false,
             },
 
-            
+            price:{
+                label: "Price of this course (INR)?",
+                rows: "1",
+                cols: "50",
+                placeholder: '100',
+                value: "",
+                validation: {
+                    required: true,
+                    minLength:1,
+                    
+                },
+                 valid:false,
+            }
      
     },
      
@@ -368,7 +382,7 @@ class TeacherPage extends Component{
                 .then( res=> { console.log(res);
 
                     if(res.status ===201 || res.status ===200){
-
+                    this.props.EditCourseFromStore(res.data.course)
                     this.AlertError("Your Course has been Edited Successfully!", "success");
                     setTimeout( ()=> this.setState({redirect:"/home"}) , 2000);
                     
@@ -408,6 +422,7 @@ class TeacherPage extends Component{
         let classPhotography=[];
         let Welcome = null;
         let alertContent = null;
+        let price=null;
         
        
         if(this.state.redirect){
@@ -489,6 +504,7 @@ class TeacherPage extends Component{
             //category=this.state.CourseDetails.category;
             requirement=this.state.CourseDetails.requirement;
             willLearn=this.state.CourseDetails.willLearn;
+            price=this.state.CourseDetails.price;
            // file=this.state.CourseDetails.imageurl;
 
           data = (   <>
@@ -613,7 +629,19 @@ class TeacherPage extends Component{
 
                     {/* <button className="NextBtn">Next</button>  */}
 
+                    <div className="Teacher-Head-Class">
+           
+                        <Tinput
+                        label={this.state.Form.price.label}
+                        rows={this.state.Form.price.rows}
+                        cols={this.state.Form.price.cols}
+                        placeholder={this.state.Form.price.placeholder}
+                        value={price}
+                        changed={(event)=> this.inputchangeHandler(event,"price")}
+                        />
 
+                    </div>
+       
 
                     <div className="Teacher-Head-Class">
                     <img src={Cloud} alt="cloud"/>
@@ -677,4 +705,11 @@ class TeacherPage extends Component{
     }
 }
 
-export default TeacherPage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        EditCourseFromStore:(data)=>dispatch(actionCreators.EditCourseFromStore(data)),
+        //  fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(TeacherPage);

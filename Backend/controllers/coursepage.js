@@ -15,9 +15,7 @@ exports.CoursePage = (req,res,next)=>{
         console.log(err)
         next()
     })
-
 }
-
 
 exports.Bookmark = (req,res,next)=>{
 
