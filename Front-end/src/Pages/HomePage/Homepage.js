@@ -40,10 +40,9 @@ class Homepage extends Component {
             this.props.fetchPreferenceCourses(this.state.CourseLink,form);
     
 
-        // fetch all courses 
-        if( this.IsMounted)
+        // fetch all courses if redux store is empty
+        if( this.IsMounted && !this.props.Courses.length)
             this.props.fetchCourses()
-
      }
 
      componentWillUnmount(){

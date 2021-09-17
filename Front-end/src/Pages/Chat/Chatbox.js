@@ -13,7 +13,7 @@ export default function Chatbox({admin,ReceivedMessage,user,history}){
             if(message.UserName === user){
               return(<div key={index}className="Chat_right">
                         <div className="Chat_Profile_right">
-                          <img src={Profile} alt="profile picture"/>
+                          <img src={Profile} alt="display person avatar"/>
                           <p>{message.UserName}</p>
                         </div>
                   
@@ -27,7 +27,7 @@ export default function Chatbox({admin,ReceivedMessage,user,history}){
               return (
                 <div key={index} className="Chat_left">
                     <div className="Chat_Profile_left">
-                    <img src={Profile} alt="profile picture"/>
+                    <img src={Profile} alt="display person avatar"/>
                     <p>{message.UserName}</p>
                     </div>
              
@@ -42,7 +42,7 @@ export default function Chatbox({admin,ReceivedMessage,user,history}){
 
 
       {admin!=null ?  <div className="admin">
-                          <div className="adminImage"><img src={Admin} alt="admin profile picture"/></div>
+                          <div className="adminImage"><img src={Admin} alt="admin display person avatar"/></div>
                           <span>{admin.Message}</span>
                         </div> :null} 
 
@@ -52,7 +52,7 @@ export default function Chatbox({admin,ReceivedMessage,user,history}){
                   return (
                    <div key={index}className="Chat_right">
                       <div className="Chat_Profile_right">
-                        <img src={Profile} alt="profile picture"/>
+                        <img src={Profile} alt="display person avatar"/>
                         <p>{message.UserName}</p>
                       </div>
                    
@@ -66,7 +66,7 @@ export default function Chatbox({admin,ReceivedMessage,user,history}){
                   return (
                     <div key={index} className="Chat_left">
                         <div className="Chat_Profile_left">
-                        <img src={Profile} alt="profile picture"/>
+                        <img src={Profile} alt="display person avatar"/>
                         <p>{message.UserName}</p>
                         </div>
                  

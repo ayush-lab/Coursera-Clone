@@ -9,7 +9,8 @@ import Layout from '../../../components/Layout/Layout';
 import AuthServices from "../../../ApiServices/auth.service";
 import Url from '../../../ApiServices/BackendUrl';
 import '../../HomePage/CSS/Homepage.css';
-
+import { connect } from "react-redux";
+import * as actionCreators from "../../../store/actions/actions";
 
 
 class TeacherHomePage extends Component {
@@ -49,9 +50,9 @@ class TeacherHomePage extends Component {
             AuthServices.TeacherCourseDelete(form)
             .then(response => {
                 console.log("Removed Course",response);
-     
+                this.props.RemoveCourseFromStore(id);
                
-                 const updatedCourse =this.state.Courses;
+                 const updatedCourse =[...this.state.Courses];
         
                  for(let i=0;i<this.state.Courses.length;i++){
                      
@@ -143,4 +144,11 @@ class TeacherHomePage extends Component {
 
 }
 
-export default TeacherHomePage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        RemoveCourseFromStore:(data)=>dispatch(actionCreators.RemoveCourseFromStore(data)),
+        //  fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(TeacherHomePage);

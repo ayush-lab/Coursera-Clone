@@ -14,8 +14,23 @@ export const fetchData = (data) => {
     }
   }
 
+  export const AddCourseToStore = (data) => {
+    return{
+      type: 'ADD_COURSE_TO_STORE',
+      data: data
+    }
+  }
 
-  // Asyn calls using redux thunks 
+
+   export const RemoveCourseFromStore = (data) => {
+    return{
+      type: 'REMOVE_COURSE_FROM_STORE',
+      data: data
+    }
+  }
+
+
+  // Async calls using redux thunks 
 
   export const fetchAsyncCourses = () => {
   return (dispatch) => {

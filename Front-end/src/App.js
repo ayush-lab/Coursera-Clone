@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
 import Login from './Pages/Auth/Forms/Login/Login';

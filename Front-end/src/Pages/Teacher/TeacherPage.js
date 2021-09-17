@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-//import Aux from '../../../hoc/ReactFrag';
-//import Scroll from 'react-scroll';
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions/actions";
 import Tinput from './TinputFields';
 import Layout from '../../components/Layout/Layout';
 import TeacherTittle from './TeacherTittle';
@@ -300,10 +300,6 @@ class TeacherPage extends Component{
         selectedfile.image.name= URL.createObjectURL(event.target.files[0]);
         this.setState({Form:selectedfile })
             //console.log(selectedfile)
-
-     
-        
-       
     }
 
 
@@ -319,10 +315,10 @@ class TeacherPage extends Component{
 
       
         for(let formElement in this.state.Form){
-             
-                fd.append(formElement, this.state.Form[formElement].value);
-                console.log(formElement,this.state.Form[formElement].value);
-                
+            
+            fd.append(formElement, this.state.Form[formElement].value);
+            
+            console.log(formElement,this.state.Form[formElement].value);
         }
 
 
@@ -349,6 +345,7 @@ class TeacherPage extends Component{
                 })
                 .then( res=> { 
                     console.log(res);
+                    this.props.AddCourseToStore(res.data.newCourse)
                     this.setState({CourseId:res.data.newCourse._id})
                     this.AlertError("Your Course has been saved!", "success");
                     setTimeout( ()=> this.setState({redirect:true}) , 2000);
@@ -629,4 +626,18 @@ class TeacherPage extends Component{
     }
 }
 
-export default TeacherPage;
+// const mapStateToProps = (state) => {
+//     return {
+//          Courses: state.filter.Courses,
+//          PreferenceCourses: state.filter.PreferenceCourse,
+//     //   selectedCourse: state.filter.selectedCourse,
+//     };
+//   };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        AddCourseToStore:(data)=>dispatch(actionCreators.AddCourseToStore(data)),
+        //  fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(TeacherPage);
