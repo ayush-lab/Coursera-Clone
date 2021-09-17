@@ -7,8 +7,8 @@ const Auth = require('../Authentication/is-auth');
 
 router.get('/home/allCourses',homeController.allCourses);
 router.get('/home/:course',homeController.fetchCourses);
-router.post('/home/interests',Auth.authentication,homeController.getPreferences);
 router.post('/home/:course',Auth.authentication,homeController.preferenceCourses);
+router.post('/home/interests',Auth.authentication,homeController.getPreferences);
 
 
 

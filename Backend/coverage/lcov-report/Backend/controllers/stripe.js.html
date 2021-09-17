@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>8/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>8/16</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,16 +99,15 @@
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -116,13 +115,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,17 +145,17 @@
 const stripe = require("stripe")(api_key.stripePayment);
 const Course = require('../model/courses')
 &nbsp;
-exports.stripeCourse =<span class="fstat-no" title="function not covered" >(r</span>eq,res)=&gt;{
-    const courseId = <span class="cstat-no" title="statement not covered" >req.params.courseId;</span>
-<span class="cstat-no" title="statement not covered" >    Course.findById({_id:courseId})</span>
-    .then(<span class="fstat-no" title="function not covered" >co</span>urse=&gt;{
-<span class="cstat-no" title="statement not covered" >        res.status(200).json({course:course})</span>
+exports.stripeCourse =(req,res)=&gt;{
+    const courseId = req.params.courseId;
+    Course.findById({_id:courseId})
+    .then(course=&gt;{
+        res.status(200).json({course:course})
     })
     .catch(<span class="fstat-no" title="function not covered" >er</span>r=&gt;{
 <span class="cstat-no" title="statement not covered" >        console.log(err)</span>
     })
-&nbsp;
 }
+&nbsp;
 &nbsp;
 exports.stripePayment=<span class="fstat-no" title="function not covered" >(r</span>eq,res)=&gt;{
 &nbsp;
@@ -166,7 +164,6 @@ exports.stripePayment=<span class="fstat-no" title="function not covered" >(r</s
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    stripe.paymentIntents.create({</span>
         amount:amount,
-        
         currency:"inr",
         description: "Coursera clone just testing",
         payment_method: id,
@@ -193,7 +190,7 @@ exports.stripePayment=<span class="fstat-no" title="function not covered" >(r</s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Sep 11 2021 00:34:36 GMT+0530 (India Standard Time)
+                at Fri Sep 17 2021 16:55:38 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

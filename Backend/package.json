@@ -7,11 +7,9 @@
     "start": "nodemon app.js",
     "test": "jest --watchAll --coverage --verbose --silent --runInBand"
   },
-
   "jest": {
     "testEnvironment": "node"
   },
-
   "author": "Ayush",
   "license": "ISC",
   "dependencies": {
@@ -24,7 +22,6 @@
     "google-auth-library": "^7.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.5",
-    "mongodb-memory-server": "^7.4.0",
     "mongoose": "^5.12.3",
     "multer": "^1.4.2",
     "nodemailer": "^6.5.0",
@@ -32,10 +29,12 @@
     "pdfkit": "^0.12.1",
     "redis": "^3.1.2",
     "socket.io": "^4.1.1",
-    "stripe": "^8.145.0",
-    "supertest": "^6.1.6"
+    "stripe": "^8.145.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "jest": "^27.1.1",
+    "mongodb-memory-server": "^7.4.0",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.6"
   }
 }

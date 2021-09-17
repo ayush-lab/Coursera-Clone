@@ -92,5 +92,56 @@ describe("course" , ()=>{
             expect(e).toMatch('error')
         })
     })
+    it('Showbookmark of a user', async()=>{
 
+        await UserCycle();
+
+        // manually adding a course in user bookmark list
+        new_User.Bookmark.push(new_course._id);
+        await new_User.save()
+
+        await supertest(app).get(`/users/${new_User.name}/${new_User._id}`)
+        .set(header)
+        .expect(200)
+        .then(res=>{
+            expect(res.body.course.Bookmark.length).toBe(1)
+            expect(JSON.stringify(res.body.course._id)).toEqual(JSON.stringify(new_User._id))
+            expect(res.body.course.isverified).toBeTruthy()
+        })
+    })
+
+    it('unbookmark a course', async()=>{
+
+        await UserCycle()
+
+        // adding a bookmark manually 
+        new_User.Bookmark.push(new_course._id);
+        await new_User.save()
+
+        await supertest(app).post('/unbookmark')
+        .send({userId:new_User._id,id:new_course._id})
+        .set(header)
+        .expect(200)
+        .then(res=>{
+            expect(res.body).toEqual({message:"successfully unbookmarked"})
+        })
+    })
+
+    it('Rating', async()=>{
+
+        await UserCycle()
+
+        // dummy rating 4 is sent 
+        // by default 1 is selected
+        await supertest(app).put('/rating')
+        .send({courseId:new_course._id, rating:4})
+        .set(header)
+        .expect(200)
+        .then(res=>{
+            expect(res.body.course.rating.timesUpdated).toEqual(2)
+            expect(res.body.course.rating.ratingSum).toEqual(5)
+            expect(res.body.course.rating.ratingFinal).toEqual(2.5)
+            
+        })
+    })
 })

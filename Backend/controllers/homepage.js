@@ -1,11 +1,10 @@
 const Course = require('../model/courses');
 const User  = require('../model/user')
 
-
 exports.allCourses = (req,res)=>{
     Course.find()
     .then(course=>{
-        console.log(course)
+        // console.log(course)
         res.status(200).json({course:course})
     })
     .catch(err=>{
@@ -13,12 +12,11 @@ exports.allCourses = (req,res)=>{
     })
 }
 
+// this fetches courses based on the category
 
 exports.fetchCourses = (req,res,next)=>{
- 
     const category = req.params.course;
    // console.log(category)
-
     if(category =="all" || category==""){
         Course.find()
         .then(courses=>{
@@ -30,7 +28,6 @@ exports.fetchCourses = (req,res,next)=>{
             res.status(400).json({message:"error occured"})
         })
     }
- 
     else{
         Course.find({category:category})
         .then(courses=>{
@@ -43,10 +40,10 @@ exports.fetchCourses = (req,res,next)=>{
     }
 }
 
+
 exports.preferenceCourses = (req,res,next)=>{
     const category = req.params.course;
-  
-   
+
     if(category=="preferences"){
         const userId = req.body.userId; 
         let courseArray = []
@@ -54,8 +51,10 @@ exports.preferenceCourses = (req,res,next)=>{
 
         User.findOne({_id:userId})
         .then(user=>{
+
             // user.preferences = [node, react]
-            console.log(user.preferences);
+
+            // console.log(user.preferences);
             user.preferences.forEach(preference=>{
 
                 Course.find({category:preference})
@@ -64,7 +63,6 @@ exports.preferenceCourses = (req,res,next)=>{
                     courseArray.push(...course);
 
                     if(no_of_course === user.preferences.length){
-                      //  console.log(courseArray);
                         res.status(200).json({course:courseArray})
                     }
 
@@ -84,6 +82,8 @@ exports.preferenceCourses = (req,res,next)=>{
     }
 }
 
+// taking preferences from user
+
 exports.getPreferences = (req,res,next)=>{
     const preferencesArray = req.body.interest;
     const userId = req.body.userId;
@@ -97,6 +97,7 @@ exports.getPreferences = (req,res,next)=>{
     })
     .catch(err=>{
         console.log(err);
+        throw erorr;
     })
 
 }

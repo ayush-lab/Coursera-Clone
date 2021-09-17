@@ -11,8 +11,8 @@ exports.stripeCourse =(req,res)=>{
     .catch(err=>{
         console.log(err)
     })
-
 }
+
 
 exports.stripePayment=(req,res)=>{
 
@@ -21,7 +21,6 @@ exports.stripePayment=(req,res)=>{
 
     stripe.paymentIntents.create({
         amount:amount,
-        
         currency:"inr",
         description: "Coursera clone just testing",
         payment_method: id,
