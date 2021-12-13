@@ -25,11 +25,11 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const client = redis.createClient({
-  host: api_key.redisHost,
-  port: api_key.redisPort,
-  password: api_key.redisPassword
-});
+// const client = redis.createClient({
+//   host: api_key.redisHost,
+//   port: api_key.redisPort,
+//   password: api_key.redisPassword
+// });
 
 io.on('connect',(socket)=>{
   

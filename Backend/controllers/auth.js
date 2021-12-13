@@ -57,15 +57,17 @@ exports.signup = (req,res)=>{
             OTP.save();
             console.log(otp)
             res.status(201).json({ message: "OTP sent to your Email" });
-        })
+        }).then(res =>{
             transporter.sendMail({
                 to:email,
-                from:"ayush.verma8750@gmail.com",
+                from:"ayush1911052@akgec.ac.in",
                 subject:"OTP Verification",
                 html:` '<h1>Please Verify your account using this OTP: !</h1>
                         <p>OTP:${otp}</p>'`
             })
             console.log("mail sent")
+        })
+           
             
 }
 
@@ -174,7 +176,7 @@ exports.resendOtp = (req,res,next)=>{
     .then( ()=>{
         transporter.sendMail({
             to:email,
-            from:"ayush.verma8750@gmail.com",
+            from:"ayush1911052@akgec.ac.in",
             subject:"OTP Verification",
             html:` '<h1>Please Verify your account using this OTP: !</h1>
                     <p>OTP:${otp}</p>'`
@@ -230,7 +232,7 @@ exports.login = (req,res,next)=>{
                         .then(()=>{
                             transporter.sendMail({
                                 to:email,
-                                from:"ayush.verma8750@gmail.com",
+                                from:"ayush1911052@akgec.ac.in",
                                 subject:"OTP Verification",
                                 html:` '<h1>Please Verify your account using this OTP: !</h1>
                                         <p>OTP:${otp}</p>'`
@@ -249,7 +251,7 @@ exports.login = (req,res,next)=>{
                         .then(()=>{
                             transporter.sendMail({
                                 to:email,
-                                from:"ayush.verma8750@gmail.com",
+                                from:"ayush1911052@akgec.ac.in",
                                 subject:"OTP Verification",
                                 html:` '<h1>Please Verify your account using this OTP: !</h1>
                                         <p>OTP:${otp}</p>'`
@@ -333,7 +335,7 @@ exports.resetPassword = (req,res,next)=>{
         .then(result=>{
             transporter.sendMail({
                 to:email,
-                from:"ayush.verma8750@gmail.com",
+                from:"ayush1911052@akgec.ac.in",
                 subject:"Reset Password for shelp",
                 html:` '<h1>this is your otp to reset your password: ${otp}</h1>'`
             })
