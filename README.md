@@ -113,27 +113,27 @@ You can test the backend, express endpoints using command ( npm test )
 ### Authentication pages
  
 #### Signup Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shelpSignup.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/shelpSignup.png)
 
  #### Login Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/loginShelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/loginShelp.png)
 
  #### Otp and Resend Otp Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/otp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/otp.png)
 
  
  ####  Forgot Password Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/forgotPassword.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/forgotPassword.png)
 
  ---
  ### Main Screens
 
  #### Homepage
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/homepage.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/homepage.png)
 
 
 #### Course Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/coursePage.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/coursePage.png)
 
 #### Bookmark Page
 ![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/bookmark.png)
@@ -145,26 +145,26 @@ You can test the backend, express endpoints using command ( npm test )
 ![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/chat.png)
 
 #### Preference Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shlepPreference.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/shlepPreference.png)
 
 #### Teacher's Courses 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/teachershelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/teachershelp.png)
 
 #### Teacher Uploading Details
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/TeacherUploadCourse.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/TeacherUploadCourse.png)
 
 
 #### Teacher Uploading Videos
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/uploadshelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/master/Front-end/src/assets/uploadshelp.png)
 
 ---
 ### Responsive Designs
 #### Mobile Design Authentication
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobileLogin.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/mobileLogin.png)
 
  
 #### Mobile Design CoursePage
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobilecourse.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/mobilecourse.png)
 
 
 
