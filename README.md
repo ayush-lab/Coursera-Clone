@@ -37,23 +37,27 @@ For Backend, go to the backend folder (cd Backend) and run
 ``` npm i ```
 
   - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  - or, you can use the [website](https://account.mongodb.com/account/login) 
   
   - add your environmental variables
   - Create a .env file in the root directory of the backend folder and add your tokens there with respect to the config files variables.
  
-    - ACCESS_TOKEN_SECRET
-    - ACCESS_TOKEN_LIFE
-    - REFRESH_TOKEN_SECRET
-    - REFRESH_TOKEN_LIFE
-    - SENDGRID_KEY
-    - MONGO_DATABASE
-    - OAuth2Client
-    - STRIPE_SECRET_TOKEN
-    - REDIS_HOST
-    - REDIS_PASSWORD
-    - REDIS_PORT
+    - ACCESS_TOKEN_SECRET = "some secret"
+    - ACCESS_TOKEN_LIFE = time
+    - REFRESH_TOKEN_SECRET = "some secret"
+    - REFRESH_TOKEN_LIFE = time
+    - SENDGRID_KEY = ""
+    - MONGO_DATABASE = ""
+    - OAuth2Client = ""
+    - STRIPE_SECRET_TOKEN = ""
+    - REDIS_HOST = ""
+    - REDIS_PASSWORD = "" 
+    - REDIS_PORT = ""
 
   ### Note: Make sure the .env files variables matches with that of the config files.
+ 
+## Make sure you manually create an empty folder named "videos" in the root directory of backend.
+
 
 For Frontend, go to the frontend folder (cd Front-end) and run
 ``` npm i ```
