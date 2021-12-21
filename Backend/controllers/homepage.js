@@ -16,7 +16,6 @@ exports.allCourses = (req,res)=>{
 
 exports.fetchCourses = (req,res)=>{
     const category = req.params.course;
-   // console.log(category)
     // if(category =="all" || category==""){
 
         Course.find()
@@ -45,7 +44,6 @@ exports.fetchCourses = (req,res)=>{
 
 exports.preferenceCourses = (req,res,next)=>{
     const category = req.params.course;
-
     if(category=="preferences"){
         const userId = req.body.userId; 
         let courseArray = []
@@ -89,7 +87,6 @@ exports.preferenceCourses = (req,res,next)=>{
 exports.getPreferences = (req,res,next)=>{
     const preferencesArray = req.body.interest;
     const userId = req.body.userId;
-   
     User.findOne({_id:userId})
     .then(user=>{
         user.preferences=preferencesArray;

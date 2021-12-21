@@ -63,8 +63,6 @@ AlertError(alertmsg, alertType) {
 
             {   const UpdatedCourses = {...this.state.Courses};
                 UpdatedCourses[CourseName].touched=false;
-                
-
 
                 this.setState({Courses:UpdatedCourses})
                 const index =this.state.interest.indexOf(CourseName);
@@ -78,9 +76,7 @@ AlertError(alertmsg, alertType) {
 
 
             this.setState({Courses:UpdatedCourses})
-             this.state.interest.push(CourseName);}
-
-
+            this.state.interest.push(CourseName);}
         
         
         this.setState(prevState => 
@@ -88,8 +84,6 @@ AlertError(alertmsg, alertType) {
 
         console.log(this.state.interest)
 
-       
-       
     }
 
     sumbitHandler =()=> {
@@ -105,7 +99,7 @@ AlertError(alertmsg, alertType) {
        //fd.append("interest",this.state.interest);
 
         
-        axios.post("/home/interests",formData, {
+        axios.post("/home/interests/",formData, {
             headers: {
                 
                Authorization: 'Bearer '+ this.state.token + " " + localStorage.getItem('ref_token')
