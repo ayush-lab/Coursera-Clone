@@ -43,18 +43,24 @@ exports.Bookmark = (req,res,next)=>{
                 }
                 else{
                     course.bookmark.splice(course.bookmark.indexOf(userId),1);
+                    console.log("course already bookmarked for this user")
                 }
-                course.save();
+                course.save()
+                .then(()=>{
+                    console.log("bookmark process completed")
+                    res.status(202).json({message:"successfully bookmarked/unbookmarked"})
+                })
                 console.log(user)
             })
             .catch(err=>{
                 console.log(err);
+                console.log("bookmark wasnt done successfullly")
             })
         
         })
       
-        console.log(user)
-        res.status(202).json({message:"successfully bookmarked/unbookmarked"})
+        // console.log()
+        
     })  
     .catch(err=>{
         // console.log(err)
@@ -87,21 +93,28 @@ exports.unbookmark=(req,res,next)=>{
     User.findById({_id:userId})
     .then(user=>{
         user.Bookmark.splice(user.Bookmark.indexOf(courseId),1);
-        user.save();
-        res.status(200).json({message:"successfully unbookmarked"})
+        user.save()
+        .then(()=>{
+            Course.findById({_id:courseId})
+            .then(course=>{
+                course.bookmark.splice(course.bookmark.indexOf(userId),1);
+                course.save()
+                .then(()=>{
+                    res.status(200).json({message:"successfully unbookmarked"})
+                })
+            })
+            .catch(err=>{
+                console.log(err)
+                next()
+            })
+        })
+        
     })
     .catch(err=>{
         console.log(err)
     })
 
-    Course.findById({_id:courseId})
-    .then(course=>{
-        course.bookmark.splice(course.bookmark.indexOf(userId),1);
-    })
-    .catch(err=>{
-        console.log(err)
-        next()
-    })
+   
 }
 
 exports.rating=(req,res,next)=>{

@@ -46,7 +46,7 @@ class CourseVideo extends Component {
          onProgress={this.HandleProgress}
          onDuration={this.HandleDuration}
          playing={this.props.playing}
-         url={Url+this.props.videoUrl.videoUrl} />
+         url={Url+ [this.props.videoUrl ? this.props.videoUrl.videoUrl : ""] } />
        
 
         </div>

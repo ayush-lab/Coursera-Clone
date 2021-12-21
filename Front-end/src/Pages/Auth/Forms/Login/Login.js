@@ -14,10 +14,8 @@ import Alert from '../alert';
 class Login extends Component {
 
     state = { 
-        Form:{
-            
+        Form:{            
             email: {
-
                 placeholder: 'Email',
                 value: "",
                 valid: false,

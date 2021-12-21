@@ -28,29 +28,27 @@ const reducer = (state = initialState, action) => {
         }
 
       case "REMOVE_COURSE_FROM_STORE":
-        // console.log(action.data)
-        var updated_course = [...state.Courses];
 
-        for(var i=0;i<state.Courses.length;i++){
-          console.log(state.Courses[0]._id)
-          if(updated_course[i]._id==action.data){
-            // console.log(action.data)
-            updated_course.splice(i,1);
-          }
-          state.Courses=updated_course;
-          return state;
+          return {...state,
+            Courses:state.Courses.filter(course=>
+                course._id!==action.data
+            )
         }
 
       case "EDIT_COURSE_FROM_STORE":
-         updated_course=[...state.Courses];
-        
-        for(var i=0;i<state.Courses.length;i++){
-           if(updated_course[i]._id==action.data._id){
-             updated_course[i]=action.data;
-           }
-           state.Courses=updated_course;
-           return state;
+
+      const updated_course = [...state.Courses];
+      const updated_course_len = updated_course.length;
+
+      for(var i=0;i<updated_course_len;i++){
+        if(updated_course[i]._id == action.data._id){
+          updated_course[i]=action.data;
         }
+      }
+
+        return {...state,
+          Courses:updated_course
+      }
 
     default:
       return state;

@@ -38,7 +38,7 @@ class Homepage extends Component {
        
          if(this.state.CourseLink === "preferences" && this.IsMounted)
             this.props.fetchPreferenceCourses(this.state.CourseLink,form);
-    
+
 
         // fetch all courses if redux store is empty
         if( this.IsMounted && !this.props.Courses.length)
@@ -71,6 +71,7 @@ class Homepage extends Component {
 
             // by default, it displays all the courses
             let CourseArray= this.props.Courses;
+            console.log(CourseArray);
 
             if(this.state.CourseLink !== "all" && this.state.CourseLink!=="preferences"){
                 CourseArray = this.props.Courses.filter(course=>
@@ -85,7 +86,7 @@ class Homepage extends Component {
 
             data = (
               CourseArray.map(item => {
-               let rating=item.rating.ratingFinal;
+               let rating=[item ? item.rating.ratingFinal : 0];
                 if(rating ===0) rating=1;
                 
               return(
