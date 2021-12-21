@@ -54,9 +54,9 @@ For Backend, go to the backend folder (cd Backend) and run
     - REDIS_PASSWORD = "" 
     - REDIS_PORT = ""
 
-  ### Note: Make sure the .env files variables matches with that of the config files.
- 
-## Make sure you manually create an empty folder named "videos" in the root directory of backend.
+  ### Note: Make sure the .env files variables matches with that of the config files like the image below.
+  
+  ![env files variables](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/env%20variables.png)
 
 
 For Frontend, go to the frontend folder (cd Front-end) and run
