@@ -37,23 +37,27 @@ For Backend, go to the backend folder (cd Backend) and run
 ``` npm i ```
 
   - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  - or, you can use the [website](https://account.mongodb.com/account/login) 
   
   - add your environmental variables
   - Create a .env file in the root directory of the backend folder and add your tokens there with respect to the config files variables.
  
-    - ACCESS_TOKEN_SECRET
-    - ACCESS_TOKEN_LIFE
-    - REFRESH_TOKEN_SECRET
-    - REFRESH_TOKEN_LIFE
-    - SENDGRID_KEY
-    - MONGO_DATABASE
-    - OAuth2Client
-    - STRIPE_SECRET_TOKEN
-    - REDIS_HOST
-    - REDIS_PASSWORD
-    - REDIS_PORT
+    - ACCESS_TOKEN_SECRET = "some secret"
+    - ACCESS_TOKEN_LIFE = time
+    - REFRESH_TOKEN_SECRET = "some secret"
+    - REFRESH_TOKEN_LIFE = time
+    - SENDGRID_KEY = ""
+    - MONGO_DATABASE = ""
+    - OAuth2Client = ""
+    - STRIPE_SECRET_TOKEN = ""
+    - REDIS_HOST = ""
+    - REDIS_PASSWORD = "" 
+    - REDIS_PORT = ""
 
   ### Note: Make sure the .env files variables matches with that of the config files.
+ 
+## Make sure you manually create an empty folder named "videos" in the root directory of backend.
+
 
 For Frontend, go to the frontend folder (cd Front-end) and run
 ``` npm i ```
@@ -113,27 +117,27 @@ You can test the backend, express endpoints using command ( npm test )
 ### Authentication pages
  
 #### Signup Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shelpSignup.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/shelpSignup.png)
 
  #### Login Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/loginShelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/loginShelp.png)
 
  #### Otp and Resend Otp Page 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/otp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/otp.png)
 
  
  ####  Forgot Password Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/forgotPassword.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/forgotPassword.png)
 
  ---
  ### Main Screens
 
  #### Homepage
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/homepage.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/homepage.png)
 
 
 #### Course Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/coursePage.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/coursePage.png)
 
 #### Bookmark Page
 ![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/bookmark.png)
@@ -145,26 +149,26 @@ You can test the backend, express endpoints using command ( npm test )
 ![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/chat.png)
 
 #### Preference Page
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shlepPreference.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/shlepPreference.png)
 
 #### Teacher's Courses 
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/teachershelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/teachershelp.png)
 
 #### Teacher Uploading Details
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/TeacherUploadCourse.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/TeacherUploadCourse.png)
 
 
 #### Teacher Uploading Videos
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/uploadshelp.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/master/Front-end/src/assets/uploadshelp.png)
 
 ---
 ### Responsive Designs
 #### Mobile Design Authentication
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobileLogin.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/mobileLogin.png)
 
  
 #### Mobile Design CoursePage
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobilecourse.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/Coursera-Clone/main/Front-end/src/assets/mobilecourse.png)
 
 
 
